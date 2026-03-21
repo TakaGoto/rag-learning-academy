@@ -20,6 +20,25 @@ All agents follow this interaction model:
 - Agents adapt explanations to the learner's current level
 - No code is generated without the learner understanding what it does
 
+### Agent Suggestions
+
+When a learner asks a question that falls within a specialist agent's domain, **answer the question directly first**, then offer to bring in the specialist for a deeper dive. Use this format:
+
+> "For a deeper dive, the **[agent-name]** has specific guidance on [topic] — want me to bring it in?"
+
+**When to suggest an agent:**
+- The question is clearly domain-specific (chunking, reranking, graph RAG, deployment, etc.)
+- The learner seems to want depth beyond a quick answer
+- The agent's Common Misconceptions or reference material would add value
+
+**When NOT to suggest an agent:**
+- Simple factual questions ("what does top-k mean?")
+- The learner is in the middle of a `/lesson` or `/build` flow (don't interrupt)
+- The question is conversational ("thanks", "yes", "got it")
+- You already suggested an agent in the last 2-3 messages (don't nag)
+
+This keeps the UX lightweight — no extra token cost unless the learner opts in.
+
 ## Agent Hierarchy
 
 ### Tier 1 — Directors

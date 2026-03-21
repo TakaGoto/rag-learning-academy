@@ -16,6 +16,12 @@ Complete listing of all 20 agents in the RAG Learning Academy, organized by tier
 
 This tiering balances depth of reasoning against response speed and cost. Directors need more turns because they coordinate across domains; specialists are scoped tightly and resolve faster.
 
+### How Agents Are Invoked
+
+Agents are **not auto-routed**. When a learner asks a question, Claude Code answers directly. If the question maps to a specialist's domain, Claude offers to bring the agent in: *"The chunking-strategist has specific guidance on this — want me to bring it in?"* The learner chooses. This keeps responses fast and avoids unnecessary token cost.
+
+Agents also activate when invoked through skills (`/lesson`, `/build`, `/debug-rag`) or when explicitly requested by the learner.
+
 ---
 
 ## Tier 1 — Directors (3)
