@@ -19,6 +19,8 @@ Before starting, ensure you have:
 - **A terminal** with bash or zsh
 - **8GB+ RAM** recommended (16GB preferred for local models)
 
+> **Local LLM warning:** Running models locally with Ollama is free but resource-intensive. A 7B parameter model (llama3, mistral) needs ~4-8GB of RAM just for the model. If you're on a laptop with 8GB RAM, close other heavy applications (browsers with many tabs, Docker, IDEs) before running local models. Signs of trouble: system slowdown, spinning fans, swap usage, or out-of-memory crashes. If your machine struggles, use the API path instead — it offloads computation to the cloud. Local embedding models (all-MiniLM-L6-v2) are much lighter than LLMs and run fine on most machines.
+
 Optional but recommended:
 - **uv** for fast Python package management (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
 - **A Cohere API key** (for reranking exercises in Module 05)

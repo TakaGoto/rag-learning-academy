@@ -95,7 +95,7 @@ All agents follow this interaction model:
 - **Language:** Python 3.10+
 - **Embeddings:** OpenAI `text-embedding-3-small` (API) or `all-MiniLM-L6-v2` / `nomic-embed-text` (local/free)
 - **Vector DB:** ChromaDB (local dev), FAISS (low-level alternative), Pinecone/pgvector (production lessons)
-- **LLM:** Claude API (via Anthropic SDK) or Ollama with local models (free, no API key needed)
+- **LLM:** Claude API (via Anthropic SDK) or Ollama with local models (free, no API key needed — requires 8-16GB RAM; see quick-start for hardware guidance)
 - **Framework:** LangChain or LlamaIndex (learner's choice)
 - **Evaluation:** RAGAS, custom metrics
 - **Document Processing:** Unstructured, PyPDF, pdfplumber, BeautifulSoup

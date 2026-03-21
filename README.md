@@ -158,6 +158,8 @@ This fits comfortably in any Claude model's context window. The full ~98k projec
 | Evaluation | RAGAS | Custom metrics |
 | Docs | Unstructured, PyPDF | pdfplumber, BeautifulSoup |
 
+> **Running models locally?** Ollama is free but needs 8-16GB RAM for LLMs. Close heavy apps before running. If your machine slows down, switch to the API path. Local embedding models (all-MiniLM-L6-v2) are lightweight and run fine on most machines.
+
 ## Project Structure
 
 ```

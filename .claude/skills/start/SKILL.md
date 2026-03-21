@@ -13,7 +13,11 @@ Before anything else, give the learner a clear picture of what they're about to 
 >
 > By the end of this curriculum, you'll be able to build a system that can answer questions about any document collection — PDFs, wikis, codebases, product docs — accurately and with source citations, in seconds.
 
-Briefly explain the learning structure: 9 modules, 3 guided projects, 15 slash commands. They'll learn by building, not just reading.
+Briefly explain the learning structure: 9 modules, 3 guided projects, 17 slash commands. They'll learn by building, not just reading.
+
+Mention the two paths: **API path** (OpenAI + Anthropic keys, computation in the cloud) or **local/free path** (Ollama, no cost but needs hardware). If they plan to use local models, add this note:
+
+> **Heads up:** Running LLMs locally with Ollama needs 8-16GB of free RAM. If your machine has 8GB total, close heavy apps (browsers, Docker, IDEs) before running models. If you hit slowdowns or crashes, switch to the API path — local embedding models are lightweight but local LLMs are demanding. You can always mix: use local embeddings with a cloud LLM.
 
 Then transition: "To recommend the right starting point, I'll ask five quick questions about your background. There are no wrong answers — this just helps me calibrate."
 
