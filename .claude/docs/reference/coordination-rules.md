@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Agent Coordination Rules
 
 How agents in the RAG Learning Academy collaborate, hand off work, escalate issues, and maintain coherent learning experiences.
@@ -56,6 +62,23 @@ HANDOFF CONTEXT:
 | Learner asks about query expansion techniques | retrieval-lead | query-analyst | Query preprocessing is the query-analyst's domain |
 | Learner wants to evaluate their pipeline | integration-lead | evaluation-lead | Evaluation strategy and metric selection is the evaluation-lead's domain |
 | Learner needs to write RAGAS evaluation code | evaluation-lead | evaluation-specialist | Hands-on implementation is the evaluation-specialist's domain |
+
+### Breadcrumb Protocol
+
+When delegating to another agent, include a brief context summary so the receiving agent doesn't re-ask questions or retread ground:
+
+**Handoff context to include:**
+- Learner's assessed level (beginner/intermediate/advanced)
+- What was already discussed or built
+- The specific question or gap that triggered the handoff
+- Any decisions the learner already made
+
+**Example:**
+> Handing off to **reranking-specialist**: Learner is intermediate, building a hybrid search pipeline. Dense retrieval is working (cosine similarity, top-10). Precision is low at 0.42 — learner wants to add cross-encoder reranking. They've chosen `cross-encoder/ms-marco-MiniLM-L-6-v2`.
+
+**Receiving agents:** When you receive a handoff with context, acknowledge it briefly ("I see you've been working on X with [previous agent]") and skip level calibration — the handoff context tells you what you need.
+
+**Preventing loops:** If you would delegate back to the agent that just delegated to you, STOP. Instead, summarize the situation and ask the learner what they'd like to focus on next.
 
 ---
 

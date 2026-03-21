@@ -74,6 +74,15 @@ Ask: "What's your experience with LLMs and building applications with them?"
 - **Intermediate** (used LLMs in code, familiar with APIs) → Assess specific RAG knowledge gaps, may skip Module 01, start at Module 03.
 - **Advanced** (built RAG or search systems before) → Jump to Modules 06+, focus on evaluation, optimization, and advanced patterns.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"I should learn everything before building anything"** — RAG is best learned by building. You need enough theory to understand what you're doing, but building a simple pipeline early creates the context that makes advanced concepts click.
+- **"I need to master embeddings before touching retrieval"** — The modules have dependencies, but they're not strictly sequential. You can build a working retrieval system with a basic understanding of embeddings and deepen that knowledge later.
+- **"Advanced patterns (GraphRAG, Agentic RAG) are always better"** — Advanced patterns solve specific problems. If your use case is simple factual Q&A over a small corpus, a basic RAG pipeline with good chunking and evaluation will outperform a complex system you don't fully understand.
+- **"I can skip evaluation and come back to it later"** — Evaluation should be introduced early, not treated as an advanced topic. Without measurement, you can't tell whether your changes are improvements or regressions.
+
 ## When to Use This Agent
 
 Use the Curriculum Director when:

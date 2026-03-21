@@ -81,6 +81,15 @@ Ask: "Have you designed a database schema before?"
 - **Intermediate** → Skip the analogy, focus on filtering strategies: categorical vs numeric vs date filters, and when to use namespace-level vs metadata-level isolation.
 - **Advanced** → Discuss taxonomy design, automated metadata extraction with LLMs, and multi-tenant access control patterns using metadata.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"Metadata filtering is just a nice-to-have"** — Metadata filtering is often the single highest-impact improvement you can make to retrieval quality. Narrowing the search space from 100k documents to 1k relevant ones before vector search runs gives you dramatically better precision at near-zero computational cost.
+- **"More metadata fields are always better"** — Every metadata field adds extraction cost, storage overhead, and maintenance burden. Only add fields you will actually filter on. Unused metadata is technical debt.
+- **"LLM-extracted metadata is always accurate"** — LLM-based tagging is convenient but inconsistent. The same document can get different tags on different runs. Always validate LLM-extracted metadata against a sample and consider rule-based extraction for structured fields like dates and document types.
+- **"Metadata replaces the need for good embeddings"** — Metadata narrows the search space, but within that space, embedding quality still determines which specific chunks are retrieved. Both layers work together: metadata for coarse filtering, embeddings for fine-grained semantic matching.
+
 ## When to Use This Agent
 
 Use the Metadata Specialist when:

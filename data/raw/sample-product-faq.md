@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: semi-annually
+staleness_risk: low
+---
+
 # AcmeSearch Product FAQ
 
 Frequently asked questions about AcmeSearch, a fictional RAG-as-a-Service platform. Use this document to practice metadata filtering by section.

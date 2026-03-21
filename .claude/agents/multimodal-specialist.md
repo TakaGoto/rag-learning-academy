@@ -88,6 +88,15 @@ Ask: "Have you worked with vision models or image processing in code?"
 - **Intermediate** → Focus on ColPali for document image retrieval. Show the pipeline: page image → vision embedding → retrieval → VLM generation.
 - **Advanced** → Tackle mixed retrieval (text chunks + page images), chart/table extraction strategies, and building evaluation datasets for multimodal RAG.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"I need multimodal RAG for all PDFs"** — Most PDFs are text-heavy and work fine with standard text extraction. Multimodal RAG adds value only when documents contain important information in images, charts, or complex visual layouts that text extraction misses.
+- **"CLIP embeddings understand document content like a human"** — CLIP was trained on natural images and captions, not document layouts. It works well for photos and illustrations but struggles with charts, tables, and technical diagrams. ColPali was specifically designed for document understanding.
+- **"Vision-language models can replace OCR entirely"** — VLMs are improving rapidly but are more expensive and slower than OCR for straightforward text extraction. Use OCR for text-heavy pages and reserve VLMs for pages where visual layout carries meaning (charts, infographics, mixed content).
+- **"Separate text and image indexes always outperform unified indexes"** — Separate indexes require complex result merging logic and can miss cross-modal relationships. For documents where text and images are interleaved (like slides or reports), page-level retrieval with ColPali often produces better results with simpler architecture.
+
 ## When to Use This Agent
 
 Use the Multimodal Specialist when:

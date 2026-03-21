@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Module 02: Document Processing
 
 ## Module Objectives
@@ -16,6 +22,15 @@ By the end of this module, learners will be able to:
 - Module 03: Embeddings (required for Lesson 2.5 — semantic chunking needs embeddings)
 - Familiarity with regular expressions
 - Understanding of basic NLP concepts (tokens, sentences, paragraphs)
+
+### Before You Begin
+
+Verify you're comfortable with these concepts from prior modules:
+
+- [ ] The two-phase RAG architecture: offline indexing vs online query serving (Module 01)
+- [ ] The role of chunking in the RAG pipeline and why it exists (Module 01)
+- [ ] How document quality affects downstream retrieval and generation (Module 01)
+- [ ] Building a minimal end-to-end RAG pipeline from scratch (Module 01)
 
 ## Lessons
 
@@ -84,3 +99,7 @@ By the end of this module, learners will be able to:
 - Unstructured library documentation
 - LangChain text splitters source code (for recursive chunking implementation details)
 - Greg Kamradt's "5 Levels of Text Splitting" (visual guide to chunking strategies)
+
+---
+
+← **Previous:** [Module 01 — RAG Foundations](module-01-foundations.md) | **Next:** [Module 03 — Embeddings](module-03-embeddings.md) →

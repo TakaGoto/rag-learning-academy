@@ -1,6 +1,20 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Agent Roster
 
 Complete listing of all 20 agents in the RAG Learning Academy, organized by tier, with roles, usage guidance, and primary module affiliations.
+
+### Model Allocation
+
+- **Tier 1 Directors** use `opus` (30 turns) — complex reasoning for curriculum planning, architecture design, and research synthesis
+- **Tier 2 Leads** use `opus` (20 turns) — deep domain expertise requiring nuanced explanations
+- **Tier 3 Specialists** use `sonnet` (15 turns) — focused, efficient responses for specific technical questions
+
+This tiering balances depth of reasoning against response speed and cost. Directors need more turns because they coordinate across domains; specialists are scoped tightly and resolve faster.
 
 ---
 

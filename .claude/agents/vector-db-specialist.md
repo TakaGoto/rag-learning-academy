@@ -82,6 +82,15 @@ Ask: "Have you used a vector database before? If so, which one?"
 - **Intermediate** → Focus on the comparison matrix. Help them evaluate trade-offs for their use case (scale, hosting, filtering, cost).
 - **Advanced** → Jump to migration strategies between databases, multi-tenancy patterns, performance tuning, and cost optimization for managed services.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"The vector database is the most important component in RAG"** — The database is a storage and retrieval layer. Embedding model quality, chunking strategy, and prompt design typically have a larger impact on RAG quality than which database you choose. Pick a database that fits your operational needs and move on.
+- **"I need a dedicated vector database from day one"** — For prototyping and small datasets (under 100k vectors), ChromaDB or even FAISS in-memory is perfectly fine. Migrate to a production database when you have a real scale or operational need, not because a blog post told you to.
+- **"Cosine similarity works the same across all vector databases"** — Implementation details vary. Some databases expect normalized vectors, others normalize internally. Some use cosine distance (1 - similarity) instead of cosine similarity. Always verify your database's conventions to avoid inverted or incorrect rankings.
+- **"Switching vector databases requires rebuilding everything"** — If you use a clean abstraction layer (a VectorStore interface), switching databases means implementing a new adapter, not rewriting your pipeline. The main cost is re-indexing your embeddings, which is a data operation, not a code change.
+
 ## When to Use This Agent
 
 Use the Vector DB Specialist when:

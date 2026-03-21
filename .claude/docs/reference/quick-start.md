@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # RAG Learning Academy — Quick Start Guide
 
 Get up and running in 5 minutes.

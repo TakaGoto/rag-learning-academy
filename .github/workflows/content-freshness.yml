@@ -1,0 +1,85 @@
+name: Content Freshness Check
+
+on:
+  schedule:
+    - cron: '0 9 1 * *'  # 1st of each month at 9 AM UTC
+  workflow_dispatch:  # Allow manual trigger
+
+jobs:
+  freshness-check:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Full history for git log dates
+
+      - name: Check content file ages
+        id: check-ages
+        run: |
+          echo "## Content Freshness Report — $(date +%Y-%m-%d)" > freshness-report.md
+          echo "" >> freshness-report.md
+          NOW=$(date +%s)
+          STALE_COUNT=0
+          WARN_COUNT=0
+
+          echo "### File Age Summary" >> freshness-report.md
+          echo "" >> freshness-report.md
+          echo "| Status | File | Days Since Update | Last Updated |" >> freshness-report.md
+          echo "|--------|------|-------------------|--------------|" >> freshness-report.md
+
+          for f in .claude/docs/curriculum/*.md .claude/agents/*.md .claude/docs/reference/*.md .claude/rules/*.md data/raw/*.md; do
+            [ -f "$f" ] || continue
+            LAST=$(git log -1 --format="%ct" -- "$f" 2>/dev/null || echo "0")
+            if [ "$LAST" -gt 0 ]; then
+              DAYS=$(( (NOW - LAST) / 86400 ))
+              DATE=$(git log -1 --format="%cs" -- "$f")
+              BASENAME=$(basename "$f")
+              if [ "$DAYS" -gt 90 ]; then
+                echo "| :red_circle: STALE | \`$BASENAME\` | $DAYS | $DATE |" >> freshness-report.md
+                STALE_COUNT=$((STALE_COUNT + 1))
+              elif [ "$DAYS" -gt 60 ]; then
+                echo "| :yellow_circle: WARNING | \`$BASENAME\` | $DAYS | $DATE |" >> freshness-report.md
+                WARN_COUNT=$((WARN_COUNT + 1))
+              fi
+            fi
+          done
+
+          echo "" >> freshness-report.md
+          echo "**Summary:** $STALE_COUNT stale files (90+ days), $WARN_COUNT warning files (60-90 days)" >> freshness-report.md
+
+          echo "stale_count=$STALE_COUNT" >> "$GITHUB_OUTPUT"
+          echo "warn_count=$WARN_COUNT" >> "$GITHUB_OUTPUT"
+
+      - name: Scan for deprecated patterns
+        run: |
+          echo "" >> freshness-report.md
+          echo "### Deprecated Pattern Scan" >> freshness-report.md
+          echo "" >> freshness-report.md
+
+          DEPRECATED="gpt-3.5-turbo|text-embedding-ada-002|claude-2[^-]|claude-instant"
+          HITS=$(grep -rnE "$DEPRECATED" .claude/ src/ data/ 2>/dev/null || true)
+          if [ -n "$HITS" ]; then
+            echo "**Deprecated model references found:**" >> freshness-report.md
+            echo '```' >> freshness-report.md
+            echo "$HITS" >> freshness-report.md
+            echo '```' >> freshness-report.md
+          else
+            echo "No deprecated model references found." >> freshness-report.md
+          fi
+
+      - name: Create issue if problems found
+        if: steps.check-ages.outputs.stale_count != '0' || steps.check-ages.outputs.warn_count != '0'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Monthly Content Freshness Report — ${{ github.event.repository.name }}"
+          content-filepath: freshness-report.md
+          labels: content-review,automated
+
+      - name: Upload report artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: freshness-report
+          path: freshness-report.md

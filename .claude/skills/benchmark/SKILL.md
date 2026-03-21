@@ -11,9 +11,16 @@ Set up and run comprehensive benchmarks on the learner's RAG pipeline to identif
 
 ## Step 1: Identify the Pipeline
 
-- Locate the learner's RAG pipeline in `projects/`. If multiple exist, ask which to benchmark.
-- If no pipeline exists, explain the requirement and suggest `/build` first.
-- Catalog the pipeline components: loader, chunker, embedder, vector store, retriever, generator.
+Welcome! Let's measure how your RAG pipeline performs under the hood.
+
+First, check whether the learner has existing work to benchmark:
+- Look for a learner profile at `progress/learner-profile.md` and for code in `src/` and `projects/`.
+- If pipeline code exists in `projects/`, great — proceed. If multiple pipelines exist, ask which to benchmark.
+- If **no pipeline or RAG code exists** anywhere in `projects/` or `src/`, guide them warmly:
+  > "Looks like you don't have a pipeline to benchmark yet — no worries! Let's get you set up first. Run `/build` to create your first RAG pipeline, and once it's running you can come back here to see exactly where the time and tokens go. It won't take long!"
+
+  Stop here — do not continue to Step 2.
+- If a pipeline is found, catalog the pipeline components: loader, chunker, embedder, vector store, retriever, generator.
 
 ## Step 2: Define Benchmark Scope
 
@@ -107,3 +114,9 @@ Examples: add caching, batch embeddings, switch to a faster embedding model, add
 ## Step 8: Save the Report
 
 Save the benchmark report to `projects/[pipeline-name]/eval/benchmarks/report-[date].md`. Encourage the learner to re-run after optimizations to measure improvement.
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/evaluate` — measure answer quality metrics alongside your performance benchmarks
+- `/debug-rag` — diagnose and fix the bottlenecks identified in your benchmark
+- `/architecture` — redesign your pipeline architecture if fundamental changes are needed

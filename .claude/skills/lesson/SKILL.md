@@ -5,6 +5,8 @@ description: "Start or continue a curriculum lesson"
 
 # Lesson: Learn a RAG Concept Step by Step
 
+> **Scope:** This skill **teaches new concepts** through structured lessons with explanations and exercises. To test what you already know, use `/quiz`.
+
 This skill delivers structured curriculum lessons. Each lesson follows a consistent flow that builds understanding through explanation, examples, and hands-on practice.
 
 ## Step 1: Determine Which Lesson to Load
@@ -34,6 +36,15 @@ Explain the concept clearly. Use analogies where helpful. Break complex ideas in
 ### Code Example
 Provide a working Python code example that demonstrates the concept. Use comments to explain each section. Keep dependencies minimal (prefer standard library + common packages like `langchain`, `chromadb`, `sentence-transformers`).
 
+```python
+# Example: Code demonstration during a lesson
+from sentence_transformers import SentenceTransformer
+
+model = SentenceTransformer("all-MiniLM-L6-v2")
+embedding = model.encode("What is RAG?")
+print(f"Dimensions: {len(embedding)}")  # 384
+```
+
 ### Key Takeaways
 Summarize the 3-5 most important points from the lesson in a bulleted list.
 
@@ -53,7 +64,13 @@ Ask 2-3 quick comprehension questions to verify the learner grasped the key idea
 
 ## Step 6: Track Progress
 
-Update `progress/module-tracker.md` to mark this lesson as complete. Add the completion date. If all lessons in a module are complete, congratulate the learner and suggest the next module or a `/quiz` to test their knowledge.
+Update `progress/module-tracker.md` to mark this lesson as complete. Add the completion date. If all lessons in a module are complete, congratulate the learner.
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/quiz` — test your understanding of the concepts from this lesson
+- `/build` — apply what you learned by building a hands-on component
+- `/lesson` — continue to the next lesson in your track
 
 ## Tone and Style
 

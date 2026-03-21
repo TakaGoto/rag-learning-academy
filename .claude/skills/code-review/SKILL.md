@@ -9,9 +9,16 @@ Review the learner's RAG code with the eye of an experienced RAG engineer, provi
 
 ## Step 1: Identify the Code to Review
 
+Welcome! Let's take a close look at your RAG code together.
+
+First, determine what code is available for review:
 - If the user specifies a file or directory (e.g., `/code-review projects/my-rag/retriever.py`), review that.
-- If no argument is given, look in `projects/` for the learner's most recent work.
-- If multiple files exist, ask which component they want reviewed, or offer to review the full pipeline.
+- If no argument is given, check for a learner profile at `progress/learner-profile.md` and look for code in `src/` and `projects/`.
+- If **no RAG code exists** anywhere in `projects/` or `src/` (and no file was specified), guide them warmly:
+  > "It looks like you haven't written any RAG code yet — that's the perfect place to start! Run `/build` to create your first RAG component, and then come back here for expert feedback on what you've built. I'll be ready to help you level it up!"
+
+  Stop here — do not continue to Step 2.
+- If code is found and multiple files exist, ask which component they want reviewed, or offer to review the full pipeline.
 
 ## Step 2: Read and Understand the Code
 
@@ -77,6 +84,13 @@ For each item:
 3. **Why**: Explain why this matters
 4. **How**: Suggest a concrete fix with a code snippet
 
+```python
+# Example review annotation:
+# [CRITICAL] No error handling for API failures
+response = client.embeddings.create(input=text, model=MODEL)
+# Suggested fix: wrap in try/except with retry logic
+```
+
 ## Step 5: Highlight Strengths
 
 Always note what the learner did well. Positive reinforcement is important:
@@ -90,7 +104,12 @@ Always note what the learner did well. Positive reinforcement is important:
 Provide a brief overall assessment:
 - Overall quality rating: Needs Work / Solid Foundation / Production-Ready
 - Top 3 priorities for improvement
-- Suggested next steps (e.g., "Add error handling, then run `/evaluate` to measure quality")
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/build` — implement the improvements identified in this review
+- `/evaluate` — measure your pipeline's quality with RAG metrics after making fixes
+- `/debug-rag` — diagnose any specific failure modes flagged during the review
 
 ## Guidelines
 

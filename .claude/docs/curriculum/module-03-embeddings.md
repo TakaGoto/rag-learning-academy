@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: monthly
+staleness_risk: high
+---
+
 # Module 03: Embeddings
 
 ## Module Objectives
@@ -15,6 +21,15 @@ By the end of this module, learners will be able to:
 - Module 01: RAG Foundations (completed)
 - Module 02: Document Processing (recommended)
 - Basic linear algebra concepts (vectors, distance, dot product)
+
+### Before You Begin
+
+Verify you're comfortable with these concepts from prior modules:
+
+- [ ] The RAG pipeline stages and where embedding fits in (Module 01)
+- [ ] Chunking strategies and how chunk size affects downstream quality (Module 02)
+- [ ] Text preprocessing and cleaning for embedding quality (Module 02)
+- [ ] Why metadata attached during processing matters for retrieval (Module 02)
 
 ## Lessons
 
@@ -84,3 +99,7 @@ By the end of this module, learners will be able to:
 - Sentence-Transformers documentation (training and fine-tuning)
 - MTEB leaderboard on Hugging Face (model comparison)
 - Nomic AI blog posts on Matryoshka embeddings
+
+---
+
+← **Previous:** [Module 02 — Document Processing](module-02-document-processing.md) | **Next:** [Module 04 — Vector Databases](module-04-vector-databases.md) →

@@ -120,6 +120,12 @@ For each stage, suggest which `/build` exercises to complete.
 
 Ask the learner if anything does not feel right or if they have concerns. Architecture is iterative — encourage them to revisit this document as they build and learn. Update `progress/module-tracker.md` to note the architecture exercise.
 
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/build` — start building the MVP stage of your architecture
+- `/challenge` — take on a real-world challenge that puts your architecture to the test
+- `/compare` — compare alternative approaches for any component you are uncertain about
+
 ## Guidelines
 
 - There is no single correct architecture — help the learner understand trade-offs

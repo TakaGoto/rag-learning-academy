@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # RAG Project Brief
 
 > Use this template to define the scope, requirements, and success criteria for a RAG project before beginning implementation.
@@ -94,6 +100,17 @@ _What is explicitly out of scope?_
 | NFR-3 | Cost per query | _<$0.03_ | |
 | NFR-4 | Concurrent users | _50_ | |
 | NFR-5 | Data freshness | _<24 hours_ | _Time from doc update to searchable_ |
+
+> **Cost estimation guide:** A typical RAG query involves three billable steps:
+> - **Embedding the query:** ~$0.00002 per query (text-embedding-3-small)
+> - **Vector DB search:** ~$0.000001 per query (managed service) or free (self-hosted)
+> - **LLM generation:** ~$0.003–0.06 per query (depends on model and context length)
+>
+> **Example:** 10,000 queries/month × $0.01 avg/query = ~$100/month
+>
+> **Latency budget breakdown:** Embedding (~50ms) + vector search (~20ms) + LLM generation (~1–3s) = ~1–3s total. Reranking adds ~100–300ms.
+>
+> For local/free alternatives (Ollama + ChromaDB), infrastructure cost is $0 but requires GPU hardware. Budget ~$0.50–1.00/hr if renting a GPU instance instead.
 
 ### User Interface
 

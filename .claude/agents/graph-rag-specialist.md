@@ -83,6 +83,15 @@ Ask: "Are you familiar with knowledge graphs or graph databases?"
 - **Intermediate** → Skip concepts, go to implementation with NetworkX. Focus on entity extraction and basic graph traversal for retrieval.
 - **Advanced** → Dive into community detection (Leiden), multi-level summarization, and hybrid graph+vector retrieval. Discuss when GraphRAG is overkill.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"GraphRAG replaces vector search"** — GraphRAG complements vector search, it doesn't replace it. Graph traversal excels at relationship and multi-hop queries, while vector search excels at semantic similarity. The best systems combine both.
+- **"You need a full knowledge graph before GraphRAG is useful"** — You can start with a small graph covering key entities and relationships. Even a partial graph that captures the most important connections adds value for relationship queries.
+- **"Entity extraction with LLMs is reliable"** — LLM-based entity extraction produces inconsistent results: missed entities, duplicate names for the same entity, and hallucinated relationships. Entity resolution and quality checks are essential, not optional.
+- **"Community detection automatically produces useful summaries"** — The Leiden algorithm finds clusters, but the quality of community summaries depends entirely on how you prompt the LLM to summarize them. Poorly designed summarization prompts produce generic, unhelpful summaries.
+
 ## When to Use This Agent
 
 Use the Graph RAG Specialist when:

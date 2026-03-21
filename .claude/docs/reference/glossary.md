@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # RAG Glossary
 
 Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms are organized alphabetically.
@@ -159,3 +165,33 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 **Vector Database:** A specialized database optimized for storing, indexing, and querying high-dimensional vectors. Examples: ChromaDB, Pinecone, Qdrant, pgvector, Weaviate, Milvus.
 
 **Vector Space:** A mathematical space where each point is a vector of fixed dimensionality. Text embeddings live in vector spaces where proximity corresponds to semantic similarity.
+
+---
+
+## Terms by Topic
+
+Quick lookup by domain — find related terms grouped together.
+
+### Document Processing
+Chunk, Chunking, Citation, Metadata Filtering, Overlap, Semantic Chunking
+
+### Embeddings & Vector Spaces
+Batch Embedding, Bi-Encoder, Contrastive Learning, Cosine Similarity, Dense Retrieval, Dimensionality, Dot Product (Inner Product), Embedding, Embedding Cache, Euclidean Distance (L2), Hard Negative, Matryoshka Embeddings, MTEB, Sentence Transformers, Vector Space
+
+### Retrieval
+BM25, Cross-Encoder, Dense Retrieval, Hybrid Search, HyDE, MMR, Query Decomposition, Query Expansion, Reciprocal Rank Fusion (RRF), Reranking, Retriever, Sparse Retrieval, Step-Back Prompting, Top-k, Two-Stage Retrieval
+
+### Indexing & Storage
+ANN, Flat Index, HNSW, IVF, pgvector, Vector Database
+
+### Generation & Prompting
+Context Stuffing, Context Window, Grounding, Hallucination, Lost in the Middle, Map-Reduce, Parametric Knowledge, Prompt Compression, Refine, Stuff, Token, Tokenizer / Tokenization
+
+### Evaluation
+Answer Correctness, Answer Relevancy, Context Precision, Context Recall, Data Drift, Faithfulness, MRR, NDCG, Precision@k, RAGAS, Recall@k
+
+### Advanced Patterns
+ColBERT, ColPali, Community Detection, Corrective RAG (CRAG), Entity Extraction, Graph RAG, Knowledge Graph, Multi-Modal RAG, Relation Extraction, Self-RAG, SPLADE
+
+### Infrastructure & Observability
+Langfuse, LangSmith, Semantic Cache

@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: monthly
+staleness_risk: high
+---
+
 # RAG Component Comparisons
 
 Reference tables comparing popular vector databases and embedding models. Use this document to practice handling tabular data in RAG -- tables are notoriously difficult for chunking and retrieval.

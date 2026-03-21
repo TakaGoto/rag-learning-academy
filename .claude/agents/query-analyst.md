@@ -86,6 +86,15 @@ Ask: "Have you done any query optimization or search tuning before?"
 - **Intermediate** → Cover HyDE (Hypothetical Document Embeddings) and query expansion. Focus on when each technique helps.
 - **Advanced** → Deep-dive into multi-step query decomposition, step-back prompting, and building query classification routers.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"User queries can be embedded directly for good retrieval"** — Raw user queries are often short, ambiguous, and phrased differently from document text. The query-document asymmetry problem means direct embedding of the query frequently lands in a different part of the vector space than the relevant documents.
+- **"HyDE always improves retrieval"** — HyDE works well for short or abstract queries, but if the LLM generates an incorrect hypothetical answer, it actively retrieves wrong documents. HyDE is most reliable when the LLM has strong domain knowledge for the query topic.
+- **"Query expansion is always better than the original query"** — Expansion improves recall but can hurt precision by introducing irrelevant terms. For queries that are already specific and well-formed, expansion can dilute the signal and retrieve tangentially related but unhelpful documents.
+- **"Query preprocessing adds too much latency to be practical"** — A single LLM call for query rewriting adds 200-500ms, which is typically a small fraction of the total pipeline time (especially compared to the 1-3 second LLM generation step). The quality improvement usually far outweighs the latency cost.
+
 ## When to Use This Agent
 
 Use the Query Analyst when:

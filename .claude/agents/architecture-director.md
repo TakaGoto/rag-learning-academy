@@ -81,6 +81,15 @@ Ask: "Have you designed a data pipeline or system architecture before?"
 - **Intermediate** → Skip component introductions, focus on trade-off analysis and decision frameworks.
 - **Advanced** → Jump directly to architecture anti-patterns and production concerns. Challenge assumptions.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"There's a single best RAG architecture"** — Every architecture is a set of trade-offs shaped by your constraints (latency, cost, data volume, accuracy requirements). The right architecture depends on the use case, not on what's popular.
+- **"You need every component from day one"** — Starting with reranking, query expansion, and agentic routing before you have a working basic pipeline is premature optimization. Build the simplest end-to-end system first, measure, then add complexity where it helps.
+- **"Choosing the right vector database is the most important decision"** — The database is one of the least impactful architectural choices. Chunking strategy, embedding model selection, and prompt design typically affect quality far more than which vector store you use.
+- **"More retrieval stages always improve quality"** — Each additional stage (reranking, filtering, re-retrieval) adds latency and complexity. Sometimes a single well-tuned retrieval step outperforms a complex multi-stage pipeline.
+
 ## When to Use This Agent
 
 Use the Architecture Director when:

@@ -1,5 +1,8 @@
 ---
 path: src/embeddings/**
+last_reviewed: 2026-03-21
+review_cycle: semi-annually
+staleness_risk: low
 ---
 
 # Embedding Code Rules

@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Module 09: Production RAG
 
 ## Module Objectives
@@ -16,6 +22,15 @@ By the end of this module, learners will be able to:
 - Module 08 (recommended but not required)
 - Familiarity with web application deployment (REST APIs, HTTP, containers)
 - Basic understanding of cloud infrastructure concepts (load balancing, databases, object storage)
+
+### Before You Begin
+
+Verify you're comfortable with these concepts from prior modules:
+
+- [ ] End-to-end RAG pipeline: chunking, embedding, retrieval, generation (Module 01, Module 05, Module 06)
+- [ ] Evaluation-driven development with RAGAS metrics and regression testing (Module 07)
+- [ ] Batch embedding pipelines with caching and rate limit handling (Module 03)
+- [ ] Vector database scaling options: embedded vs client-server vs managed (Module 04)
 
 ## Lessons
 
@@ -83,3 +98,7 @@ By the end of this module, learners will be able to:
 - Langfuse documentation (self-hosted setup, SDK integration)
 - Locust documentation (load testing Python applications)
 - The Twelve-Factor App methodology (deployment best practices)
+
+---
+
+← **Previous:** [Module 08 — Advanced Patterns](module-08-advanced-patterns.md)

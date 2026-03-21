@@ -30,21 +30,48 @@
   "hooks": {
     "SessionStart": [
       {
-        "command": ".claude/hooks/session-start.sh",
-        "timeout": 10000
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-start.sh",
+            "timeout": 10000
+          }
+        ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/check-freshness.sh",
+            "timeout": 10000
+          }
+        ]
       }
     ],
     "PreToolUse": [
       {
         "matcher": "Bash",
-        "command": ".claude/hooks/validate-code.sh",
-        "timeout": 5000
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/validate-code.sh",
+            "timeout": 5000
+          }
+        ]
       }
     ],
     "Stop": [
       {
-        "command": ".claude/hooks/session-stop.sh",
-        "timeout": 5000
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": ".claude/hooks/session-stop.sh",
+            "timeout": 5000
+          }
+        ]
       }
     ]
   }

@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # RAG Evaluation Report
 
 > Use this template to document the results of a RAG pipeline evaluation run.

@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Module 05: Retrieval Strategies
 
 ## Module Objectives
@@ -15,6 +21,15 @@ By the end of this module, learners will be able to:
 - Module 03: Embeddings (completed)
 - Module 04: Vector Databases (completed)
 - Understanding of information retrieval basics (precision, recall)
+
+### Before You Begin
+
+Verify you're comfortable with these concepts from prior modules:
+
+- [ ] How vector similarity search works (embed query, find nearest vectors) (Module 03)
+- [ ] Setting up and querying a vector database with metadata filtering (Module 04)
+- [ ] Index types (HNSW, IVF, flat) and their recall/speed trade-offs (Module 04)
+- [ ] The difference between bi-encoder embedding and cross-encoder scoring (Module 03)
 
 ## Lessons
 
@@ -84,3 +99,7 @@ By the end of this module, learners will be able to:
 - Cormack et al., "Reciprocal Rank Fusion" (2009)
 - Gao et al., "Precise Zero-Shot Dense Retrieval without Relevance Labels" (HyDE paper, 2022)
 - Carbonell & Goldstein, "The Use of MMR, Diversity-Based Reranking" (1998)
+
+---
+
+← **Previous:** [Module 04 — Vector Databases](module-04-vector-databases.md) | **Next:** [Module 06 — Generation](module-06-generation.md) →

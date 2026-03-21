@@ -89,6 +89,12 @@ Pose 2-3 thought-provoking questions:
 
 Discuss the learner's thoughts. This builds critical thinking about research.
 
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/explain` — deep-dive into a specific concept from this paper you want to understand better
+- `/build` — implement the paper's core technique in your own RAG pipeline
+- `/challenge` — take on a challenge that applies the ideas from this paper
+
 ## Guidelines
 
 - Assume the learner has not read the paper — make it accessible

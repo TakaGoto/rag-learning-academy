@@ -79,6 +79,15 @@ Ask: "Have you measured ML model quality before (accuracy, F1, etc.)?"
 - **Intermediate** → Skip basics, focus on RAG-specific metrics (faithfulness, context precision) and why they matter differently than classification metrics.
 - **Advanced** → Jump to custom metric design, evaluation dataset curation, and continuous evaluation in CI/CD pipelines.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"High retrieval scores mean the RAG system works well"** — Retrieval is only half the story. You can retrieve perfect context and still get terrible answers if the LLM ignores the context or hallucinates. Always evaluate retrieval and generation independently.
+- **"LLM-as-judge is as reliable as human evaluation"** — LLM judges are useful for scale but have systematic biases (preferring longer answers, struggling with domain-specific correctness). Calibrate your LLM judge against human ratings before trusting it fully.
+- **"You need thousands of examples in your evaluation set"** — Even 50-100 well-chosen, diverse examples can reveal major quality issues. Start small, ensure coverage of different query types and difficulty levels, then expand as needed.
+- **"Evaluation is a one-time checkpoint"** — Evaluation is continuous. Every change to your chunking, embeddings, prompts, or retrieval strategy can cause regressions. Automated evaluation on every change is the goal.
+
 ## When to Use This Agent
 
 Use the Evaluation Lead when:

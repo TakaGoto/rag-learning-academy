@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # RAG Architecture Decision Document
 
 > Use this template to document the architecture decisions for a RAG system. Fill in each section with your specific choices and rationale.

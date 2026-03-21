@@ -96,6 +96,15 @@ Ask: "Have you deployed a web service or ML model to production before?"
 - **Intermediate** → Skip basics, focus on FastAPI + caching + error handling. Discuss the difference between sync and async RAG pipelines.
 - **Advanced** → Jump to scaling patterns, monitoring with Langfuse/Phoenix, circuit breakers, blue-green deployments, and cost optimization.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"My RAG works in a notebook, so it's production-ready"** — A notebook prototype handles one query at a time with no error handling, no caching, no monitoring, and no latency constraints. Production readiness requires engineering around all of these.
+- **"Caching is only for performance"** — Caching also reduces costs dramatically. At scale, embedding and LLM API caches can cut your bill by 50-80% depending on query repetition patterns.
+- **"I should optimize for latency from the start"** — Premature optimization wastes effort. Get a working, monitored system first, then use your P50/P95/P99 latency data to find actual bottlenecks rather than guessing.
+- **"Self-hosting is always cheaper than APIs"** — Self-hosting models requires GPU infrastructure, maintenance, and ops expertise. Below a certain query volume threshold, API costs are significantly cheaper than running your own inference servers.
+
 ## Security Considerations
 
 Always cover these production security concerns:

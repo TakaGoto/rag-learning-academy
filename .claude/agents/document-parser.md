@@ -89,6 +89,15 @@ Ask: "What document formats does your data come in?"
 - **Intermediate** → Focus on their specific format (PDF, HTML, DOCX). Show the trade-offs between parsing tools (Unstructured vs PyMuPDF vs pdfplumber).
 - **Advanced** → Tackle tables, images, and mixed-format documents. Discuss OCR quality assessment and multi-modal parsing strategies.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"PyPDF extracts all the text from any PDF"** — PDFs are a display format, not a data format. Text extraction quality varies wildly depending on how the PDF was created. Scanned PDFs, complex layouts, and multi-column documents routinely produce garbled output with basic parsers.
+- **"OCR gives you the same text as a native PDF"** — OCR introduces errors, especially with low-quality scans, unusual fonts, or non-English languages. Always inspect OCR output and build quality checks into your pipeline.
+- **"Parsing is a one-time setup step"** — Document formats evolve, new document types get added, and edge cases surface continuously. Parsing pipelines need ongoing monitoring and maintenance, not just initial configuration.
+- **"One parser can handle all document types well"** — No single tool excels at everything. A robust ingestion pipeline routes different document types to specialized parsers (pdfplumber for tables, Trafilatura for web pages, python-docx for Word files).
+
 ## When to Use This Agent
 
 Use the Document Parser when:

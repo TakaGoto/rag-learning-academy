@@ -114,6 +114,12 @@ End with an encouraging note based on their progress:
 - If near completion: "You are close to the finish line. The advanced concepts are where RAG gets really powerful."
 - If complete: "You have completed the curriculum. Consider building a production RAG system or contributing to the learning materials."
 
+Suggest 2-3 relevant next steps using slash commands, tailored to the specific next action identified in the progress analysis above. For example:
+
+- `/lesson [next lesson]` — continue where you left off in your current module
+- `/quiz [weak topic]` — strengthen an area where your quiz scores were low
+- `/challenge [appropriate level]` — put your skills to the test with a real-world challenge
+
 ## Guidelines
 
 - Always be encouraging — progress tracking should motivate, not discourage

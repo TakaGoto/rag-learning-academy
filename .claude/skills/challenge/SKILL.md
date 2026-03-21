@@ -5,6 +5,8 @@ description: "Take on a hands-on RAG challenge"
 
 # Challenge: Real-World RAG Challenges
 
+> **Scope:** This skill presents **open-ended, multi-component challenges** that require design decisions. For step-by-step guided construction of individual components, use `/build`.
+
 Present the learner with a realistic RAG challenge that tests their skills across multiple components. Challenges are more open-ended than `/build` exercises — they require design decisions, not just implementation.
 
 ## Step 1: Select a Challenge
@@ -42,6 +44,13 @@ For the selected challenge, provide:
 - Sample data or instructions for obtaining data
 - Suggested directory structure
 - Test queries and expected behavior
+
+```python
+# Challenge deliverable example: a working retrieval function
+def retrieve(query: str, top_k: int = 5) -> list[RetrievalResult]:
+    """Your challenge: implement hybrid retrieval with reranking."""
+    ...
+```
 
 ### Hints (available on request)
 Prepare a set of progressive hints — do not reveal them unless the learner asks. Start with high-level guidance and get more specific.
@@ -81,7 +90,13 @@ Provide specific feedback on what was done well and what could be improved. Sugg
 
 ## Step 5: Track and Celebrate
 
-Save the challenge completion to `progress/challenges.md` with the date, challenge name, difficulty, and score. If this is their first challenge at a given difficulty level, acknowledge the milestone. Suggest the next challenge or a related `/lesson` to deepen their understanding.
+Save the challenge completion to `progress/challenges.md` with the date, challenge name, difficulty, and score. If this is their first challenge at a given difficulty level, acknowledge the milestone.
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/code-review` — get expert feedback on the solution you just built
+- `/evaluate` — measure the quality of your challenge solution with RAG metrics
+- `/roadmap` — check your overall progress and see what to tackle next
 
 ## Guidelines
 

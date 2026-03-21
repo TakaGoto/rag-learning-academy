@@ -3,7 +3,7 @@ name: start
 description: "Begin your RAG learning journey — assess your level and pick a learning path"
 ---
 
-# Onboarding: Start Your RAG Learning Journey
+# Start: Begin Your RAG Learning Journey
 
 ## Step 0: Welcome & Context
 
@@ -76,11 +76,12 @@ Also create `progress/module-tracker.md` initialized with empty checkboxes for e
 
 ## Step 5: Next Steps
 
-Tell the learner:
-- Their profile has been saved
-- Suggest running `/lesson` to start their first lesson
-- Mention `/roadmap` to check progress at any time
-- Mention `/glossary` if they encounter unfamiliar terms
-- Encourage them: "You're going to build real, working RAG systems. Let's start."
+Tell the learner their profile has been saved. Encourage them: "You're going to build real, working RAG systems. Let's start."
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/lesson` — start your first lesson in the recommended track
+- `/roadmap` — view the full curriculum map and track your progress
+- `/glossary` — look up any unfamiliar RAG terms as you learn
 
 Keep the tone warm, encouraging, and practical throughout.

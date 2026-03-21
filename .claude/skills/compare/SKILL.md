@@ -89,6 +89,12 @@ Suggest a quick experiment the learner can run to compare both approaches with t
 
 Summarize the comparison in one or two sentences that capture the essential trade-off. For example: "Fixed chunking is simpler and faster to set up, but semantic chunking preserves meaning boundaries — start with fixed, switch to semantic when you see context-boundary issues."
 
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/build` — implement the approach you chose and see it in action
+- `/architecture` — design a full RAG architecture using the approach that fits your use case
+- `/benchmark` — benchmark both approaches with your own data to confirm the trade-offs
+
 ## Guidelines
 
 - Stay balanced — do not push one approach over another without justification

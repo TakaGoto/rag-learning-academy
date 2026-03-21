@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: monthly
+staleness_risk: high
+---
+
 # Module 04: Vector Databases
 
 ## Module Objectives
@@ -15,6 +21,15 @@ By the end of this module, learners will be able to:
 - Module 01: RAG Foundations (completed)
 - Module 03: Embeddings (completed)
 - Basic understanding of database concepts (CRUD operations, indexing)
+
+### Before You Begin
+
+Verify you're comfortable with these concepts from prior modules:
+
+- [ ] How embeddings encode semantic meaning as high-dimensional vectors (Module 03)
+- [ ] Similarity metrics: cosine similarity, Euclidean distance, dot product (Module 03)
+- [ ] Batch embedding pipelines with caching and retry logic (Module 03)
+- [ ] The difference between the indexing pipeline and the query pipeline (Module 01)
 
 ## Lessons
 
@@ -84,3 +99,7 @@ By the end of this module, learners will be able to:
 - FAISS documentation (index types and parameter tuning)
 - Pinecone learning center (vector database concepts)
 - pgvector GitHub README (PostgreSQL extension setup)
+
+---
+
+← **Previous:** [Module 03 — Embeddings](module-03-embeddings.md) | **Next:** [Module 05 — Retrieval Strategies](module-05-retrieval.md) →

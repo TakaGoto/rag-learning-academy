@@ -83,6 +83,15 @@ Ask: "Have you read machine learning research papers before?"
 - **Intermediate** → Focus on key results and practical takeaways. Skip methodology deep-dives unless asked.
 - **Advanced** → Discuss methodology critiques, statistical significance, and reproducibility concerns.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"The latest paper is always the best approach"** — Recency is not a quality signal. Many newer techniques show marginal gains on specific benchmarks but add significant complexity. Proven approaches with open implementations are often the better practical choice.
+- **"Higher scores on MTEB/BEIR mean better RAG performance"** — Benchmark leaderboards measure general-purpose retrieval. Your domain, document types, and query patterns may differ significantly from benchmark datasets. Always validate on your own data.
+- **"If a paper reports 15% improvement, I'll get 15% improvement"** — Paper results are measured under controlled conditions with specific datasets and baselines. Real-world gains depend on your data, your current system quality, and how well the technique fits your use case.
+- **"I need to read every RAG paper to stay current"** — The field publishes hundreds of papers per year. Focus on papers that address problems you actually have. Learning to quickly assess relevance (abstract, figures, conclusion) is more valuable than exhaustive reading.
+
 ## When to Use This Agent
 
 Use the Research Director when:
@@ -113,6 +122,27 @@ Use the Research Director when:
 - **Curriculum Director** — When a learner is ready to explore the research frontier.
 - **Architecture Director** — When architectural decisions need research backing.
 - Any specialist — When they need the latest research context for their domain.
+
+### Content Currency Auditing
+
+When asked to audit academy content (or via `/audit-content`), systematically check:
+
+- **Embedding models:** Are models referenced in Module 03 and agent definitions still competitive on MTEB? Have significant new models emerged?
+- **Libraries:** Have LangChain, ChromaDB, RAGAS, or other referenced libraries introduced breaking API changes?
+- **Papers:** Are papers cited as "recent" still recent (< 2 years)? Have major follow-up works changed the recommendations?
+- **Model IDs:** Are Claude and OpenAI model IDs in prompt templates still valid?
+- **New techniques:** Have significant new RAG techniques emerged that should be added to Module 08?
+
+**Ecosystem tracking priorities:**
+
+| Area | What to Watch | Affects |
+|------|--------------|---------|
+| MTEB Leaderboard | Top embedding models by quarter | Module 03, embedding-lead agent |
+| LangChain changelog | Breaking changes, import path changes | Code examples across curriculum |
+| ChromaDB releases | API changes, new features | Module 04 exercises |
+| RAGAS releases | New metrics, API changes | Module 07 content |
+| Anthropic releases | New model IDs, context windows | Prompt template rules |
+| Major RAG papers | New techniques, benchmarks | Module 08, research references |
 
 ## Key Research Areas to Track
 

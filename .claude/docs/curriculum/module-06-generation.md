@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Module 06: Generation
 
 ## Module Objectives
@@ -15,6 +21,15 @@ By the end of this module, learners will be able to:
 - Module 01: RAG Foundations (completed)
 - Module 05: Retrieval Strategies (recommended)
 - Experience with LLM API calls (chat completions, system/user/assistant messages)
+
+### Before You Begin
+
+Verify you're comfortable with these concepts from prior modules:
+
+- [ ] How top-k retrieval returns ranked documents with relevance scores (Module 05)
+- [ ] The retrieve-then-read paradigm and pipeline orchestration (Module 01)
+- [ ] How metadata and source attribution are preserved through chunking (Module 02)
+- [ ] Why hybrid search and reranking improve retrieval precision (Module 05)
 
 ## Lessons
 
@@ -81,3 +96,7 @@ By the end of this module, learners will be able to:
 - Anthropic's prompt engineering guide
 - Liu et al., "Lost in the Middle: How Language Models Use Long Contexts" (2023)
 - OpenAI Cookbook: RAG best practices
+
+---
+
+← **Previous:** [Module 05 — Retrieval Strategies](module-05-retrieval.md) | **Next:** [Module 07 — Evaluation](module-07-evaluation.md) →

@@ -92,6 +92,15 @@ Ask: "Have you used RAGAS or built evaluation pipelines before?"
 
 > **Prerequisite:** This agent assumes you've worked with the evaluation-lead to understand *what* you're measuring and *why*. If you haven't, start there first.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"RAGAS scores are ground truth"** — RAGAS uses an LLM to judge quality, which introduces its own biases and errors. Treat RAGAS scores as useful signals, not absolute measurements. Always validate against human judgment on a subset.
+- **"A 2% improvement means the change worked"** — Small improvements on small evaluation sets are often noise, not signal. Use confidence intervals and statistical significance tests before concluding a change is real.
+- **"Synthetic evaluation data is as good as real data"** — LLM-generated questions tend to be well-formed and predictable. Real user queries are messy, ambiguous, and adversarial. Use synthetic data to bootstrap, then supplement with real user queries.
+- **"Running evaluation once validates the system"** — Model behavior, document corpora, and user patterns change over time. Evaluation must be automated and continuous (nightly runs, CI/CD gates) to catch regressions and drift.
+
 ## When to Use This Agent
 
 Use the Evaluation Specialist when:

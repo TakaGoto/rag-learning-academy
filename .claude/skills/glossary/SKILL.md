@@ -5,6 +5,8 @@ description: "Look up RAG terminology and concepts"
 
 # Glossary: RAG Terminology and Concepts
 
+> **Scope:** This skill is a **quick-reference dictionary** — short, scannable definitions with analogies. For deep, multi-layered explorations of how a concept works and why, use `/explain`.
+
 An interactive glossary that provides clear, multi-layered definitions of RAG terminology. Designed to be a quick reference that also teaches.
 
 ## Step 1: Determine What to Look Up
@@ -102,6 +104,12 @@ Organize terms into these categories for browsing:
 - If the learner asks "what does X mean in the context of Y?", tailor the explanation to that specific context.
 - If they ask to compare two terms, provide a brief comparison highlighting the key difference.
 - If they seem confused, offer the simpler analogy first and build up to the technical detail.
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/explain` — get a deep-dive explanation if you want to go beyond the definition
+- `/lesson` — learn about this concept in a structured lesson with hands-on exercises
+- `/quiz` — test your understanding of the terms and concepts you just reviewed
 
 ## Guidelines
 

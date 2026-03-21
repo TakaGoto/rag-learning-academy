@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Module 07: Evaluation
 
 ## Module Objectives
@@ -15,6 +21,15 @@ By the end of this module, learners will be able to:
 - Module 05: Retrieval Strategies (completed)
 - Module 06: Generation (completed)
 - Basic statistics (mean, median, standard deviation, distributions)
+
+### Before You Begin
+
+Verify you're comfortable with these concepts from prior modules:
+
+- [ ] Dense, sparse, and hybrid retrieval strategies and when each excels (Module 05)
+- [ ] Prompt design for grounding LLM responses in retrieved context (Module 06)
+- [ ] Citation and source attribution in generated answers (Module 06)
+- [ ] The difference between retrieval quality and generation quality (Module 05, Module 06)
 
 ## Lessons
 
@@ -81,3 +96,7 @@ By the end of this module, learners will be able to:
 - Es et al., "RAGAS: Automated Evaluation of Retrieval Augmented Generation" (2023)
 - RAGAS documentation and quickstart guide
 - Zheng et al., "Judging LLM-as-a-Judge" (2023)
+
+---
+
+← **Previous:** [Module 06 — Generation](module-06-generation.md) | **Next:** [Module 08 — Advanced Patterns](module-08-advanced-patterns.md) →

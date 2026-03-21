@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Coding Standards for RAG Projects
 
 Python coding standards and best practices for all code written within the RAG Learning Academy.

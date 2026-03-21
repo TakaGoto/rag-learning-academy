@@ -1,5 +1,8 @@
 ---
 path: src/generation/**
+last_reviewed: 2026-03-21
+review_cycle: monthly
+staleness_risk: high
 ---
 
 # Prompt Template Rules

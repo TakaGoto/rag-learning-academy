@@ -11,9 +11,16 @@ Run a structured evaluation of the learner's RAG pipeline using established metr
 
 ## Step 1: Identify the Pipeline
 
-- Look for the learner's RAG pipeline in `projects/`. If multiple exist, ask which one to evaluate.
-- If no pipeline exists, explain that they need to build one first and suggest `/build`.
-- Verify the pipeline has the minimum components: a retriever and a generator.
+Welcome! Let's see how your RAG pipeline is performing.
+
+First, check whether the learner has existing work to evaluate:
+- Look for a learner profile at `progress/learner-profile.md` and for code in `src/` and `projects/`.
+- If pipeline code exists in `projects/`, great — proceed. If multiple pipelines exist, ask which one to evaluate.
+- If **no pipeline or RAG code exists** anywhere in `projects/` or `src/`, guide them warmly:
+  > "It looks like you haven't built a pipeline yet — that's totally fine! Let's get you set up first. Run `/build` to create your first RAG pipeline, and then come back here to see how it scores. It only takes a few minutes to get something running!"
+
+  Stop here — do not continue to Step 2.
+- If a pipeline is found, verify it has the minimum components: a retriever and a generator.
 
 ## Step 2: Explain the Evaluation Framework
 
@@ -89,3 +96,9 @@ Prioritize the top 2-3 improvements that would have the biggest impact.
 ## Step 7: Save and Track
 
 Save the evaluation report to `projects/[pipeline-name]/eval/reports/report-[date].md`. Update `progress/module-tracker.md` to note the evaluation was completed. Encourage the learner to re-evaluate after making improvements to see their progress.
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/benchmark` — measure operational performance (latency, throughput, cost) alongside quality
+- `/debug-rag` — diagnose and fix the weakest areas identified in your evaluation
+- `/build` — implement the improvements suggested above and re-evaluate

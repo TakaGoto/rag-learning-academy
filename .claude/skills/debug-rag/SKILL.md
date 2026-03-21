@@ -28,6 +28,15 @@ Based on the symptom, walk through the appropriate diagnostic path:
 
 ### For Retrieval Issues (irrelevant results, missing context)
 
+Start by inspecting what the retriever actually returns:
+
+```python
+# Example diagnostic probe
+results = retriever.retrieve("What is machine learning?", top_k=10)
+for r in results:
+    print(f"Score: {r.score:.3f} | Source: {r.metadata['source']} | Text: {r.text[:80]}...")
+```
+
 1. **Check the query**: Is the query well-formed? Try rephrasing it.
 2. **Inspect chunks**: Look at the actual chunks in the vector store. Are they the right size? Do they contain the expected information?
 3. **Test embedding similarity**: Compute the similarity between the query embedding and the expected chunk embedding. Is it above the retrieval threshold?
@@ -90,6 +99,12 @@ Save debugging notes to `progress/debug-log.md` for future reference.
 ## Step 6: Build Debugging Intuition
 
 After resolving the issue, explain the broader pattern. For example: "Hallucination often comes from the prompt, not the model. Always check your prompt template first." This helps learners build a mental model for future debugging.
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/evaluate` — run a full evaluation to confirm the fix improved overall quality
+- `/build` — rebuild or improve the component that caused the issue
+- `/code-review` — get expert feedback to catch other potential problems
 
 ## Guidelines
 

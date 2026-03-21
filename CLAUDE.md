@@ -87,6 +87,8 @@ All agents follow this interaction model:
 | `/challenge` | Take on a hands-on RAG challenge |
 | `/explain` | Deep-dive explanation of any RAG concept |
 | `/roadmap` | View your learning progress and next steps |
+| `/triage` | Not sure where to start? Get routed to the right skill |
+| `/audit-content` | Audit materials for outdated references and stale content |
 
 ## Tech Stack (Default)
 
@@ -106,8 +108,8 @@ rag-learning-academy/
 ├── .claude/
 │   ├── settings.json            # Hooks, permissions, validation
 │   ├── agents/                  # 20 specialist agent definitions
-│   ├── skills/                  # 15 slash command workflows
-│   ├── hooks/                   # Lifecycle & validation scripts
+│   ├── skills/                  # 17 slash command workflows
+│   ├── hooks/                   # Lifecycle, validation & freshness scripts
 │   ├── rules/                   # Path-scoped coding standards
 │   └── docs/                    # Curriculum, templates, references
 │       ├── curriculum/          # 9-module learning path
@@ -159,7 +161,7 @@ Estimated token counts for each component, useful for context window planning. T
 | Leads (5) | embedding, retrieval, indexing, evaluation, integration | ~1,630 | ~8,150 |
 | Specialists (12) | chunking, vector-db, reranking, prompt, hybrid-search, document-parser, metadata, query, deployment, evaluation, graph-rag, multimodal | ~1,820 | ~21,860 |
 
-### Skills / Slash Commands (~15k tokens total)
+### Skills / Slash Commands (~17k tokens total)
 
 | Skill | Est. Tokens | | Skill | Est. Tokens |
 |-------|-------------|---|-------|-------------|
@@ -170,7 +172,8 @@ Estimated token counts for each component, useful for context window planning. T
 | `/evaluate` | ~870 | | `/challenge` | ~1,210 |
 | `/debug-rag` | ~1,090 | | `/explain` | ~1,120 |
 | `/compare` | ~900 | | `/roadmap` | ~1,200 |
-| `/benchmark` | ~970 | | | |
+| `/benchmark` | ~970 | | `/triage` | ~850 |
+| `/audit-content` | ~1,100 | | | |
 
 ### Reference Docs (~13k tokens total)
 
@@ -229,6 +232,16 @@ A typical learning session loads:
 ## Getting Started
 
 Run `/start` to begin your RAG learning journey. The curriculum director will assess your current knowledge level and recommend a personalized learning path.
+
+Not sure where to go? Run `/triage` to get routed to the right skill based on your current needs.
+
+## Content Freshness
+
+Academy materials are monitored for staleness via:
+- **Session hook:** `check-freshness.sh` warns on startup if content files haven't been updated in 90+ days
+- **On-demand audit:** Run `/audit-content` to scan for deprecated models, outdated libraries, and stale references
+- **CI pipeline:** Monthly GitHub Actions workflow creates issues for stale content
+- **Research director:** Extended with content currency auditing responsibilities
 
 ## Resource References
 

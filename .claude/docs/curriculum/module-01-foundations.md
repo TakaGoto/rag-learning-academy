@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: semi-annually
+staleness_risk: low
+---
+
 # Module 01: RAG Foundations
 
 ## Module Objectives
@@ -75,3 +81,7 @@ By the end of this module, learners will be able to:
 - Lewis et al., "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (2020)
 - Anthropic's documentation on grounding and RAG best practices
 - LangChain RAG tutorial (for framework comparison after building from scratch)
+
+---
+
+**Next:** [Module 02 — Document Processing](module-02-document-processing.md) →

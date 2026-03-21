@@ -1,5 +1,8 @@
 ---
 path: src/retrieval/**
+last_reviewed: 2026-03-21
+review_cycle: semi-annually
+staleness_risk: low
 ---
 
 # Retrieval Code Rules

@@ -80,6 +80,15 @@ Ask: "Do you know the difference between bi-encoders and cross-encoders?"
 - **Intermediate** → Skip the explanation, go to implementation. Set up a cross-encoder reranker and measure precision improvement.
 - **Advanced** → Explore ColBERT (late interaction), Cohere Rerank API, and custom reranker training. Discuss diminishing returns and when reranking doesn't help.
 
+## Common Misconceptions
+
+Address these directly when they come up:
+
+- **"Reranking can fix bad retrieval"** — Reranking can only reorder candidates you already retrieved. If the relevant document is not in the initial top-k results, no amount of reranking will surface it. Reranking improves precision within the candidate set, not recall.
+- **"Cross-encoders are always better than bi-encoders"** — Cross-encoders are more accurate for scoring individual query-document pairs, but they can't be used for initial retrieval because they require seeing the query and document together. The two-stage approach (bi-encoder retrieval + cross-encoder reranking) combines the strengths of both.
+- **"Reranking the top 100 is much better than reranking the top 20"** — Diminishing returns kick in quickly. For most use cases, reranking the top 20-30 candidates captures nearly all the benefit at a fraction of the cost. The relevant documents are almost always in the top 20 if your initial retrieval is reasonable.
+- **"All rerankers produce comparable results"** — Reranker quality varies significantly. A state-of-the-art cross-encoder can improve NDCG@10 by 10-15% over a weak reranker. Model selection and the match between your domain and the reranker's training data matter a great deal.
+
 ## When to Use This Agent
 
 Use the Reranking Specialist when:

@@ -5,6 +5,8 @@ description: "Test your understanding of a RAG concept"
 
 # Quiz: Test Your RAG Knowledge
 
+> **Scope:** This skill **tests your understanding** with questions and scoring. For guided teaching of new concepts, use `/lesson`.
+
 Generate and administer a quiz on a specific RAG topic to help learners assess their understanding. Quizzes reinforce learning and surface gaps.
 
 ## Step 1: Determine the Topic
@@ -59,10 +61,20 @@ Save the quiz results to `progress/quiz-results.md` with the date, topic, score,
 
 ## Step 6: Suggest Next Steps
 
-Based on the score:
-- **90-100%**: Congratulate them. Suggest moving to the next module or trying `/challenge` for a harder test.
-- **70-89%**: Good progress. Recommend reviewing the specific gaps, then retaking the quiz or moving on.
-- **Below 70%**: Encourage them. Suggest revisiting the lesson with `/lesson` or getting a deeper explanation with `/explain` on the weak areas.
+Based on the score, suggest 2-3 relevant next steps using slash commands:
+
+- **90-100%**: Congratulate them.
+  - `/challenge` — put your mastery to the test with a real-world challenge
+  - `/build` — apply your knowledge by building a hands-on component
+  - `/lesson` — continue to the next lesson in your track
+- **70-89%**: Good progress. Recommend reviewing the specific gaps.
+  - `/build` — reinforce your understanding by building what you just learned
+  - `/lesson` — continue to the next lesson or revisit a weak area
+  - `/explain` — get a deeper explanation of any concepts that felt shaky
+- **Below 70%**: Encourage them.
+  - `/lesson` — revisit the lesson to strengthen your foundations
+  - `/explain` — get a deep-dive explanation on the weak areas
+  - `/glossary` — review key terms you may have missed
 
 ## Guidelines
 

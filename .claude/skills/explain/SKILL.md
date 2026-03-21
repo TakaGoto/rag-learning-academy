@@ -7,9 +7,12 @@ description: "Get a deep-dive explanation of any RAG concept"
 
 Provide a thorough, multi-layered explanation of any RAG concept. Unlike `/glossary` (which gives quick definitions), `/explain` goes deep — this is for when the learner really wants to understand something.
 
-## Step 1: Identify the Concept
+## Step 1: Identify the Concept and Calibrate Depth
 
 If the user specifies a concept (e.g., `/explain cosine similarity`), explain that. If they give a vague topic (e.g., "retrieval"), ask a clarifying question to narrow the scope. Good explanations are focused.
+
+- If the learner seems to want a quick answer (short question, or they say "briefly" / "quickly"), provide a **2-3 sentence TL;DR** first, then ask "Want me to go deeper?" before proceeding through the full 9-step explanation.
+- If the learner wants depth, proceed normally through all steps.
 
 Common concepts learners ask about:
 - How embeddings work
@@ -108,6 +111,12 @@ Point the learner to:
 ## Step 9: Check Understanding
 
 Ask the learner one focused question to see if they grasped the key idea. Keep it conversational. If they are uncertain, offer to explain a specific part again from a different angle.
+
+Suggest 2-3 relevant next steps using slash commands:
+
+- `/quiz` — test your understanding of this concept and related ideas
+- `/lesson` — learn about this topic in a structured lesson with exercises
+- `/build` — apply this concept hands-on by building a RAG component
 
 ## Guidelines
 

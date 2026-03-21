@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-03-21
+review_cycle: monthly
+staleness_risk: high
+---
+
 # Module 08: Advanced Patterns
 
 ## Module Objectives
@@ -15,6 +21,15 @@ By the end of this module, learners will be able to:
 - Modules 01-07 (completed) — this module builds on all prior material
 - Familiarity with LLM function calling / tool use APIs
 - Basic understanding of graph data structures (nodes, edges, traversal)
+
+### Before You Begin
+
+Verify you're comfortable with these concepts from prior modules:
+
+- [ ] Hybrid search with RRF fusion and reranking pipelines (Module 05)
+- [ ] RAGAS evaluation metrics: faithfulness, relevancy, context precision, context recall (Module 07)
+- [ ] Context window management and grounding techniques (Module 06)
+- [ ] Vector database querying with metadata filtering (Module 04)
 
 ## Lessons
 
@@ -82,3 +97,7 @@ By the end of this module, learners will be able to:
 - Yan et al., "Corrective Retrieval Augmented Generation" (CRAG, 2024)
 - Edge et al., "From Local to Global: A Graph RAG Approach to Query-Focused Summarization" (Microsoft, 2024)
 - Gao et al., "Precise Zero-Shot Dense Retrieval without Relevance Labels" (HyDE, 2022)
+
+---
+
+← **Previous:** [Module 07 — Evaluation](module-07-evaluation.md) | **Next:** [Module 09 — Production RAG](module-09-production.md) →
