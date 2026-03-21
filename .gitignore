@@ -55,3 +55,6 @@ progress/sessions/*.md
 
 # Processed chunks
 data/processed/
+
+# Dolt database files (added by bd init)
+.dolt/

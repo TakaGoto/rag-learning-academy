@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "rag_learning_academy",
+  "project_id": "59883adf-6de1-45d3-b90a-2a7b4e6de1a9"
+}
