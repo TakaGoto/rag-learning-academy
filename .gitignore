@@ -53,6 +53,9 @@ credentials.json
 # Session logs from hooks
 progress/sessions/*.md
 
+# Generated dashboard
+progress/dashboard.html
+
 # Processed chunks
 data/processed/
 

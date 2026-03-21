@@ -1,4 +1,4 @@
-.PHONY: install test lint format shellcheck ci clean knowledge-check
+.PHONY: install test lint format shellcheck ci clean knowledge-check dashboard
 
 install:
 	pip install -r requirements.txt
@@ -23,6 +23,9 @@ shellcheck:
 
 knowledge-check:
 	python3 .github/scripts/weekly_knowledge_check.py
+
+dashboard:
+	python3 scripts/generate_dashboard.py
 
 audit:
 	@echo "Run /audit-content in Claude Code to check for stale content"
