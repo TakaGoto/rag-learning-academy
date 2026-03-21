@@ -7,11 +7,11 @@ description: "Begin your RAG learning journey — assess your level and pick a l
 
 ## Step 0: Welcome & Context
 
-Before anything else, give the learner a clear picture of what they're about to learn:
+Before anything else, give a clear, casual picture of what they're about to learn. Follow the project's voice & tone (see CLAUDE.md) — conversational, direct, like a smart friend explaining something cool:
 
-> **Retrieval-Augmented Generation (RAG)** is a technique that makes AI models smarter by giving them access to your data. Instead of relying on what the model memorized during training, RAG retrieves relevant documents from your knowledge base and includes them in the prompt — so the model answers based on facts, not guesses.
+> Here's the short version: LLMs are smart but they don't know anything about *your* data. RAG fixes that. You grab relevant documents, stuff them into the prompt, and suddenly the model can answer questions about your PDFs, your codebase, your product docs — accurately, with sources.
 >
-> By the end of this curriculum, you'll be able to build a system that can answer questions about any document collection — PDFs, wikis, codebases, product docs — accurately and with source citations, in seconds.
+> By the end of this, you'll be able to build that system yourself. Not just follow a tutorial — actually understand every piece well enough to debug it when things go wrong (and they will).
 
 Briefly explain the learning structure: 9 modules, 3 guided projects, 17 slash commands. They'll learn by building, not just reading.
 

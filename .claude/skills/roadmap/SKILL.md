@@ -148,11 +148,12 @@ This gives the learner a birds-eye view of the entire journey.
 
 ## Step 8: Motivational Close
 
-End with an encouraging note based on their progress:
-- If early: "You have taken the first steps — the concepts will start connecting soon."
-- If mid-track: "You are building real skills. The pieces are coming together."
-- If near completion: "You are close to the finish line. The advanced concepts are where RAG gets really powerful."
-- If complete: "You have completed the curriculum. Consider building a production RAG system or contributing to the learning materials."
+End with a brief, genuine note based on their progress. Follow the project's voice & tone — real encouragement, not cheerleading:
+
+- If early: "You're just getting started but you've already got the foundation down. The pieces start clicking fast from here."
+- If mid-track: "You're past the basics. The stuff you're learning now is what separates 'I followed a tutorial' from 'I actually understand RAG.'"
+- If near completion: "You're close. The advanced stuff is where RAG gets genuinely interesting — and where most people never get to."
+- If complete: "You've done the whole thing. You know more about RAG than most engineers building it in production. Seriously. Go build something real, or help improve these materials for the next person."
 
 Suggest 2-3 relevant next steps using slash commands, tailored to the specific next action identified in the progress analysis above. For example:
 

@@ -80,5 +80,5 @@ Based on the score, suggest 2-3 relevant next steps using slash commands:
 
 - Questions should be practical and relevant, not trivia
 - Accept reasonable alternative answers — RAG is a field with multiple valid approaches
-- Be encouraging even when answers are wrong — mistakes are how we learn
+- When answers are wrong, be straightforward: explain what's actually going on without sugarcoating. "Not quite — here's the thing" beats "Great try! You're on the right track!"
 - Vary difficulty within the quiz (start easier, build up)
