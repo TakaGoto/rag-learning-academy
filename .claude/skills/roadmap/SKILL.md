@@ -46,10 +46,47 @@ Module Progress:
 
 Use visual progress bars built from ASCII characters. Make the progress feel tangible and motivating.
 
-## Step 3: Highlight Achievements
+## Step 3: Show Milestone Progress
+
+Read `.claude/docs/reference/milestones.md` to load the milestone definitions. Based on the learner's track and progress, display their milestone status:
+
+```
+Milestones
+==========
+  ✓ Milestone 1: First Light         — You built a working RAG system
+  ✓ Milestone 2: Data Wrangler       — You can process any document
+  ◐ Milestone 3: Vector Navigator    — 3/5 requirements done
+  ○ Milestone 4: Retrieval Engineer   — Not started
+```
+
+Use ✓ for complete, ◐ for in-progress (show fraction), ○ for not started. Only show milestones relevant to the learner's track (e.g., Beginner track shows milestones 1-3).
+
+For the current in-progress milestone, show which requirements remain:
+```
+  Next up for Milestone 3 — Vector Navigator:
+  - [ ] Complete the "Model Shootout" exercise
+  - [ ] Pass a quiz on embeddings or vector databases
+```
+
+Celebrate completed milestones warmly. For the current milestone, make the remaining items feel achievable.
+
+**Proficiency level display:** Also check which proficiency level the learner has earned based on completed milestones (see the "Proficiency Levels" section of milestones.md):
+
+```
+Proficiency Level: RAG Practitioner
+  ✓ RAG Explorer        (Milestones 1-2)
+  ✓ RAG Practitioner    (Milestones 3-5)    ← CURRENT LEVEL
+  ◐ RAG Engineer        (Milestones 6-7)    ← 1 milestone away
+  ○ RAG Architect       (Milestone 8 + bonus)
+```
+
+When a learner earns a new level, celebrate it prominently: "Congratulations — you've earned the **RAG Practitioner** level! You can now design and build real retrieval systems."
+
+## Step 4: Highlight Achievements
 
 Call out what the learner has accomplished:
 - Total lessons completed
+- Milestones earned
 - Quizzes passed (and average score)
 - Challenges completed (with difficulty levels)
 - Components built via `/build`
@@ -58,7 +95,9 @@ Call out what the learner has accomplished:
 
 If there are notable achievements, celebrate them: "You have completed all beginner challenges — that is a solid foundation."
 
-## Step 4: Identify Knowledge Gaps
+Also mention bonus milestones (Reviewer, Debugger, Completionist) if the learner is making progress toward them.
+
+## Step 5: Identify Knowledge Gaps
 
 Analyze quiz results and challenge scores to find areas where the learner may need more practice:
 
@@ -69,7 +108,7 @@ Analyze quiz results and challenge scores to find areas where the learner may ne
 
 Present these as opportunities, not failures: "You might benefit from revisiting chunking strategies — your quiz score suggests some concepts did not fully click yet."
 
-## Step 5: Recommend Next Steps
+## Step 6: Recommend Next Steps
 
 Based on the progress data, suggest 3-5 specific next actions, prioritized by impact:
 
@@ -81,7 +120,7 @@ Based on the progress data, suggest 3-5 specific next actions, prioritized by im
 
 Each suggestion should include the specific slash command to run.
 
-## Step 6: Show the Full Curriculum Map
+## Step 7: Show the Full Curriculum Map
 
 Display the complete curriculum with the learner's position marked:
 
@@ -106,7 +145,7 @@ Module 3: Embeddings
 
 This gives the learner a birds-eye view of the entire journey.
 
-## Step 7: Motivational Close
+## Step 8: Motivational Close
 
 End with an encouraging note based on their progress:
 - If early: "You have taken the first steps — the concepts will start connecting soon."

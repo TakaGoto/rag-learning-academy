@@ -76,7 +76,9 @@ Also create `progress/module-tracker.md` initialized with empty checkboxes for e
 
 ## Step 5: Next Steps
 
-Tell the learner their profile has been saved. Encourage them: "You're going to build real, working RAG systems. Let's start."
+Tell the learner their profile has been saved. Mention the milestone system: "Your track has milestones — concrete checkpoints that mark real progress. Run `/roadmap` anytime to see how far you've come."
+
+Encourage them: "You're going to build real, working RAG systems. Let's start."
 
 Suggest 2-3 relevant next steps using slash commands:
 

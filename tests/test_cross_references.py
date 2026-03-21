@@ -198,3 +198,61 @@ class TestCoordinationRules:
 
     def test_handoff_protocol_exists(self, coordination_rules_text):
         assert "Handoff" in coordination_rules_text, "Coordination rules missing handoff protocol"
+
+
+# ---------------------------------------------------------------------------
+# Milestones
+# ---------------------------------------------------------------------------
+
+
+class TestMilestones:
+    """Verify milestones file exists and has required structure."""
+
+    def test_milestones_file_exists(self):
+        from academy_fixtures import REFERENCE_DIR
+
+        assert (REFERENCE_DIR / "milestones.md").exists(), "Missing milestones.md"
+
+    def test_has_8_core_milestones(self):
+        from academy_fixtures import REFERENCE_DIR
+
+        text = (REFERENCE_DIR / "milestones.md").read_text()
+        for i in range(1, 9):
+            assert f"## Milestone {i}:" in text, f"Missing Milestone {i}"
+
+    def test_milestones_have_requirements(self):
+        from academy_fixtures import REFERENCE_DIR
+
+        text = (REFERENCE_DIR / "milestones.md").read_text()
+        assert text.count("**Requirements:**") >= 8, "Not all milestones have requirements"
+
+    def test_milestones_have_deliverables(self):
+        from academy_fixtures import REFERENCE_DIR
+
+        text = (REFERENCE_DIR / "milestones.md").read_text()
+        assert text.count("**Deliverable:**") >= 8, "Not all milestones have deliverables"
+
+    def test_track_mapping_exists(self):
+        from academy_fixtures import REFERENCE_DIR
+
+        text = (REFERENCE_DIR / "milestones.md").read_text()
+        assert "Track Milestones" in text or "## Track" in text, "Missing track-to-milestone mapping"
+        assert "Beginner" in text
+        assert "Intermediate" in text
+        assert "Advanced" in text
+
+    def test_proficiency_levels_exist(self):
+        from academy_fixtures import REFERENCE_DIR
+
+        text = (REFERENCE_DIR / "milestones.md").read_text()
+        assert "## Proficiency Levels" in text, "Missing Proficiency Levels section"
+
+    @pytest.mark.parametrize(
+        "level",
+        ["RAG Explorer", "RAG Practitioner", "RAG Engineer", "RAG Architect"],
+    )
+    def test_proficiency_level_defined(self, level):
+        from academy_fixtures import REFERENCE_DIR
+
+        text = (REFERENCE_DIR / "milestones.md").read_text()
+        assert level in text, f"Missing proficiency level: {level}"

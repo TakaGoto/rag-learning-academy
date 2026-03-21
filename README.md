@@ -71,6 +71,23 @@ claude                         # Open Claude Code
 | 8 | Advanced Patterns | 5 | Agentic RAG, Graph RAG, CRAG, multimodal |
 | 9 | Production | 5 | Deployment, caching, monitoring, scaling |
 
+### 8 Milestones
+
+The curriculum is broken into milestones — concrete checkpoints that mark real capability, not just lessons read.
+
+| # | Milestone | You Can Now... |
+|---|-----------|---------------|
+| 1 | First Light | Build a working RAG system from scratch |
+| 2 | Data Wrangler | Turn any document into retrieval-ready chunks |
+| 3 | Vector Navigator | Store and search embeddings effectively |
+| 4 | Retrieval Engineer | Find the right information for any query |
+| 5 | Prompt Architect | Generate grounded, cited answers |
+| 6 | Quality Guardian | Measure everything and improve with data |
+| 7 | Pattern Master | Go beyond basic RAG when it's warranted |
+| 8 | Production Ready | Deploy, monitor, and scale a RAG system |
+
+Complete milestones to earn proficiency levels: **RAG Explorer** (1-2) → **RAG Practitioner** (3-5) → **RAG Engineer** (6-7) → **RAG Architect** (8 + bonus). See [milestones.md](.claude/docs/reference/milestones.md) for full details.
+
 ### 3 Guided Projects
 
 | Level | Project | What You Build |
@@ -193,10 +210,23 @@ Run `/start` and you'll be assessed into one of three tracks:
 - Every exercise has **evaluation criteria**
 - You choose your path — agents advise, you decide
 
+## Contributing
+
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+
+- Reporting bugs and requesting features
+- Development setup (`make install`) and running tests (`make test`)
+- Pull request process and checklist
+- Content guidelines for agents, skills, and curriculum
+
+```bash
+make ci    # Run lint + shellcheck + tests before submitting a PR
+```
+
 ## Credits
 
 Architecture inspired by [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios) by Donchitos.
 
 ## License
 
-MIT
+[MIT](LICENSE)
