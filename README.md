@@ -19,7 +19,8 @@ Every concept is paired with a hands-on exercise. Every exercise is paired with 
 ```bash
 git clone https://github.com/TakaGoto/rag-learning-academy.git
 cd rag-learning-academy
-claude                         # Open Claude Code, then type: /start
+claude                         # Open Claude Code
+/start                         # Begin your learning journey
 ```
 
 That's it. No API keys, no `pip install`, no setup. Dependencies get installed when you need them (the first hands-on lesson will guide you).
