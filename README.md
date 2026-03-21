@@ -1,19 +1,23 @@
 # RAG Learning Academy
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![CI](https://github.com/TakaGoto/rag-learning-academy/actions/workflows/ci.yml/badge.svg)](https://github.com/TakaGoto/rag-learning-academy/actions/workflows/ci.yml)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-green.svg)](https://www.python.org/downloads/)
+
 A structured, multi-agent learning environment for mastering Retrieval-Augmented Generation (RAG) — powered by Claude Code.
 
 Inspired by [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios), reimagined as an interactive learning guide for RAG systems.
 
 ## What Is This?
 
-RAG Learning Academy transforms Claude Code into a **personal RAG tutor** with 20 specialized AI agents, 15 interactive slash commands, and a 9-module curriculum that takes you from "what is RAG?" to production deployment.
+RAG Learning Academy transforms Claude Code into a **personal RAG tutor** with 20 specialized AI agents, 17 interactive slash commands, and a 9-module curriculum that takes you from "what is RAG?" to production deployment.
 
 Every concept is paired with a hands-on exercise. Every exercise is paired with evaluation metrics. You learn by building.
 
 ## Quick Start
 
 ```bash
-git clone https://github.com/yourusername/rag-learning-academy.git
+git clone https://github.com/TakaGoto/rag-learning-academy.git
 cd rag-learning-academy
 cp .env.example .env          # Add your API keys
 pip install -r requirements.txt
@@ -31,7 +35,7 @@ claude                         # Open Claude Code
 | Domain Leads | 5 | Embedding, Retrieval, Indexing, Evaluation, Integration | sonnet |
 | Specialists | 12 | Chunking, Vector DB, Reranking, Prompt Engineering, Hybrid Search, Document Parsing, Metadata, Query Analysis, Deployment, Evaluation Metrics, Graph RAG, Multimodal | sonnet |
 
-### 15 Slash Commands
+### 17 Slash Commands
 
 | Command | What It Does |
 |---------|-------------|
@@ -50,6 +54,8 @@ claude                         # Open Claude Code
 | `/challenge` | Take on a hands-on challenge |
 | `/explain` | Deep-dive into any concept |
 | `/roadmap` | View your progress and next steps |
+| `/triage` | Not sure where to go? Get routed to the right skill |
+| `/audit-content` | Check materials for outdated references |
 
 ### 9-Module Curriculum
 
@@ -83,11 +89,11 @@ Total project content: **~98,000 tokens**
 |-----------|-------|-------------|------------|
 | Agents | 20 | ~34,730 | 35% |
 | Curriculum | 9 | ~14,960 | 15% |
-| Skills | 15 | ~14,750 | 15% |
+| Skills | 17 | ~16,700 | 16% |
 | Reference Docs | 5 | ~12,930 | 13% |
 | Rules | 7 | ~5,120 | 5% |
 | Templates | 3 | ~4,480 | 5% |
-| Sample Data | 3 | ~2,580 | 3% |
+| Sample Data | 6 | ~5,700 | 5% |
 | Config (CLAUDE.md + settings) | 2 | ~2,090 | 2% |
 | Projects + Tests | 6 | ~3,500 | 4% |
 | Other (hooks, .env, etc.) | 20 | ~2,860 | 3% |
@@ -143,7 +149,7 @@ rag-learning-academy/
 ├── .claude/
 │   ├── settings.json            # Hooks, permissions
 │   ├── agents/                  # 20 specialist agents
-│   ├── skills/                  # 15 slash commands
+│   ├── skills/                  # 17 slash commands
 │   ├── hooks/                   # Session lifecycle scripts
 │   ├── rules/                   # Path-scoped coding standards
 │   └── docs/

@@ -5,11 +5,11 @@ Fill these in as you work through Module 6 and Module 9.
 
 import pytest
 
-
 # ---------------------------------------------------------------------------
 # Mock fixtures — use these as starting points for your own tests.
 # Replace with real implementations as you build out src/pipelines/.
 # ---------------------------------------------------------------------------
+
 
 class MockRetriever:
     """A fake retriever that returns canned results.
