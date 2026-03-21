@@ -6,7 +6,7 @@ path: src/embeddings/**
 
 ## 1. Always normalize embeddings before storing
 
-Normalized vectors ensure consistent cosine similarity comparisons.
+Normalized vectors ensure consistent cosine similarity comparisons. Note: some models (e.g., OpenAI's text-embedding-3-small) return pre-normalized vectors — verify your model's output. This rule applies primarily to cosine similarity indexes; inner product indexes may need unnormalized vectors.
 
 ```python
 # Correct
@@ -31,7 +31,7 @@ def embed_documents(texts: list[str], batch_size: int = 64) -> list[list[float]]
     embeddings = []
     for i in range(0, len(texts), batch_size):
         batch = texts[i:i + batch_size]
-        embeddings.extend(model.encode(batch))
+        embeddings.extend(model.encode(batch).tolist())
     return embeddings
 
 # Incorrect - one-by-one calls
@@ -77,7 +77,7 @@ import time
 def embed_with_retry(texts: list[str], max_retries: int = 5) -> list[list[float]]:
     for attempt in range(max_retries):
         try:
-            return client.embeddings.create(input=texts, model=MODEL).data
+            return [e.embedding for e in client.embeddings.create(input=texts, model=MODEL).data]
         except RateLimitError:
             wait = 2 ** attempt
             time.sleep(wait)

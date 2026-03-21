@@ -30,10 +30,11 @@ Point estimates hide uncertainty. Report bounds when computing on samples.
 # Correct
 import numpy as np
 
-def metric_with_ci(scores: list[float], confidence: float = 0.95) -> dict:
+def metric_with_95ci(scores: list[float]) -> dict:
+    """Returns mean with 95% confidence interval. For other levels, use scipy.stats.norm.ppf."""
     mean = np.mean(scores)
     std_err = np.std(scores, ddof=1) / np.sqrt(len(scores))
-    z = 1.96  # 95% CI
+    z = 1.96  # 95% CI (fixed)
     return {
         "mean": float(mean),
         "ci_lower": float(mean - z * std_err),

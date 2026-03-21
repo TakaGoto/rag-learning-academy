@@ -14,7 +14,15 @@ class TestDenseRetrieval:
         pytest.skip("Implement in Module 5, Lesson 5.1")
 
     def test_results_have_scores(self):
-        """Each result should include a relevance score."""
+        """Each result should include a relevance score.
+
+        Fixture hint:
+        # results = retriever.retrieve("What is chunking?", top_k=5)
+        # for result in results:
+        #     assert hasattr(result, "score"), "Every RetrievalResult must carry a score"
+        #     assert isinstance(result.score, float)
+        #     assert 0.0 <= result.score <= 1.0  # cosine similarity is in [0, 1] for normalized vecs
+        """
         pytest.skip("Implement in Module 5, Lesson 5.1")
 
     def test_scores_are_descending(self):

@@ -68,12 +68,13 @@ Overlap prevents information loss at chunk boundaries.
 ```python
 # Correct
 def split_text(text: str, chunk_size: int = 512, overlap: int = 50) -> list[str]:
+    assert overlap < chunk_size, "overlap must be less than chunk_size"
     chunks = []
     start = 0
     while start < len(text):
-        end = start + chunk_size
+        end = min(start + chunk_size, len(text))
         chunks.append(text[start:end])
-        start = end - overlap  # overlap with previous chunk
+        start = max(start + 1, end - overlap)  # always advance at least 1
     return chunks
 
 # Incorrect - hardcoded zero overlap
@@ -94,8 +95,10 @@ def split_at_sentence_boundary(text: str, max_size: int) -> list[str]:
         if len(current) + len(sentence) > max_size and current:
             chunks.append(current.strip())
             current = sentence
-        else:
+        elif current:
             current += " " + sentence
+        else:
+            current = sentence  # avoid leading space on first sentence
     if current.strip():
         chunks.append(current.strip())
     return chunks

@@ -107,19 +107,21 @@ class RAGPipeline:
 ## 5. Configuration via environment variables or config files, not hardcoded
 
 ```python
-# Correct
-import os
-from dataclasses import dataclass
+# Correct — use pydantic-settings for validated, typed config from env vars
+from pydantic_settings import BaseSettings
 
-@dataclass
-class PipelineConfig:
-    embedding_model: str = os.environ.get("EMBEDDING_MODEL", "text-embedding-3-small")
-    top_k: int = int(os.environ.get("RETRIEVAL_TOP_K", "10"))
-    max_context_tokens: int = int(os.environ.get("MAX_CONTEXT_TOKENS", "4000"))
-    temperature: float = float(os.environ.get("GENERATION_TEMPERATURE", "0.1"))
+class PipelineConfig(BaseSettings):
+    embedding_model: str = "text-embedding-3-small"
+    top_k: int = 10
+    max_context_tokens: int = 4000
+    temperature: float = 0.1
 
-# Incorrect
+    model_config = {"env_prefix": "RAG_"}  # reads RAG_EMBEDDING_MODEL, RAG_TOP_K, etc.
+
+# Usage: config = PipelineConfig()  # auto-reads from environment, validates types
+
+# Incorrect — hardcoded, no validation, change requires code edit
 class Pipeline:
-    EMBEDDING_MODEL = "text-embedding-3-small"  # hardcoded, change requires code edit
+    EMBEDDING_MODEL = "text-embedding-3-small"
     TOP_K = 10
 ```

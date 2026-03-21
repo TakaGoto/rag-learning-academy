@@ -58,23 +58,28 @@ for id_, emb, meta in zip(ids, embeddings, metadata):
     collection.add(ids=[id_], embeddings=[emb], metadatas=[meta])
 ```
 
-## 3. Include connection pooling for production code
+## 3. Include connection pooling for networked vector databases
+
+For client-server vector databases (Qdrant, Pinecone, pgvector) — not needed for embedded ChromaDB.
 
 ```python
-# Correct
+# Correct — thread-safe pool using queue.Queue
+import queue
 from contextlib import contextmanager
 
 class VectorDBPool:
     def __init__(self, url: str, pool_size: int = 5):
-        self._pool = [self._create_connection(url) for _ in range(pool_size)]
+        self._pool = queue.Queue(maxsize=pool_size)
+        for _ in range(pool_size):
+            self._pool.put(self._create_connection(url))
 
     @contextmanager
     def get_connection(self):
-        conn = self._pool.pop()
+        conn = self._pool.get()  # blocks if pool is exhausted (thread-safe)
         try:
             yield conn
         finally:
-            self._pool.append(conn)
+            self._pool.put(conn)
 
 # Incorrect - new connection per request
 def search(query):
@@ -103,19 +108,23 @@ self._collection.upsert(ids=ids, embeddings=embeddings)
 ## 5. Implement health checks for database connections
 
 ```python
-# Correct
-class VectorStore:
+# Correct — abstract base returns basic status, subclasses add vendor details
+class VectorStore(ABC):
     def health_check(self) -> dict:
         try:
-            info = self._client.get_collection(self._collection_name)
-            return {
-                "status": "healthy",
-                "collection": self._collection_name,
-                "document_count": info.count,
-                "dimensions": info.config.params.vectors.size,
-            }
+            self._ping()  # subclass implements
+            return {"status": "healthy", "collection": self._collection_name}
         except Exception as e:
             return {"status": "unhealthy", "error": str(e)}
+
+class QdrantStore(VectorStore):
+    def health_check(self) -> dict:
+        base = super().health_check()
+        if base["status"] == "healthy":
+            info = self._client.get_collection(self._collection_name)
+            base["document_count"] = info.count
+            base["dimensions"] = info.config.params.vectors.size  # Qdrant-specific
+        return base
 
 # Incorrect - no way to verify the DB is reachable before running queries
 ```

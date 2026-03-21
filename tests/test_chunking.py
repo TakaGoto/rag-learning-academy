@@ -14,7 +14,21 @@ class TestFixedSizeChunking:
         """Every chunk should be <= chunk_size characters."""
         # TODO: Import your chunker and test it
         # from src.chunking.fixed import fixed_chunk
-        # chunks = fixed_chunk("your text here", chunk_size=500, overlap=50)
+        #
+        # Sample text (560 chars — forces at least 2 chunks at size=500):
+        # sample_text = (
+        #     "Retrieval-Augmented Generation enhances LLMs by providing relevant "
+        #     "external information at inference time. Instead of relying solely on "
+        #     "parametric knowledge, RAG retrieves documents from a knowledge base "
+        #     "and includes them in the prompt. This reduces hallucination and keeps "
+        #     "answers grounded in source material. The technique is especially "
+        #     "useful for domain-specific applications where the model has limited "
+        #     "training data. A typical pipeline has two phases: an offline indexing "
+        #     "phase that chunks, embeds, and stores documents, and an online query "
+        #     "phase that retrieves and generates."
+        # )
+        #
+        # chunks = fixed_chunk(sample_text, chunk_size=500, overlap=50)
         # for chunk in chunks:
         #     assert len(chunk.text) <= 500
         pytest.skip("Implement in Module 2, Lesson 2.3")
@@ -28,7 +42,22 @@ class TestFixedSizeChunking:
         pytest.skip("Implement in Module 2, Lesson 2.3")
 
     def test_full_text_is_covered(self):
-        """Joining chunks (accounting for overlap) should reproduce the original text."""
+        """Joining chunks (accounting for overlap) should reproduce the original text.
+
+        How to verify with overlap:
+        # Given chunk_size=100 and overlap=20, consecutive chunks share 20 chars.
+        # To reconstruct, take the full first chunk, then append only the
+        # non-overlapping tail of each subsequent chunk:
+        #
+        #   reconstructed = chunks[0].text
+        #   for chunk in chunks[1:]:
+        #       reconstructed += chunk.text[overlap:]
+        #
+        #   assert reconstructed == original_text
+        #
+        # This confirms no characters were lost or duplicated beyond the
+        # expected overlap region.
+        """
         pytest.skip("Implement in Module 2, Lesson 2.3")
 
 

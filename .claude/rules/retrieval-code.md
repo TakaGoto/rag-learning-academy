@@ -16,6 +16,7 @@ class RetrievalResult:
     score: float  # relevance / similarity score
 
 def retrieve(query: str, top_k: int = 10) -> list[RetrievalResult]:
+    query_embedding = embedder.embed(query)  # embed the query first
     raw = vector_db.search(query_embedding, limit=top_k)
     return [RetrievalResult(document=to_document(r), score=r.score) for r in raw]
 
