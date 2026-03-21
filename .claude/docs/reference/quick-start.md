@@ -13,17 +13,22 @@ Get up and running in 5 minutes.
 Before starting, ensure you have:
 
 - **Python 3.10+** installed (`python --version` to check)
-- **API path:** An OpenAI API key (for embeddings) + Anthropic API key (for generation with Claude)
-- **Local/free path:** Ollama installed (`ollama pull nomic-embed-text && ollama pull llama3`) — no API keys needed
+- **Claude Code** installed — this is your LLM (no separate API key needed beyond your Claude subscription)
 - **Git** for version control
 - **A terminal** with bash or zsh
-- **8GB+ RAM** recommended (16GB preferred for local models)
 
-> **Local LLM warning:** Running models locally with Ollama is free but resource-intensive. A 7B parameter model (llama3, mistral) needs ~4-8GB of RAM just for the model. If you're on a laptop with 8GB RAM, close other heavy applications (browsers with many tabs, Docker, IDEs) before running local models. Signs of trouble: system slowdown, spinning fans, swap usage, or out-of-memory crashes. If your machine struggles, use the API path instead — it offloads computation to the cloud. Local embedding models (all-MiniLM-L6-v2) are much lighter than LLMs and run fine on most machines.
+**No API keys are required to start.** The academy works out of the box using:
+- **Claude Code** for LLM generation (you're already running it)
+- **all-MiniLM-L6-v2** for embeddings (runs locally, downloads automatically, lightweight)
+- **ChromaDB** for vector storage (runs locally, no setup)
 
-Optional but recommended:
-- **uv** for fast Python package management (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
-- **A Cohere API key** (for reranking exercises in Module 05)
+Optional upgrades (add later if you want):
+- **OpenAI API key** — for `text-embedding-3-small` embeddings (higher quality, costs ~$0.02/million tokens)
+- **Cohere API key** — for reranking exercises in Module 05
+- **Ollama** — for running local LLMs instead of Claude (`ollama pull llama3`). See hardware warning below.
+- **uv** — for fast Python package management (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
+
+> **Local LLM warning (Ollama):** Running LLMs locally is free but resource-intensive. A 7B parameter model needs ~4-8GB of RAM. If you're on a laptop with 8GB RAM, close heavy applications before running. Signs of trouble: system slowdown, spinning fans, or crashes. The default path (Claude Code + local embeddings) avoids this entirely.
 
 ## Setup
 
@@ -56,22 +61,19 @@ uv pip install -r requirements.txt
 pip install -r requirements.txt
 ```
 
-### Step 4: Configure Environment
+### Step 4: Verify Installation
+
+```bash
+python -c "import chromadb; import sentence_transformers; print('Setup complete!')"
+```
+
+### Step 5 (Optional): Add API Keys
+
+Only needed if you want to use OpenAI embeddings or Cohere reranking:
 
 ```bash
 cp .env.example .env
-```
-
-Edit `.env` and add your API keys:
-```
-OPENAI_API_KEY=sk-...
-COHERE_API_KEY=...          # Optional, for reranking
-```
-
-### Step 5: Verify Installation
-
-```bash
-python -c "import chromadb; import openai; import anthropic; print('Setup complete!')"
+# Edit .env and add keys — or skip this entirely and use the free defaults
 ```
 
 ## Your First Command: `/start`
@@ -136,11 +138,11 @@ You can request a specific agent at any time by name.
 
 **"ModuleNotFoundError"** — Ensure your virtual environment is activated and dependencies are installed.
 
-**"OPENAI_API_KEY not set"** — Check that your `.env` file exists and contains a valid key. Restart your terminal after changes.
+**"OPENAI_API_KEY not set"** — You're using code that expects OpenAI embeddings. Either add the key to `.env`, or switch to local embeddings (`all-MiniLM-L6-v2`) which need no key.
 
 **"ChromaDB connection error"** — ChromaDB runs in embedded mode by default. Ensure you have write permissions to the project directory.
 
-**Slow embedding operations** — This is normal for large batches. The course exercises are designed to work within free-tier API limits.
+**Slow embedding operations** — Local embedding models are slower than API-based ones on first run (model download). Subsequent runs are fast. For large batches, consider using OpenAI's API.
 
 ## Next Steps
 

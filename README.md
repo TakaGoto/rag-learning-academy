@@ -19,11 +19,12 @@ Every concept is paired with a hands-on exercise. Every exercise is paired with 
 ```bash
 git clone https://github.com/TakaGoto/rag-learning-academy.git
 cd rag-learning-academy
-cp .env.example .env          # Add your API keys
 pip install -r requirements.txt
 claude                         # Open Claude Code
 # Then type: /start
 ```
+
+No API keys required. Uses Claude Code (your LLM) + local embeddings + ChromaDB out of the box.
 
 ## What's Inside
 

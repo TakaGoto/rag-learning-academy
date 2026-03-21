@@ -112,9 +112,9 @@ This keeps the UX lightweight — no extra token cost unless the learner opts in
 ## Tech Stack (Default)
 
 - **Language:** Python 3.10+
-- **Embeddings:** OpenAI `text-embedding-3-small` (API) or `all-MiniLM-L6-v2` / `nomic-embed-text` (local/free)
-- **Vector DB:** ChromaDB (local dev), FAISS (low-level alternative), Pinecone/pgvector (production lessons)
-- **LLM:** Claude API (via Anthropic SDK) or Ollama with local models (free, no API key needed — requires 8-16GB RAM; see quick-start for hardware guidance)
+- **Embeddings:** `all-MiniLM-L6-v2` (default, local, no API key) or OpenAI `text-embedding-3-small` (optional upgrade)
+- **Vector DB:** ChromaDB (local, no setup needed)
+- **LLM:** Claude Code (default — you're already running it) or Ollama for local models (optional, requires 8-16GB RAM)
 - **Framework:** LangChain or LlamaIndex (learner's choice)
 - **Evaluation:** RAGAS, custom metrics
 - **Document Processing:** Unstructured, PyPDF, pdfplumber, BeautifulSoup
