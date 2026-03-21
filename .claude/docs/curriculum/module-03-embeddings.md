@@ -28,7 +28,7 @@ By the end of this module, learners will be able to:
 
 ### 3.2 Choosing an Embedding Model
 
-**Description:** Comparative analysis of embedding models available today. OpenAI text-embedding-3-small/large, Cohere embed-v3, open-source options (BAAI/bge-base, nomic-embed-text, E5-mistral, GTE-large). Covers dimensions, max input length, MTEB benchmark performance, cost per million tokens, and inference latency. Provides a decision framework: when to use API models vs self-hosted.
+**Description:** Comparative analysis of embedding models available today. API models: OpenAI text-embedding-3-small/large, Cohere embed-v3, Voyage voyage-3-lite. Open-source/local models: all-MiniLM-L6-v2 (great for learning — free, fast, 384 dims), BAAI/bge-base, nomic-embed-text (via Ollama), E5-mistral, GTE-large. Covers dimensions, max input length, MTEB benchmark performance, cost per million tokens, and inference latency. Provides a decision framework: for learning/free use start with all-MiniLM-L6-v2 or nomic-embed-text; for production API use start with text-embedding-3-small.
 
 **Key concepts:** MTEB leaderboard, dimensions vs quality trade-off, API vs self-hosted models, Matryoshka embeddings, multilingual support, context length limits.
 

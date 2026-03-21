@@ -125,12 +125,12 @@ This fits comfortably in any Claude model's context window. The full ~98k projec
 
 ## Tech Stack
 
-| Component | Default | Alternatives |
-|-----------|---------|-------------|
-| Language | Python 3.11+ | — |
-| LLM | Claude (Anthropic SDK) | OpenAI GPT-4o |
-| Embeddings | OpenAI text-embedding-3-small | Sentence Transformers, Cohere |
-| Vector DB | ChromaDB (local) | Pinecone, pgvector, Qdrant |
+| Component | Default (API) | Free/Local Alternative |
+|-----------|---------------|----------------------|
+| Language | Python 3.10+ | — |
+| LLM | Claude (Anthropic SDK) | Ollama (llama3, mistral) |
+| Embeddings | OpenAI text-embedding-3-small | all-MiniLM-L6-v2, nomic-embed-text |
+| Vector DB | ChromaDB (local) | FAISS, Pinecone, pgvector, Qdrant |
 | Framework | LangChain | LlamaIndex |
 | Evaluation | RAGAS | Custom metrics |
 | Docs | Unstructured, PyPDF | pdfplumber, BeautifulSoup |

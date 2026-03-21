@@ -28,7 +28,7 @@ By the end of this module, learners will be able to:
 
 ### 1.2 When to Use RAG
 
-**Description:** Decision framework for choosing between RAG, fine-tuning, prompt engineering, and combinations. Covers scenarios where RAG excels (dynamic knowledge, private data, citation requirements) and where it may not be the best fit (pure reasoning tasks, latency-critical systems with no caching). Includes a decision tree learners can reference.
+**Description:** Decision framework for choosing between RAG, fine-tuning, prompt engineering, and combinations. Covers scenarios where RAG excels (dynamic knowledge, private data, citation requirements) and where it may not be the best fit (pure reasoning tasks, latency-critical systems with no caching). Also covers where RAG falls short: mathematical computations (RAG retrieves text, it cannot calculate), large-scale summarization (retrieving top-k chunks cannot represent an entire corpus), cross-document comparisons in a single query, and stale indexes that require incremental re-indexing. Includes a decision tree learners can reference.
 
 **Key concepts:** Build-vs-buy matrix, cost/latency/accuracy trade-offs, decision tree for approach selection, RAG + fine-tuning hybrid strategies.
 

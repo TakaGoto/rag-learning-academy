@@ -7,11 +7,11 @@ Get up and running in 5 minutes.
 Before starting, ensure you have:
 
 - **Python 3.10+** installed (`python --version` to check)
-- **An OpenAI API key** (for embeddings) — set as `OPENAI_API_KEY` environment variable
-- **An Anthropic API key** (for generation with Claude) — set as `ANTHROPIC_API_KEY` environment variable
+- **API path:** An OpenAI API key (for embeddings) + Anthropic API key (for generation with Claude)
+- **Local/free path:** Ollama installed (`ollama pull nomic-embed-text && ollama pull llama3`) — no API keys needed
 - **Git** for version control
 - **A terminal** with bash or zsh
-- **8GB+ RAM** recommended for local vector database operations
+- **8GB+ RAM** recommended (16GB preferred for local models)
 
 Optional but recommended:
 - **uv** for fast Python package management (`curl -LsSf https://astral.sh/uv/install.sh | sh`)

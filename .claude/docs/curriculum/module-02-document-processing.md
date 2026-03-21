@@ -37,7 +37,7 @@ By the end of this module, learners will be able to:
 
 ### 2.3 Fixed-Size Chunking
 
-**Description:** The simplest chunking approach: split text into fixed-length segments by character count or token count with configurable overlap. Covers choosing chunk size (256, 512, 1024 tokens), overlap ratios (10-20%), and the impact of these parameters on retrieval quality. Demonstrates using tiktoken for accurate token counting.
+**Description:** The simplest chunking approach: split text into fixed-length segments by character count or token count with configurable overlap. Covers choosing chunk size (256-1024 tokens, or equivalently 200-800 words), overlap ratios (10-20%), and the impact of these parameters on retrieval quality. Demonstrates using tiktoken for accurate token counting. Note: chunk sizes are commonly expressed in either words or tokens (~1 word ≈ 1.3 tokens). This curriculum uses token counts for precision with LLM context budgets.
 
 **Key concepts:** Chunk size, overlap, token counting (tiktoken), boundary alignment, the chunk size vs retrieval quality curve.
 

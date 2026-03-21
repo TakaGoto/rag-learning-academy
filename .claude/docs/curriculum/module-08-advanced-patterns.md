@@ -22,7 +22,7 @@ By the end of this module, learners will be able to:
 
 **Description:** Moving beyond single-shot retrieve-and-generate to agentic workflows where the LLM controls the retrieval process. The LLM decides when to retrieve, what to retrieve, and whether the retrieved context is sufficient — or whether to try again with a different strategy. Covers query routing (directing queries to specialized retrievers based on intent classification), iterative retrieval (retrieve-reflect-retrieve again until satisfied), and tool-augmented RAG (calculator, code execution, API calls alongside document retrieval).
 
-**Key concepts:** Agent loop, query routing and intent classification, tool use alongside retrieval, iterative retrieval with reflection, LangGraph agent patterns, CrewAI patterns, retrieval as a tool.
+**Key concepts:** Agent loop, query routing and intent classification, tool use alongside retrieval (calculator, code execution, API calls), structured data routing (directing "how many customers?" to SQL while "refund policy?" goes to vector search), iterative retrieval with reflection, LangGraph agent patterns, CrewAI patterns, retrieval as a tool.
 
 **Duration:** 60 minutes
 

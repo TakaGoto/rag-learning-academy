@@ -90,13 +90,13 @@ All agents follow this interaction model:
 
 ## Tech Stack (Default)
 
-- **Language:** Python 3.11+
-- **Embeddings:** OpenAI `text-embedding-3-small`, Sentence Transformers
-- **Vector DB:** ChromaDB (local dev), Pinecone/pgvector (production lessons)
-- **LLM:** Claude API (via Anthropic SDK)
+- **Language:** Python 3.10+
+- **Embeddings:** OpenAI `text-embedding-3-small` (API) or `all-MiniLM-L6-v2` / `nomic-embed-text` (local/free)
+- **Vector DB:** ChromaDB (local dev), FAISS (low-level alternative), Pinecone/pgvector (production lessons)
+- **LLM:** Claude API (via Anthropic SDK) or Ollama with local models (free, no API key needed)
 - **Framework:** LangChain or LlamaIndex (learner's choice)
 - **Evaluation:** RAGAS, custom metrics
-- **Document Processing:** Unstructured, PyPDF, BeautifulSoup
+- **Document Processing:** Unstructured, PyPDF, pdfplumber, BeautifulSoup
 
 ## Directory Structure
 

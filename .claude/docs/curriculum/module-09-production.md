@@ -23,7 +23,7 @@ By the end of this module, learners will be able to:
 
 **Description:** Production deployment patterns for RAG systems, from simple to enterprise-scale. Synchronous API serving with FastAPI + async endpoints for low-latency chat applications. Asynchronous job processing with Celery or background workers for batch document ingestion. Serverless deployment on AWS Lambda or Cloud Functions for variable-load workloads. Containerized deployment with Docker and Kubernetes for full control. Key architectural decision: separating the indexing pipeline (ingest + embed + store) from the serving pipeline (retrieve + generate) for independent scaling.
 
-**Key concepts:** FastAPI async serving, background job processing, serverless vs containerized, indexing vs serving separation, blue-green deployment, health checks, graceful degradation, circuit breakers.
+**Key concepts:** FastAPI async serving, background job processing, serverless vs containerized, indexing vs serving separation, blue-green deployment, health checks, graceful degradation, circuit breakers, access control (pre-filtering by separate indexes per group, post-filtering retrieved results by user permissions, or native vector DB metadata filtering), document update and deletion pipelines for live re-indexing.
 
 **Duration:** 60 minutes
 

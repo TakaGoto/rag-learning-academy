@@ -22,7 +22,7 @@ By the end of this module, learners will be able to:
 
 **Description:** Crafting system and user prompts that effectively leverage retrieved context. Covers the anatomy of a RAG prompt: system instructions (role, behavior rules, output format), context block (retrieved chunks with source labels), user query, and output constraints. Explores template patterns: stuff-all-context (simplest), map-reduce (for large context), and refine (iterative improvement). Includes guidance on few-shot examples within RAG prompts and persona design.
 
-**Key concepts:** System prompt design, context injection patterns, stuff/map-reduce/refine chains, few-shot examples in RAG, output format specification, temperature selection for RAG (typically low).
+**Key concepts:** System prompt design, context injection patterns, stuff/map-reduce/refine chains, few-shot examples in RAG, output format specification, temperature selection for RAG (start with 0 or 0.1 for factual answers — note: low temperature reduces randomness but does not prevent hallucination; grounding instructions matter more).
 
 **Duration:** 60 minutes
 
@@ -64,7 +64,7 @@ By the end of this module, learners will be able to:
 
 2. **Context Budget Calculator:** Build a `ContextBudget` class that takes a model's context limit, a system prompt, optional conversation history, and a list of chunks ranked by relevance. It returns the maximum number of chunks that fit within budget, respecting a generation reserve (default 1024 tokens). Test with 3 different models (4K, 16K, 128K context).
 
-3. **Citation System:** Implement an end-to-end citation pipeline: (1) number each source chunk in the prompt, (2) instruct the LLM to cite by number, (3) parse the response to extract citation references, (4) verify each citation by checking if the cited chunk semantically supports the claim. Report citation accuracy rate.
+3. **Citation System:** Implement an end-to-end citation pipeline: (1) number each source chunk in the prompt, (2) instruct the LLM to cite by number, (3) parse the response to extract citation references, (4) verify each citation two ways — exact match (does [Source N] correspond to an actual retrieved chunk?) and semantic match (embed the claim and cited chunk, verify cosine similarity > 0.7). Report citation accuracy rate.
 
 4. **Edge Case Test Suite:** Create 20 adversarial test cases across 5 categories: unanswerable questions (4), contradictory context (4), empty retrieval results (4), off-topic queries (4), and ambiguous questions (4). Run each through your RAG pipeline and evaluate whether the system handles each case gracefully. Document failures and implement fixes.
 
