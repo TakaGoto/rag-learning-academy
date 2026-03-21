@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(git status*)",
+      "Bash(git diff*)",
+      "Bash(git log*)",
+      "Bash(git branch*)",
+      "Bash(python *)",
+      "Bash(python3 *)",
+      "Bash(pytest*)",
+      "Bash(pip install*)",
+      "Bash(pip3 install*)",
+      "Bash(ls*)",
+      "Bash(jq*)"
+    ],
+    "deny": [
+      "Bash(sudo *)",
+      "Bash(chmod *)",
+      "Bash(rm -rf *)",
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git reset --hard*)",
+      "Bash(cat .env*)",
+      "Bash(less .env*)",
+      "Bash(more .env*)",
+      "Read(.env*)"
+    ]
+  },
+  "hooks": {
+    "SessionStart": [
+      {
+        "command": ".claude/hooks/session-start.sh",
+        "timeout": 10000
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "command": ".claude/hooks/validate-code.sh",
+        "timeout": 5000
+      }
+    ],
+    "Stop": [
+      {
+        "command": ".claude/hooks/session-stop.sh",
+        "timeout": 5000
+      }
+    ]
+  }
+}

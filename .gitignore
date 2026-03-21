@@ -1,0 +1,57 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+*.egg
+.venv/
+venv/
+env/
+
+# Data
+data/embeddings/*.npy
+data/embeddings/*.pkl
+data/raw/*.pdf
+data/raw/*.docx
+*.sqlite
+*.db
+chroma_db/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# API keys & secrets
+*.key
+*.pem
+credentials.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Vector DB local storage
+.chroma/
+.qdrant/
+.weaviate/
+
+# Session logs from hooks
+progress/sessions/*.md
+
+# Processed chunks
+data/processed/
