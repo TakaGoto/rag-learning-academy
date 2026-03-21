@@ -29,10 +29,12 @@ That's it. No API keys, no `pip install`, no setup. Dependencies get installed w
 
 ### 20 Specialist Agents
 
+Agents don't auto-route — they answer directly when asked, and Claude will suggest the right specialist when a question goes deep into their domain.
+
 | Tier | Count | Role | Model |
 |------|-------|------|-------|
 | Directors | 3 | Curriculum, Architecture, Research | opus |
-| Domain Leads | 5 | Embedding, Retrieval, Indexing, Evaluation, Integration | sonnet |
+| Domain Leads | 5 | Embedding, Retrieval, Indexing, Evaluation, Integration | opus |
 | Specialists | 12 | Chunking, Vector DB, Reranking, Prompt Engineering, Hybrid Search, Document Parsing, Metadata, Query Analysis, Deployment, Evaluation Metrics, Graph RAG, Multimodal | sonnet |
 
 ### 17 Slash Commands
@@ -59,19 +61,23 @@ That's it. No API keys, no `pip install`, no setup. Dependencies get installed w
 
 ### 9-Module Curriculum
 
-| # | Module | Lessons | Key Topics |
-|---|--------|---------|------------|
-| 1 | Foundations | 4 | What is RAG, architecture, RAG vs fine-tuning |
-| 2 | Document Processing | 5 | Parsing, chunking strategies, metadata |
-| 3 | Embeddings | 5 | Models, vector spaces, similarity, fine-tuning |
-| 4 | Vector Databases | 5 | Chroma, Pinecone, pgvector, indexing |
-| 5 | Retrieval Strategies | 5 | Dense, sparse, hybrid, reranking, MMR |
-| 6 | Generation | 5 | Prompt engineering, grounding, citations |
-| 7 | Evaluation | 5 | RAGAS, retrieval/generation metrics |
-| 8 | Advanced Patterns | 5 | Agentic RAG, Graph RAG, CRAG, multimodal |
-| 9 | Production | 5 | Deployment, caching, monitoring, scaling |
+Each lesson is tagged `core` or `optional`. The core path (~8.5 hours) gets you to a working, evaluated RAG system. Optional lessons add depth when you're ready.
 
-### 8 Milestones
+| # | Module | Lessons | Core | Key Topics |
+|---|--------|---------|------|------------|
+| 1 | Foundations | 4 | 4 | What is RAG, architecture, RAG vs fine-tuning |
+| 2 | Document Processing | 5 | 2 | Parsing, chunking strategies, metadata |
+| 3 | Embeddings | 5 | 2 | Models, vector spaces, similarity, fine-tuning |
+| 4 | Vector Databases | 5 | 2 | Chroma, Pinecone, pgvector, indexing |
+| 5 | Retrieval Strategies | 5 | 1 | Dense, sparse, hybrid, reranking, MMR |
+| 6 | Generation | 5 | 2 | Prompt engineering, grounding, citations |
+| 7 | Evaluation | 5 | 2 | RAGAS, retrieval/generation metrics |
+| 8 | Advanced Patterns | 5 | 0 | Agentic RAG, Graph RAG, CRAG, multimodal |
+| 9 | Production | 5 | 0 | Deployment, caching, monitoring, scaling |
+
+**Core path: ~8.5 hours** | Full curriculum: ~31 hours
+
+### 8 Milestones + 4 Proficiency Levels
 
 The curriculum is broken into milestones — concrete checkpoints that mark real capability, not just lessons read.
 
@@ -86,7 +92,16 @@ The curriculum is broken into milestones — concrete checkpoints that mark real
 | 7 | Pattern Master | Go beyond basic RAG when it's warranted |
 | 8 | Production Ready | Deploy, monitor, and scale a RAG system |
 
-Complete milestones to earn proficiency levels: **RAG Explorer** (1-2) → **RAG Practitioner** (3-5) → **RAG Engineer** (6-7) → **RAG Architect** (8 + bonus). See [milestones.md](.claude/docs/reference/milestones.md) for full details.
+Complete milestones to earn proficiency levels:
+
+| Level | Milestones | What It Means |
+|-------|-----------|---------------|
+| **RAG Explorer** | 1-2 | Can build a basic pipeline and process documents |
+| **RAG Practitioner** | 3-5 | Can design retrieval systems with proper search and prompting |
+| **RAG Engineer** | 6-7 | Can evaluate, optimize, and apply advanced patterns |
+| **RAG Architect** | 8 + bonus | Can deploy, scale, and maintain production systems |
+
+See [milestones.md](.claude/docs/reference/milestones.md) for full requirements and bonus milestones.
 
 ### 3 Guided Projects
 
@@ -96,67 +111,22 @@ Complete milestones to earn proficiency levels: **RAG Explorer** (1-2) → **RAG
 | Intermediate | Multi-Source Hybrid | Hybrid search + reranking + citations |
 | Advanced | Agentic RAG | Self-correcting RAG with routing and tools |
 
-## Token Usage
+### Progress Dashboard
 
-Total project content: **~98,000 tokens**
-
-### By Component
-
-| Component | Files | Est. Tokens | % of Total |
-|-----------|-------|-------------|------------|
-| Agents | 20 | ~34,730 | 35% |
-| Curriculum | 9 | ~14,960 | 15% |
-| Skills | 17 | ~16,700 | 16% |
-| Reference Docs | 5 | ~12,930 | 13% |
-| Rules | 7 | ~5,120 | 5% |
-| Templates | 3 | ~4,480 | 5% |
-| Sample Data | 6 | ~5,700 | 5% |
-| Config (CLAUDE.md + settings) | 2 | ~2,090 | 2% |
-| Projects + Tests | 6 | ~3,500 | 4% |
-| Other (hooks, .env, etc.) | 20 | ~2,860 | 3% |
-
-### Per Session (What Actually Gets Loaded)
-
-Not everything loads at once. A typical session uses:
-
-| Loaded Content | Est. Tokens |
-|----------------|-------------|
-| CLAUDE.md (always) | ~1,800 |
-| 1 agent definition | ~1,500–2,100 |
-| 1 skill prompt | ~700–1,200 |
-| 1 curriculum module | ~1,200–2,000 |
-| 1-2 rule files (path-scoped) | ~500–900 |
-| **Typical session** | **~6,000–8,000** |
-
-This fits comfortably in any Claude model's context window. The full ~98k project would fit entirely within Claude's 200k context if needed.
-
-### Curriculum Modules (Individual)
-
-| Module | Topic | Est. Tokens |
-|--------|-------|-------------|
-| 01 | Foundations | ~1,200 |
-| 02 | Document Processing | ~1,500 |
-| 03 | Embeddings | ~1,550 |
-| 04 | Vector Databases | ~1,650 |
-| 05 | Retrieval Strategies | ~1,700 |
-| 06 | Generation | ~1,700 |
-| 07 | Evaluation | ~1,670 |
-| 08 | Advanced Patterns | ~1,950 |
-| 09 | Production | ~2,040 |
-
-> Token estimates use the ~4 chars/token approximation. Actual counts vary by tokenizer (cl100k_base, etc.).
+Run `make dashboard` to generate an HTML progress page showing your milestones, proficiency level, module completion, and quiz scores.
 
 ## Tech Stack
 
-| Component | Default (API) | Free/Local Alternative |
-|-----------|---------------|----------------------|
-| Language | Python 3.10+ | — |
-| LLM | Claude (Anthropic SDK) | Ollama (llama3, mistral) |
-| Embeddings | OpenAI text-embedding-3-small | all-MiniLM-L6-v2, nomic-embed-text |
-| Vector DB | ChromaDB (local) | FAISS, Pinecone, pgvector, Qdrant |
+No API keys required to start. The defaults work out of the box:
+
+| Component | Default (zero config) | Optional Upgrade |
+|-----------|----------------------|-----------------|
+| LLM | Claude Code (you're already running it) | Ollama (local, needs 8-16GB RAM) |
+| Embeddings | all-MiniLM-L6-v2 (local, no key) | OpenAI text-embedding-3-small |
+| Vector DB | ChromaDB (local, no setup) | Pinecone, pgvector, Qdrant |
 | Framework | LangChain | LlamaIndex |
 | Evaluation | RAGAS | Custom metrics |
-| Docs | Unstructured, PyPDF | pdfplumber, BeautifulSoup |
+| Docs | PyPDF, BeautifulSoup | Unstructured, pdfplumber |
 
 > **Running models locally?** Ollama is free but needs 8-16GB RAM for LLMs. Close heavy apps before running. If your machine slows down, switch to the API path. Local embedding models (all-MiniLM-L6-v2) are lightweight and run fine on most machines.
 
@@ -164,44 +134,45 @@ This fits comfortably in any Claude model's context window. The full ~98k projec
 
 ```
 rag-learning-academy/
-├── CLAUDE.md                    # Master config + token estimates
+├── CLAUDE.md                    # Master config, voice & tone, agent behavior
 ├── .claude/
 │   ├── settings.json            # Hooks, permissions
 │   ├── agents/                  # 20 specialist agents
 │   ├── skills/                  # 17 slash commands
-│   ├── hooks/                   # Session lifecycle scripts
+│   ├── hooks/                   # Freshness checks, validation scripts
 │   ├── rules/                   # Path-scoped coding standards
 │   └── docs/
-│       ├── curriculum/          # 9-module learning path
-│       ├── reference/           # Glossary, roster, standards
+│       ├── curriculum/          # 9-module learning path (core/optional tagged)
+│       ├── reference/           # Glossary, roster, milestones, standards
 │       └── templates/           # Architecture, eval, project templates
 ├── src/                         # Your RAG code goes here
-│   ├── embeddings/
-│   ├── chunking/
-│   ├── retrieval/
-│   ├── generation/
-│   ├── evaluation/
-│   ├── vector_db/
-│   ├── pipelines/
-│   └── utils/
+├── scripts/                     # Dashboard generator, utilities
 ├── projects/                    # Guided build projects
-│   ├── starter/
-│   ├── intermediate/
-│   └── advanced/
-├── tests/                       # Test scaffolds
-├── data/                        # Sample documents
-└── progress/                    # Your learning progress
+├── tests/                       # 616 structural + content tests
+├── data/                        # Sample documents (6 files incl. 1,247-line chunking doc)
+└── progress/                    # Your learning progress + dashboard
 ```
 
 ## Learning Tracks
 
 Run `/start` and you'll be assessed into one of three tracks:
 
-| Track | Score | Modules | For |
-|-------|-------|---------|-----|
-| Beginner | 0-3 | 1 → 4 | New to RAG and embeddings |
-| Intermediate | 4-6 | 3 → 7 | Know the basics, want depth |
-| Advanced | 7-10 | 6 → 9 | Ready for production patterns |
+| Track | Score | Modules | Level Earned | Est. Hours |
+|-------|-------|---------|-------------|------------|
+| Beginner | 0-3 | 1 → 4 | RAG Explorer | 15-25 |
+| Intermediate | 4-6 | 3 → 7 | RAG Practitioner | 25-40 |
+| Advanced | 7-10 | 6 → 9 | RAG Engineer | 30-45 |
+
+Not sure where to go? Run `/triage` to get routed based on your situation.
+
+## Content Freshness
+
+Academy materials are actively monitored so nothing goes stale:
+
+- **Weekly CI** — checks PyPI versions, deprecated patterns, MTEB model health, review cycles ([details](.github/workflows/weekly-knowledge-check.yml))
+- **Monthly CI** — content age report, creates GitHub issues for stale files
+- **On-demand** — run `/audit-content` for a deep review with web search verification
+- **Frontmatter** — every content file has `last_reviewed`, `review_cycle`, and `staleness_risk` metadata
 
 ## Philosophy
 
@@ -211,18 +182,19 @@ Run `/start` and you'll be assessed into one of three tracks:
 - Every concept comes with a **hands-on exercise**
 - Every exercise has **evaluation criteria**
 - You choose your path — agents advise, you decide
+- The tone is conversational and direct — like learning from a smart friend, not reading a textbook
 
 ## Contributing
 
 Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
 
 - Reporting bugs and requesting features
-- Development setup (`make install`) and running tests (`make test`)
+- Development setup and running tests (`make ci`)
 - Pull request process and checklist
-- Content guidelines for agents, skills, and curriculum
+- Content guidelines and voice & tone
 
 ```bash
-make ci    # Run lint + shellcheck + tests before submitting a PR
+make ci    # Run lint + shellcheck + 616 tests before submitting a PR
 ```
 
 ## Credits
