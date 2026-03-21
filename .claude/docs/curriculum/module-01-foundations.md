@@ -24,7 +24,7 @@ By the end of this module, learners will be able to:
 
 ## Lessons
 
-### 1.1 What is RAG
+### 1.1 What is RAG — `core`
 
 **Description:** Introduces the core idea of augmenting LLM generation with external knowledge retrieval. Covers the motivation behind RAG — LLMs have knowledge cutoffs, can hallucinate, and lack access to private data. RAG solves these problems by grounding generation in retrieved evidence.
 
@@ -32,7 +32,7 @@ By the end of this module, learners will be able to:
 
 **Duration:** 30 minutes
 
-### 1.2 When to Use RAG
+### 1.2 When to Use RAG — `core`
 
 **Description:** Decision framework for choosing between RAG, fine-tuning, prompt engineering, and combinations. Covers scenarios where RAG excels (dynamic knowledge, private data, citation requirements) and where it may not be the best fit (pure reasoning tasks, latency-critical systems with no caching). Also covers where RAG falls short: mathematical computations (RAG retrieves text, it cannot calculate), large-scale summarization (retrieving top-k chunks cannot represent an entire corpus), cross-document comparisons in a single query, and stale indexes that require incremental re-indexing. Includes a decision tree learners can reference.
 
@@ -40,7 +40,7 @@ By the end of this module, learners will be able to:
 
 **Duration:** 30 minutes
 
-### 1.3 RAG Architecture Overview
+### 1.3 RAG Architecture Overview — `core`
 
 **Description:** Walks through the complete RAG pipeline step by step: document ingestion, chunking, embedding, indexing in a vector store, retrieval at query time, context assembly, and LLM generation. Introduces the two-phase model: offline indexing and online query serving. Diagrams each phase with data flow annotations.
 
@@ -48,7 +48,7 @@ By the end of this module, learners will be able to:
 
 **Duration:** 45 minutes
 
-### 1.4 Your First RAG Pipeline (Hello World)
+### 1.4 Your First RAG Pipeline (Hello World) — `core`
 
 **Description:** Hands-on lesson building a minimal RAG system. Load a text file, chunk it naively by paragraphs, embed with OpenAI, store in ChromaDB, retrieve top-k results for a query, and generate an answer. No frameworks — raw Python to understand every step. Includes debugging tips for common first-timer issues.
 

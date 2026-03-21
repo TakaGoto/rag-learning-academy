@@ -33,7 +33,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ## Lessons
 
-### 3.1 Understanding Vector Spaces
+### 3.1 Understanding Vector Spaces — `core`
 
 **Description:** Foundational lesson on how text gets mapped to high-dimensional vector spaces. Covers the intuition behind semantic similarity as geometric proximity, the evolution from word2vec through GloVe to modern transformer-based sentence embeddings, and how embedding models are trained using contrastive learning on large paired datasets.
 
@@ -41,7 +41,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 3.2 Choosing an Embedding Model
+### 3.2 Choosing an Embedding Model — `core`
 
 **Description:** Comparative analysis of embedding models available today. API models: OpenAI text-embedding-3-small/large, Cohere embed-v3, Voyage voyage-3-lite. Open-source/local models: all-MiniLM-L6-v2 (great for learning — free, fast, 384 dims), BAAI/bge-base, nomic-embed-text (via Ollama), E5-mistral, GTE-large. Covers dimensions, max input length, MTEB benchmark performance, cost per million tokens, and inference latency. Provides a decision framework: for learning/free use start with all-MiniLM-L6-v2 or nomic-embed-text; for production API use start with text-embedding-3-small.
 
@@ -49,7 +49,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 3.3 Batch Embedding
+### 3.3 Batch Embedding — `optional`
 
 **Description:** Production-grade embedding pipelines for datasets of any size. Covers batching strategies (optimal batch sizes per model), rate limit handling with exponential backoff, retry logic for transient failures, progress tracking with tqdm, and embedding caching to avoid recomputation on re-runs. Includes async patterns for maximum throughput.
 
@@ -57,7 +57,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 3.4 Similarity Search Fundamentals
+### 3.4 Similarity Search Fundamentals — `optional`
 
 **Description:** Deep dive into similarity metrics used in vector retrieval. Cosine similarity (measures direction, ignores magnitude), Euclidean distance (measures absolute distance), and dot product (combines direction and magnitude). When to use each metric, how L2 normalization makes cosine and dot product equivalent, and practical implications for retrieval ranking. Includes geometric visualizations.
 
@@ -65,7 +65,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 30 minutes
 
-### 3.5 Fine-tuning Embeddings
+### 3.5 Fine-tuning Embeddings — `optional`
 
 **Description:** When off-the-shelf embeddings are not good enough for your domain. Covers creating training data from your corpus (positive pairs from co-occurring chunks, hard negatives from BM25 near-misses), fine-tuning with the sentence-transformers library, evaluating improvements on a held-out test set, and domain adaptation strategies for specialized vocabularies.
 

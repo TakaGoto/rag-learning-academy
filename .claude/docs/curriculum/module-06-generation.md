@@ -33,7 +33,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ## Lessons
 
-### 6.1 RAG Prompt Design
+### 6.1 RAG Prompt Design — `core`
 
 **Description:** Crafting system and user prompts that effectively leverage retrieved context. Covers the anatomy of a RAG prompt: system instructions (role, behavior rules, output format), context block (retrieved chunks with source labels), user query, and output constraints. Explores template patterns: stuff-all-context (simplest), map-reduce (for large context), and refine (iterative improvement). Includes guidance on few-shot examples within RAG prompts and persona design.
 
@@ -41,7 +41,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 60 minutes
 
-### 6.2 Context Window Management
+### 6.2 Context Window Management — `optional`
 
 **Description:** Practical strategies for fitting retrieved content into finite context windows. Covers token counting with tiktoken, budget allocation across components (system prompt: ~500 tokens, conversation history: ~1000 tokens, retrieved context: remainder minus generation budget), truncation strategies when context overflows, and selecting the optimal number of chunks. Discusses the lost-in-the-middle phenomenon and ordering strategies to mitigate it.
 
@@ -49,7 +49,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 6.3 Grounding Techniques
+### 6.3 Grounding Techniques — `core`
 
 **Description:** Ensuring the LLM answers from the provided context rather than its parametric (trained) knowledge. Covers instruction-based grounding ("Answer ONLY based on the provided context"), chain-of-thought with evidence extraction ("First, identify relevant passages, then answer"), verification prompts ("Check if your answer is supported by the context"), and the grounding-creativity spectrum (strict factual vs exploratory synthesis).
 
@@ -57,7 +57,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 6.4 Citation and Attribution
+### 6.4 Citation and Attribution — `optional`
 
 **Description:** Building systems that cite their sources, enabling user trust and fact-checking. Covers inline citation formats ([1], [Source: doc.pdf, p.3]), footnote-style attribution with full source details, structured JSON output with source references, and post-processing to verify citations (does the cited passage actually support the claim?). Discusses the UX of citations and how they affect user trust.
 
@@ -65,7 +65,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 6.5 Handling Edge Cases
+### 6.5 Handling Edge Cases — `optional`
 
 **Description:** Designing for when retrieval fails or context is ambiguous — the situations that separate demos from production systems. Covers: no relevant documents found (graceful "I don't have enough information to answer that"), contradictory sources (present both perspectives with citations), partial information (qualify the answer and note gaps), out-of-scope queries (polite redirect), and adversarial inputs (safety guardrails and input validation).
 

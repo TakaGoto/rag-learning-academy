@@ -34,7 +34,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ## Lessons
 
-### 2.1 Document Parsing
+### 2.1 Document Parsing — `core`
 
 **Description:** Covers extraction of raw text from multiple file formats. Introduces libraries like PyMuPDF, pdfplumber, python-docx, BeautifulSoup, and Unstructured. Discusses real-world challenges: OCR for scanned PDFs, table extraction, handling images and figures, multi-column layouts, and encoding issues. Emphasizes building a unified parser interface.
 
@@ -42,7 +42,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 2.2 Text Preprocessing
+### 2.2 Text Preprocessing — `optional`
 
 **Description:** Cleaning raw extracted text for embedding quality. Covers whitespace normalization, Unicode handling, removing headers/footers/boilerplate, deduplication, language detection, and encoding issues. Emphasizes that garbage-in-garbage-out applies strongly to RAG — embedding quality depends directly on text quality.
 
@@ -50,7 +50,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 30 minutes
 
-### 2.3 Fixed-Size Chunking
+### 2.3 Fixed-Size Chunking — `core`
 
 **Description:** The simplest chunking approach: split text into fixed-length segments by character count or token count with configurable overlap. Covers choosing chunk size (256-1024 tokens, or equivalently 200-800 words), overlap ratios (10-20%), and the impact of these parameters on retrieval quality. Demonstrates using tiktoken for accurate token counting. Note: chunk sizes are commonly expressed in either words or tokens (~1 word ≈ 1.3 tokens). This curriculum uses token counts for precision with LLM context budgets.
 
@@ -58,7 +58,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 30 minutes
 
-### 2.4 Recursive Chunking
+### 2.4 Recursive Chunking — `optional`
 
 **Description:** LangChain-style recursive splitting that respects document structure. Splits on paragraph boundaries first, then sentences, then words, then characters. Produces more semantically coherent chunks than fixed-size. Covers custom separator hierarchies for different document types (Markdown headers, HTML tags, code blocks).
 
@@ -66,7 +66,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 2.5 Semantic Chunking
+### 2.5 Semantic Chunking — `optional`
 
 **Description:** Advanced chunking using embedding similarity to determine split points. Compute embeddings for individual sentences, measure similarity between adjacent sentences, and split where similarity drops below a threshold. Produces chunks that align with topic boundaries rather than arbitrary positions.
 

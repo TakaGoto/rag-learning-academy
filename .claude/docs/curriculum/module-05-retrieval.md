@@ -33,7 +33,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ## Lessons
 
-### 5.1 Dense Retrieval
+### 5.1 Dense Retrieval — `core`
 
 **Description:** Retrieval using embedding similarity — the default RAG approach and the foundation of modern semantic search. Covers how dense retrieval works (embed query, find nearest vectors), its strengths (semantic understanding, synonym handling, paraphrase matching), and its weaknesses (exact keyword matching failures, rare term blindness, out-of-distribution queries). Practical implementation patterns with vector databases.
 
@@ -41,7 +41,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 5.2 BM25 and Sparse Methods
+### 5.2 BM25 and Sparse Methods — `optional`
 
 **Description:** Classic information retrieval with BM25 and TF-IDF, still highly relevant in modern RAG. Explains term frequency, inverse document frequency, and the BM25 scoring formula with its k1 and b parameters. Demonstrates when sparse methods outperform dense retrieval (exact matches, rare terms, acronyms, named entities). Implementation with rank_bm25 library and comparison with Elasticsearch.
 
@@ -49,7 +49,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 5.3 Hybrid Search
+### 5.3 Hybrid Search — `optional`
 
 **Description:** Combining dense and sparse retrieval to capture both semantic and lexical matches. Covers fusion algorithms: Reciprocal Rank Fusion (RRF) — merge ranked lists using reciprocal rank scores; Convex Combination — normalize and weight-average scores; Distribution-Based Score Fusion — normalize based on score distributions. Practical implementation and tuning the balance between dense and sparse signals.
 
@@ -57,7 +57,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 5.4 Reranking with Cross-Encoders
+### 5.4 Reranking with Cross-Encoders — `optional`
 
 **Description:** Using cross-encoder models to reorder initial retrieval results for dramatically higher precision. Explains why cross-encoders are more accurate than bi-encoders (they process query and document jointly, capturing token-level interactions) but too slow for first-stage retrieval (O(n) vs O(1)). Covers Cohere Rerank API, sentence-transformers cross-encoder models, ColBERT late interaction, and designing the retrieve-then-rerank pipeline with appropriate top-k at each stage.
 
@@ -65,7 +65,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 5.5 Retrieval Optimization
+### 5.5 Retrieval Optimization — `optional`
 
 **Description:** Systematic approaches to improving retrieval quality beyond basic retrieve-and-rerank. Query expansion (add synonyms and related terms), query rewriting with LLMs (rephrase for better retrieval), HyDE (generate hypothetical answer, embed it for retrieval), parent-child chunk relationships (retrieve small chunks, return parent context), result deduplication, and MMR for diversity. Includes a diagnostic framework for identifying why retrieval is failing.
 

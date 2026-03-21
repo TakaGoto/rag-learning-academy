@@ -33,7 +33,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ## Lessons
 
-### 4.1 Vector DB Fundamentals
+### 4.1 Vector DB Fundamentals — `core`
 
 **Description:** Why traditional databases (PostgreSQL, MySQL, MongoDB) struggle with high-dimensional similarity search. Introduces approximate nearest neighbor (ANN) search, the curse of dimensionality, and why brute-force exact search does not scale beyond ~100K vectors. Overview of the vector database landscape: embedded (ChromaDB, FAISS), client-server (Qdrant, Milvus, Weaviate), and managed cloud (Pinecone, Qdrant Cloud).
 
@@ -41,7 +41,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 4.2 Setting Up ChromaDB
+### 4.2 Setting Up ChromaDB — `core`
 
 **Description:** Hands-on setup of ChromaDB as the course's primary vector store. Covers installation (`pip install chromadb`), creating and managing collections, adding documents with embeddings and metadata, persistence to disk, switching between in-memory and persistent modes, and the client/server architecture for multi-process access. ChromaDB is chosen for its simplicity and zero-config local operation.
 
@@ -49,7 +49,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 4.3 Indexing Strategies
+### 4.3 Indexing Strategies — `optional`
 
 **Description:** Deep dive into vector index types that power fast similarity search. HNSW (the default for most databases): a graph-based algorithm where vectors are connected in a navigable small-world graph, tunable via M (connections per node) and ef (search breadth). IVF (inverted file index): partitions vectors into clusters and searches only nearby clusters, tunable via nlist and nprobe. Flat index: brute-force exact search for small datasets or ground-truth benchmarking.
 
@@ -57,7 +57,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 4.4 Querying and Filtering
+### 4.4 Querying and Filtering — `optional`
 
 **Description:** Moving beyond simple top-k similarity retrieval. Covers metadata filtering with WHERE clauses (exact match, range, IN), combining vector similarity with metadata constraints, pre-filtering vs post-filtering strategies and their performance implications, distance thresholds for minimum relevance, and result post-processing. Demonstrates how filtering dramatically improves precision for multi-tenant or categorized data.
 
@@ -65,7 +65,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 4.5 Scaling Vector Storage
+### 4.5 Scaling Vector Storage — `optional`
 
 **Description:** Comparison of vector databases for production workloads. Pinecone (fully managed serverless, zero ops), Qdrant (self-hosted or cloud, rich filtering, named vectors), pgvector (PostgreSQL extension, familiar ops tooling), Weaviate (multi-modal, GraphQL API), Milvus (high-throughput, GPU acceleration). Covers sharding strategies, replication for availability, backup/restore procedures, migration between databases, and cost modeling at scale.
 

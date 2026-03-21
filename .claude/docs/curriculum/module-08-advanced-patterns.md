@@ -33,7 +33,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ## Lessons
 
-### 8.1 Agentic RAG
+### 8.1 Agentic RAG — `optional`
 
 **Description:** Moving beyond single-shot retrieve-and-generate to agentic workflows where the LLM controls the retrieval process. The LLM decides when to retrieve, what to retrieve, and whether the retrieved context is sufficient — or whether to try again with a different strategy. Covers query routing (directing queries to specialized retrievers based on intent classification), iterative retrieval (retrieve-reflect-retrieve again until satisfied), and tool-augmented RAG (calculator, code execution, API calls alongside document retrieval).
 
@@ -41,7 +41,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 60 minutes
 
-### 8.2 Graph RAG
+### 8.2 Graph RAG — `optional`
 
 **Description:** Combining knowledge graphs with vector retrieval to capture structured relationships that embedding similarity alone cannot represent. Extract entities and relationships from documents using LLMs, build a knowledge graph, then traverse the graph to retrieve context for multi-hop questions. Covers entity and relation extraction prompts, graph construction with NetworkX, graph traversal strategies (BFS, shortest path, subgraph extraction), and community detection for hierarchical summarization (Microsoft GraphRAG approach).
 
@@ -49,7 +49,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 60 minutes
 
-### 8.3 Self-RAG and CRAG
+### 8.3 Self-RAG and CRAG — `optional`
 
 **Description:** Self-correcting retrieval-augmented generation patterns that add reflection loops for higher reliability. Self-RAG: the model generates special reflection tokens to (1) decide whether retrieval is needed, (2) evaluate retrieved passages for relevance, and (3) critique its own generation for faithfulness. CRAG (Corrective RAG): evaluates retrieval confidence and takes corrective action — web search fallback, query rewriting, or knowledge refinement — when the initial vector retrieval is insufficient.
 
@@ -57,7 +57,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 8.4 Multi-Modal RAG
+### 8.4 Multi-Modal RAG — `optional`
 
 **Description:** Extending RAG beyond text to handle images, tables, and code. Image RAG: embed images with CLIP or SigLIP, retrieve relevant images alongside text. Table RAG: parse tables from documents, embed table descriptions or individual rows, query with natural language. Code RAG: embed code snippets with code-specific models, retrieve relevant functions or examples. ColPali: a recent approach that embeds document page images directly, bypassing OCR entirely.
 
@@ -65,7 +65,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 8.5 Advanced Query Strategies (HyDE, Step-Back)
+### 8.5 Advanced Query Strategies (HyDE, Step-Back) — `optional`
 
 **Description:** Sophisticated query transformation techniques that address the fundamental mismatch between how users phrase questions and how documents are written. HyDE: have the LLM generate a hypothetical answer, embed that answer (which reads like a document), and use it for retrieval. Step-back prompting: ask the LLM to identify the broader concept behind a specific query, then retrieve on the abstraction. Multi-query: generate multiple query variations and union or intersect results. Query decomposition: break complex questions into sub-questions and retrieve for each.
 

@@ -34,7 +34,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ## Lessons
 
-### 9.1 Deployment Architecture
+### 9.1 Deployment Architecture — `optional`
 
 **Description:** Production deployment patterns for RAG systems, from simple to enterprise-scale. Synchronous API serving with FastAPI + async endpoints for low-latency chat applications. Asynchronous job processing with Celery or background workers for batch document ingestion. Serverless deployment on AWS Lambda or Cloud Functions for variable-load workloads. Containerized deployment with Docker and Kubernetes for full control. Key architectural decision: separating the indexing pipeline (ingest + embed + store) from the serving pipeline (retrieve + generate) for independent scaling.
 
@@ -42,7 +42,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 60 minutes
 
-### 9.2 Caching Strategies
+### 9.2 Caching Strategies — `optional`
 
 **Description:** Multi-layer caching is the single most effective optimization for production RAG. Embedding cache: avoid re-embedding identical or previously-seen text (SQLite, Redis). Semantic cache: serve cached answers for semantically similar queries by embedding the query and checking against a cache index (GPTCache pattern). Retrieval cache: cache vector search results for repeated or similar queries. Response cache: full answer caching for exact query matches. Covers cache invalidation strategies when source documents change, TTL policies, and cache hit rate monitoring.
 
@@ -50,7 +50,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 9.3 Monitoring and Alerting
+### 9.3 Monitoring and Alerting — `optional`
 
 **Description:** Observability is non-negotiable for production RAG — debugging failures without traces is nearly impossible. Covers structured logging at each pipeline stage (query received, retrieval results, generation request, response sent), latency tracking broken down by component (embedding: Xms, retrieval: Xms, reranking: Xms, generation: Xms), retrieval quality monitoring over time (sampling queries and running RAGAS periodically), drift detection (are query patterns changing?), and alerting on degradation. Introduces LLM observability platforms: Langfuse (open source), Phoenix (Arize), LangSmith.
 
@@ -58,7 +58,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 9.4 Cost Optimization
+### 9.4 Cost Optimization — `optional`
 
 **Description:** RAG costs add up fast at scale — systematic optimization can reduce bills by 50-80%. Embedding costs: batch pricing, caching to avoid re-embedding, dimensionality reduction with Matryoshka embeddings. LLM generation costs: model tiering (use smaller models for simple queries, larger for complex), prompt compression (LLMLingua, extractive summarization), response length limits, caching. Vector database costs: storage optimization (quantization, dimensionality reduction), serverless vs provisioned pricing models. Infrastructure costs: right-sizing containers, spot instances. Includes a cost modeling framework.
 
@@ -66,7 +66,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 9.5 Scaling RAG Systems
+### 9.5 Scaling RAG Systems — `optional`
 
 **Description:** Scaling from hundreds to millions of queries per day. Horizontal scaling of API servers (stateless services behind a load balancer). Vector database scaling: sharding by metadata partition, read replicas, index-per-tenant for multi-tenant isolation. Async ingestion pipelines for continuously updating document corpora without downtime. Multi-region deployment for latency-sensitive global applications. Capacity planning: modeling query volume, document growth, and embedding/generation costs. Load testing with Locust to identify bottlenecks before users do.
 

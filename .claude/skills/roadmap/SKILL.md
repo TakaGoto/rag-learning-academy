@@ -122,26 +122,27 @@ Each suggestion should include the specific slash command to run.
 
 ## Step 7: Show the Full Curriculum Map
 
-Display the complete curriculum with the learner's position marked:
+Display the complete curriculum with the learner's position marked. Indicate core vs optional lessons and show estimated time:
 
 ```
 Module 1: RAG Foundations
-  [x] 1.1 What is RAG?
-  [x] 1.2 The RAG Pipeline
-  [x] 1.3 When to Use RAG
-  [x] 1.4 Setting Up Your Environment
+  [x] 1.1 What is RAG? (core, 30m)
+  [x] 1.2 When to Use RAG (core, 30m)
+  [x] 1.3 RAG Architecture Overview (core, 45m)
+  [x] 1.4 Hello World RAG (core, 60m)
 
 Module 2: Document Processing
-  [x] 2.1 Document Loading
-  [x] 2.2 Text Cleaning
-  [x] 2.3 Chunking Fundamentals
-  [ ] 2.4 Advanced Chunking        <-- YOU ARE HERE
-
-Module 3: Embeddings
-  [ ] 3.1 What Are Embeddings?
-  [ ] 3.2 Embedding Models
+  [x] 2.1 Document Parsing (core, 45m)
+  [ ] 2.2 Text Preprocessing (optional, 30m)
+  [x] 2.3 Fixed-Size Chunking (core, 30m)
+  [ ] 2.4 Recursive Chunking (optional, 45m)     <-- YOU ARE HERE
+  [ ] 2.5 Semantic Chunking (optional, 45m)
   ...
 ```
+
+Show a summary at the top: "Core path: ~11 hours | Full curriculum: ~35 hours | Your track: ~X hours remaining"
+
+If the learner is short on time, suggest focusing on core lessons first: "You can skip optional lessons and come back to them later — the core path gives you everything you need to build a working RAG system."
 
 This gives the learner a birds-eye view of the entire journey.
 

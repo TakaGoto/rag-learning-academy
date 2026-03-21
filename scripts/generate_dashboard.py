@@ -14,6 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PROGRESS_DIR = ROOT / "progress"
+CURRICULUM_DIR = ROOT / ".claude" / "docs" / "curriculum"
 
 # Milestone definitions: (name, tagline, required_milestones_for_level)
 MILESTONES = [
@@ -56,11 +57,29 @@ def parse_profile(path: Path) -> dict:
     return profile
 
 
+def parse_curriculum_metadata() -> dict:
+    """Parse lesson metadata (core/optional, duration) from curriculum files."""
+    metadata = {}  # key: "N.N" -> {"type": "core"|"optional", "duration": "30 min"}
+    for md_file in sorted(CURRICULUM_DIR.glob("module-*.md")):
+        text = md_file.read_text()
+        # Match headings like: ### 1.1 What is RAG — `core`
+        for heading_match in re.finditer(r"### (\d+\.\d+) .+? — `(core|optional)`", text):
+            lesson_id = heading_match.group(1)
+            lesson_type = heading_match.group(2)
+            # Find the Duration line after this heading
+            start = heading_match.end()
+            duration_match = re.search(r"\*\*Duration:\*\*\s*(\d+)\s*minutes?", text[start : start + 500])
+            duration = int(duration_match.group(1)) if duration_match else 0
+            metadata[lesson_id] = {"type": lesson_type, "duration": duration}
+    return metadata
+
+
 def parse_module_tracker(path: Path) -> list[dict]:
     """Parse module-tracker.md into a list of modules with lesson status."""
     if not path.exists():
         return []
     text = path.read_text()
+    curriculum_meta = parse_curriculum_metadata()
     modules = []
     current = None
 
@@ -75,14 +94,39 @@ def parse_module_tracker(path: Path) -> list[dict]:
                 "lessons": [],
                 "done": 0,
                 "total": 0,
+                "core_done": 0,
+                "core_total": 0,
+                "total_minutes": 0,
+                "done_minutes": 0,
             }
         lesson = re.match(r"- \[([ x])\] (.+)", line)
         if lesson and current:
             is_done = lesson.group(1) == "x"
-            current["lessons"].append({"name": lesson.group(2), "done": is_done})
+            lesson_name = lesson.group(2)
+            # Extract lesson ID (e.g., "3.1" from "3.1 Understanding Vector Spaces (2026-03-21)")
+            id_match = re.match(r"(\d+\.\d+)", lesson_name)
+            lesson_id = id_match.group(1) if id_match else None
+            meta = curriculum_meta.get(lesson_id, {})
+            lesson_type = meta.get("type", "")
+            duration = meta.get("duration", 0)
+
+            current["lessons"].append(
+                {
+                    "name": lesson_name,
+                    "done": is_done,
+                    "type": lesson_type,
+                    "duration": duration,
+                }
+            )
             current["total"] += 1
+            current["total_minutes"] += duration
             if is_done:
                 current["done"] += 1
+                current["done_minutes"] += duration
+            if lesson_type == "core":
+                current["core_total"] += 1
+                if is_done:
+                    current["core_done"] += 1
 
     if current:
         modules.append(current)
@@ -152,6 +196,13 @@ def generate_html(profile: dict, modules: list[dict], quizzes: list[dict]) -> st
     done_lessons = sum(m["done"] for m in modules)
     pct = (done_lessons / total_lessons * 100) if total_lessons > 0 else 0
 
+    total_core = sum(m["core_total"] for m in modules)
+    done_core = sum(m["core_done"] for m in modules)
+    total_minutes = sum(m["total_minutes"] for m in modules)
+    done_minutes = sum(m["done_minutes"] for m in modules)
+    remaining_minutes = total_minutes - done_minutes
+    remaining_hours = remaining_minutes / 60
+
     today = datetime.now().strftime("%Y-%m-%d")
     if started and started != "Unknown":
         try:
@@ -192,14 +243,20 @@ def generate_html(profile: dict, modules: list[dict], quizzes: list[dict]) -> st
         for lesson in mod["lessons"]:
             check = "&#10003;" if lesson["done"] else "&#9675;"
             cls = "lesson-done" if lesson["done"] else "lesson-pending"
-            lessons_html += f'<div class="lesson {cls}">{check} {lesson["name"]}</div>'
+            badge = ""
+            if lesson["type"] == "core":
+                badge = ' <span class="badge badge-core">core</span>'
+            elif lesson["type"] == "optional":
+                badge = ' <span class="badge badge-optional">opt</span>'
+            duration_str = f' <span class="lesson-duration">{lesson["duration"]}m</span>' if lesson["duration"] else ""
+            lessons_html += f'<div class="lesson {cls}">{check} {lesson["name"]}{badge}{duration_str}</div>'
 
         module_html += f"""
         <div class="module-card {status}">
             <div class="module-header">
                 <span class="module-number">{mod["number"]:02d}</span>
                 <span class="module-name">{mod["name"]}</span>
-                <span class="module-progress-text">{mod["done"]}/{mod["total"]}</span>
+                <span class="module-progress-text">{mod["done"]}/{mod["total"]} &middot; {mod["total_minutes"]}m</span>
             </div>
             <div class="progress-bar">
                 <div class="progress-fill" style="width: {mod_pct}%; background: {bar_color};"></div>
@@ -403,6 +460,10 @@ def generate_html(profile: dict, modules: list[dict], quizzes: list[dict]) -> st
   .lesson {{ font-size: 0.85rem; padding: 0.15rem 0; }}
   .lesson-done {{ color: var(--green); }}
   .lesson-pending {{ color: var(--text-secondary); }}
+  .badge {{ font-size: 0.65rem; padding: 0.1rem 0.4rem; border-radius: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; vertical-align: middle; }}
+  .badge-core {{ background: rgba(63, 185, 80, 0.15); color: var(--green); }}
+  .badge-optional {{ background: rgba(139, 148, 158, 0.15); color: var(--text-secondary); }}
+  .lesson-duration {{ font-size: 0.75rem; color: var(--text-secondary); opacity: 0.7; }}
 
   /* Quiz cards */
   .quiz-grid {{
@@ -451,6 +512,14 @@ def generate_html(profile: dict, modules: list[dict], quizzes: list[dict]) -> st
   <div class="stat">
     <div class="stat-value">{done_lessons}/{total_lessons}</div>
     <div class="stat-label">Lessons Done</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">{done_core}/{total_core}</div>
+    <div class="stat-label">Core Lessons</div>
+  </div>
+  <div class="stat">
+    <div class="stat-value">{remaining_hours:.0f}h</div>
+    <div class="stat-label">Est. Remaining</div>
   </div>
 </div>
 

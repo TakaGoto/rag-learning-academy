@@ -33,7 +33,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ## Lessons
 
-### 7.1 Evaluation Fundamentals
+### 7.1 Evaluation Fundamentals — `core`
 
 **Description:** Why RAG evaluation is uniquely challenging. Two independent stages (retrieval and generation) can each fail in different ways, and failures compound. A correct answer derived from wrong sources is still a reliability problem. Covers the evaluation taxonomy: component-level vs end-to-end, automatic vs human, reference-based vs reference-free. Introduces the concept of evaluation-driven development: measure first, improve second.
 
@@ -41,7 +41,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 30 minutes
 
-### 7.2 Retrieval Metrics
+### 7.2 Retrieval Metrics — `core`
 
 **Description:** Measuring how well the retriever finds relevant documents. Precision@k: fraction of top-k results that are relevant. Recall@k: fraction of all relevant documents appearing in top-k. Mean Reciprocal Rank (MRR): average of 1/rank for the first relevant result across queries. NDCG: ranking quality metric that accounts for graded relevance (not just binary). Covers practical computation, interpretation of scores, and setting meaningful thresholds.
 
@@ -49,7 +49,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 7.3 Generation Metrics
+### 7.3 Generation Metrics — `optional`
 
 **Description:** Measuring the quality of LLM-generated answers in the RAG context. Faithfulness: is every claim in the answer supported by the retrieved context (detecting hallucination)? Answer Relevancy: does the answer address the user's question directly? Answer Correctness: is the answer factually right when compared to a reference? Covers both LLM-as-judge approaches (GPT-4/Claude evaluating answers) and traditional NLP metrics (BLEU, ROUGE, BERTScore) and why traditional metrics are insufficient for RAG.
 
@@ -57,7 +57,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 45 minutes
 
-### 7.4 RAGAS Deep Dive
+### 7.4 RAGAS Deep Dive — `optional`
 
 **Description:** Comprehensive coverage of the RAGAS evaluation framework. The four core metrics: faithfulness (claim decomposition + NLI verification), answer relevancy (question generation from answer + similarity), context precision (relevant chunks ranked higher), context recall (ground truth coverage in context). How to install and run RAGAS, interpret score distributions, set alert thresholds, and integrate into CI/CD pipelines for regression detection.
 
@@ -65,7 +65,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Duration:** 60 minutes
 
-### 7.5 Building Evaluation Datasets
+### 7.5 Building Evaluation Datasets — `optional`
 
 **Description:** Creating and maintaining gold-standard evaluation sets — the foundation of all RAG evaluation. Covers synthetic test generation (using LLMs to generate question-answer pairs from your documents), human annotation workflows (guidelines, inter-annotator agreement), question type taxonomy (factoid, multi-hop, comparison, aggregation, yes/no, unanswerable), and dataset maintenance as source documents evolve over time.
 

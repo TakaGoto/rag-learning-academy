@@ -25,6 +25,11 @@ Load the module file (e.g., `.claude/docs/curriculum/module-01-foundations.md`) 
 
 ## Step 3: Present the Concept
 
+Before starting, note the lesson's classification and estimated time from the curriculum file heading (e.g., `### 3.2 Choosing an Embedding Model — \`core\``). Display it at the top:
+
+- For core lessons: "This is a **core** lesson (~45 min) — essential for building a working RAG system."
+- For optional lessons: "This is an **optional** lesson (~45 min) — a deeper dive that builds on the core path. You can skip it and come back later."
+
 Structure the lesson delivery as follows:
 
 ### Opening (Why This Matters)
