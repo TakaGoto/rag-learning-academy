@@ -5,6 +5,8 @@ description: "Evaluate your RAG pipeline with metrics"
 
 # Evaluate: Measure Your RAG Pipeline's Quality
 
+> **Scope:** This skill focuses on **answer quality metrics** (faithfulness, relevancy, correctness) against a labeled test set. For operational performance metrics (latency, throughput, cost), use `/benchmark`.
+
 Run a structured evaluation of the learner's RAG pipeline using established metrics. This skill teaches evaluation methodology while generating actionable results.
 
 ## Step 1: Identify the Pipeline

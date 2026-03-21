@@ -5,35 +5,47 @@ description: "Begin your RAG learning journey — assess your level and pick a l
 
 # Onboarding: Start Your RAG Learning Journey
 
-Welcome the learner and explain that this short assessment will help tailor the curriculum to their experience level.
+## Step 0: Welcome & Context
+
+Before anything else, give the learner a clear picture of what they're about to learn:
+
+> **Retrieval-Augmented Generation (RAG)** is a technique that makes AI models smarter by giving them access to your data. Instead of relying on what the model memorized during training, RAG retrieves relevant documents from your knowledge base and includes them in the prompt — so the model answers based on facts, not guesses.
+>
+> By the end of this curriculum, you'll be able to build a system that can answer questions about any document collection — PDFs, wikis, codebases, product docs — accurately and with source citations, in seconds.
+
+Briefly explain the learning structure: 9 modules, 3 guided projects, 15 slash commands. They'll learn by building, not just reading.
+
+Then transition: "To recommend the right starting point, I'll ask five quick questions about your background. There are no wrong answers — this just helps me calibrate."
 
 ## Step 1: Background Assessment
 
 Ask the following questions one at a time. Wait for each answer before proceeding.
 
-1. **Python experience**: "How comfortable are you with Python? (beginner / intermediate / advanced)"
-2. **ML knowledge**: "Have you worked with machine learning concepts like training, inference, or model evaluation? (none / some exposure / hands-on experience)"
-3. **LLM familiarity**: "Have you used large language models (ChatGPT, Claude, open-source models) in code — not just chat UIs? (never / a few times / regularly)"
-4. **Embeddings awareness**: "Do you know what vector embeddings are and how they represent text? (no idea / heard of them / have used them)"
-5. **Search/IR background**: "Any experience with search engines, information retrieval, or databases? (none / basic SQL or search / built search systems)"
+1. **Python experience**: "How comfortable are you with Python?" (beginner=0 / intermediate=1 / advanced=2)
+2. **ML knowledge**: "Have you worked with machine learning concepts like training, inference, or model evaluation?" (none=0 / some exposure=1 / hands-on=2)
+3. **LLM familiarity**: "Have you used large language models (ChatGPT, Claude, open-source models) in code — not just chat UIs?" (never=0 / a few times=1 / regularly=2)
+4. **Embeddings awareness**: "Do you know what vector embeddings are and how they represent text?" (no idea=0 / heard of them=1 / have used them=2)
+5. **Search/IR background**: "Any experience with search engines, information retrieval, or databases?" (none=0 / basic SQL or search=1 / built search systems=2)
 
-## Step 2: Score and Classify
+## Step 2: Score and Place
 
-Assign points to each answer (0 for lowest, 2 for highest). Sum the total.
+Sum the points (0-10 range). Place into a track:
 
-| Score Range | Track        | Modules |
-|-------------|--------------|---------|
-| 0-3         | Beginner     | 1-4     |
-| 4-6         | Intermediate | 3-7     |
-| 7-10        | Advanced     | 6-9     |
+| Score | Track | Starting Module | Modules Covered |
+|-------|-------|-----------------|-----------------|
+| 0-3 | Beginner | Module 01 | 01 → 04 |
+| 4-6 | Intermediate | Module 03 | 03 → 07 |
+| 7-10 | Advanced | Module 06 | 06 → 09 |
+
+Note: Track modules overlap intentionally — this provides continuity. Intermediate learners revisit Embeddings (Module 03) which Beginners just completed, but at a faster pace. Advanced learners start at Generation (Module 06) which Intermediates just covered.
 
 ## Step 3: Recommend a Learning Path
 
-Present the recommended track with a brief overview of what it covers:
+Present the recommended track with a brief overview:
 
-- **Beginner**: Foundations of RAG, text processing, embeddings basics, your first retrieval pipeline.
-- **Intermediate**: Chunking strategies, vector databases, retrieval tuning, prompt engineering for RAG.
-- **Advanced**: Hybrid search, re-ranking, evaluation frameworks, production deployment, advanced architectures.
+- **Beginner**: "You'll start with what RAG is, learn to process documents, understand embeddings, and build your first retrieval pipeline. Expect lots of guided examples."
+- **Intermediate**: "You'll dive into embeddings, vector databases, retrieval strategies, and prompt engineering. More independence, more architecture decisions."
+- **Advanced**: "You'll focus on generation quality, evaluation frameworks, advanced patterns (agentic RAG, GraphRAG), and production deployment. You'll build systems, not just components."
 
 Ask the learner if they want to accept the recommendation or choose a different track.
 
@@ -68,6 +80,7 @@ Tell the learner:
 - Their profile has been saved
 - Suggest running `/lesson` to start their first lesson
 - Mention `/roadmap` to check progress at any time
-- Encourage them — learning RAG is a practical skill and they will build real systems
+- Mention `/glossary` if they encounter unfamiliar terms
+- Encourage them: "You're going to build real, working RAG systems. Let's start."
 
 Keep the tone warm, encouraging, and practical throughout.

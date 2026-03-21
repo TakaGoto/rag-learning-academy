@@ -5,6 +5,8 @@ description: "Benchmark your RAG pipeline's performance"
 
 # Benchmark: Measure Your RAG Pipeline's Performance
 
+> **Scope:** This skill focuses on **operational performance** (latency, throughput, token costs, memory). For answer quality metrics (faithfulness, relevancy, correctness), use `/evaluate`.
+
 Set up and run comprehensive benchmarks on the learner's RAG pipeline to identify bottlenecks and establish performance baselines.
 
 ## Step 1: Identify the Pipeline

@@ -44,6 +44,16 @@ Based on the symptom, walk through the appropriate diagnostic path:
 5. **Review system prompt**: Does it instruct the model to only use the provided context?
 6. **Check temperature**: High temperature increases hallucination risk.
 
+### For Indexing & Configuration Issues (chunk boundaries, model mismatches, filter bugs)
+
+These are the sneakiest bugs — the pipeline runs without errors but produces bad results.
+
+1. **Chunk boundary problems**: The answer to a question might be split across two chunks, with neither chunk containing the complete fact. To diagnose: retrieve the chunks immediately before and after the expected chunk (by index). If the fact spans the boundary, the fix is larger chunks, more overlap, or semantic chunking.
+2. **Embedding model mismatch**: Verify the exact model name AND vector dimensions used at index time match query time. A mismatch (e.g., indexing with `text-embedding-3-large` at 3072 dims, querying with `text-embedding-3-small` at 1536 dims) produces nonsense scores that look numerically plausible. Print both configs side by side.
+3. **Metadata filter bugs**: Run the exact same query with ALL metadata filters disabled. If results improve dramatically, re-enable filters one at a time. Common culprits: case-sensitive mismatches (`"PDF"` vs `"pdf"`), filtering on a field that was never populated, type mismatches (string `"2024"` vs integer `2024`).
+4. **Stale index**: If you've added many vectors without rebuilding the index, HNSW recall degrades. Check if your vector DB needs an explicit optimize/compact call (Qdrant does, ChromaDB handles it automatically).
+5. **Asymmetric embedding prefixes**: Many models (E5, BGE) require different prefixes for queries vs documents (`"query: "` vs `"passage: "`). If you embed both the same way, retrieval quality drops silently.
+
 ### For Performance Issues (high latency)
 
 1. **Profile each stage**: Measure time for embedding, retrieval, and generation separately.
