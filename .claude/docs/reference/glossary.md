@@ -14,7 +14,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **Bi-Encoder:** An embedding architecture that encodes queries and documents independently into vectors. Fast for retrieval (vectors are precomputed) but less accurate than cross-encoders for relevance scoring.
 
-**BM25 (Best Matching 25):** A probabilistic ranking function used in information retrieval. Scores documents based on term frequency and inverse document frequency. The dominant sparse retrieval method.
+**BM25 (Best Matching 25):** A probabilistic ranking function used in information retrieval. Scores documents based on term frequency and inverse document frequency. The dominant sparse retrieval method. *Analogy: like a librarian who finds books by matching the exact words on their spines, ranking higher the books where those words appear prominently and unusually.*
 
 **Chunk:** A segment of a document produced by splitting the full text. Chunks are the fundamental unit of storage and retrieval in most RAG systems. Typical sizes range from 200 to 2000 tokens.
 
@@ -31,6 +31,8 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 **Context Precision:** A RAGAS metric measuring what fraction of the retrieved context is actually relevant to answering the question.
 
 **Context Recall:** A RAGAS metric measuring what fraction of the information needed to answer the question is present in the retrieved context.
+
+**Context Stuffing:** The naive approach of inserting all retrieved chunks into the prompt without filtering or ranking. Can waste context window space and introduce noise that degrades answer quality.
 
 **Context Window:** The maximum number of tokens an LLM can process in a single request, including system prompt, retrieved context, conversation history, and the generated response.
 
@@ -50,7 +52,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **Dot Product (Inner Product):** A similarity metric computed as the sum of element-wise products of two vectors. Equivalent to cosine similarity when vectors are normalized.
 
-**Embedding:** A dense vector representation of text (or other data) in a continuous vector space, where semantic similarity corresponds to geometric proximity.
+**Embedding:** A dense vector representation of text (or other data) in a continuous vector space, where semantic similarity corresponds to geometric proximity. *Analogy: like converting words into GPS coordinates so that similar topics end up near each other on a map.*
 
 **Embedding Cache:** A storage layer that maps text inputs to their precomputed embeddings, avoiding redundant embedding API calls.
 
@@ -70,7 +72,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **Hard Negative:** In embedding training, a negative example that is superficially similar to the positive but semantically different. Hard negatives improve embedding quality.
 
-**HNSW (Hierarchical Navigable Small World):** A graph-based ANN index algorithm that builds a multi-layer navigable graph. The most widely used index type in modern vector databases. Tuned via M (connections per node) and ef (search breadth) parameters.
+**HNSW (Hierarchical Navigable Small World):** A graph-based ANN index algorithm that builds a multi-layer navigable graph. The most widely used index type in modern vector databases. Tuned via M (connections per node) and ef (search breadth) parameters. *Analogy: like an express-train network where you start on a sparse high-speed layer and progressively zoom in to local stops near your destination.*
 
 **HyDE (Hypothetical Document Embeddings):** A query strategy where the LLM generates a hypothetical answer to the query, and the embedding of that hypothetical answer is used for retrieval instead of the query embedding.
 
@@ -84,7 +86,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **LangSmith:** A platform by LangChain for tracing, debugging, and monitoring LLM applications.
 
-**Lost in the Middle:** A phenomenon where LLMs pay more attention to content at the beginning and end of the context window, potentially missing information placed in the middle.
+**Lost in the Middle:** A phenomenon where LLMs pay more attention to content at the beginning and end of the context window, potentially missing information placed in the middle. *Analogy: like reading a long email — you remember the opening and closing but skim the middle paragraphs.*
 
 **Map-Reduce:** A RAG generation pattern where each retrieved chunk is processed independently (map), then results are combined into a final answer (reduce). Useful when context exceeds the window.
 
@@ -92,7 +94,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **Metadata Filtering:** Restricting vector search results based on metadata attributes (source, date, category, author). Dramatically improves precision for scoped queries.
 
-**MMR (Maximal Marginal Relevance):** A result selection algorithm that balances relevance to the query with diversity among selected results. Controlled by a lambda parameter (0 = max diversity, 1 = max relevance).
+**MMR (Maximal Marginal Relevance):** A result selection algorithm that balances relevance to the query with diversity among selected results. Controlled by a lambda parameter (0 = max diversity, 1 = max relevance). *Analogy: like a hiring manager who picks candidates that are each strong but also bring different skills to the team.*
 
 **MRR (Mean Reciprocal Rank):** A retrieval metric that averages the reciprocal of the rank of the first relevant result across queries. Higher is better. MRR = 1.0 means the relevant result is always first.
 
@@ -105,6 +107,8 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 **Overlap:** In chunking, the number of tokens or characters shared between consecutive chunks. Prevents information loss at chunk boundaries.
 
 **Parametric Knowledge:** Information encoded in an LLM's weights during training. Contrasted with non-parametric knowledge retrieved at query time.
+
+**pgvector:** A PostgreSQL extension that adds vector similarity search to your existing Postgres instance. Unlike standalone vector databases (Pinecone, Qdrant), it runs inside Postgres — ideal when you already have a Postgres-backed application.
 
 **Precision@k:** The fraction of the top-k retrieved documents that are relevant to the query.
 
@@ -134,6 +138,10 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **Semantic Chunking:** A chunking strategy that uses embedding similarity between sentences to identify natural topic boundaries for splitting.
 
+**Sentence Transformers:** An open-source Python library for computing dense vector embeddings using transformer models. A popular alternative to API-based embeddings (OpenAI, Cohere), running locally without API costs.
+
+**SPLADE (Sparse Lexical And Expansion):** A learned sparse representation model that combines keyword matching with semantic term expansion. Outperforms BM25 on most benchmarks while maintaining the interpretability and efficiency of sparse vectors.
+
 **Sparse Retrieval:** Retrieval using term-frequency-based representations (e.g., BM25). Excels at exact keyword matching but misses semantic relationships.
 
 **Step-Back Prompting:** A query strategy where the LLM first identifies the broader concept behind a specific query, then retrieval is performed on the more general formulation.
@@ -142,7 +150,11 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **Token:** The basic unit of text processing for LLMs. A token is approximately 4 characters or 0.75 words in English. Embeddings, context windows, and costs are measured in tokens.
 
+**Tokenizer / Tokenization:** The process (and tool) that splits text into tokens. Different models use different tokenizers — OpenAI uses tiktoken (cl100k_base), while open-source models often use SentencePiece. The same text produces different token counts with different tokenizers.
+
 **Top-k:** The number of results returned by a retrieval operation. A key hyperparameter balancing recall (more results) against precision and context window usage (fewer results).
+
+**Two-Stage Retrieval:** A retrieval pattern where an initial fast retrieval (bi-encoder or BM25) produces a candidate set, followed by a slower but more accurate reranking step (cross-encoder). The standard approach for production RAG systems.
 
 **Vector Database:** A specialized database optimized for storing, indexing, and querying high-dimensional vectors. Examples: ChromaDB, Pinecone, Qdrant, pgvector, Weaviate, Milvus.
 
