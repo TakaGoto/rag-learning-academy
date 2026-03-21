@@ -1,0 +1,48 @@
+name: Weekly Knowledge Check
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Every Monday at 9 AM UTC
+  workflow_dispatch:
+
+jobs:
+  knowledge-check:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install requests pyyaml
+
+      - name: Run knowledge checks
+        id: checks
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python .github/scripts/weekly_knowledge_check.py > report.md
+          ISSUE_COUNT=$(grep -c '^\- \[ \]' report.md || echo "0")
+          echo "issue_count=$ISSUE_COUNT" >> "$GITHUB_OUTPUT"
+
+      - name: Create issue if action items found
+        if: steps.checks.outputs.issue_count != '0'
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "Weekly Knowledge Check — $(date +%Y-%m-%d)"
+          content-filepath: report.md
+          labels: content-review,automated,weekly-check
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: weekly-knowledge-report
+          path: report.md

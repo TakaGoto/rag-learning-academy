@@ -1,4 +1,4 @@
-.PHONY: install test lint format shellcheck ci clean
+.PHONY: install test lint format shellcheck ci clean knowledge-check
 
 install:
 	pip install -r requirements.txt
@@ -20,6 +20,9 @@ format:
 
 shellcheck:
 	shellcheck .claude/hooks/*.sh
+
+knowledge-check:
+	python3 .github/scripts/weekly_knowledge_check.py
 
 audit:
 	@echo "Run /audit-content in Claude Code to check for stale content"
