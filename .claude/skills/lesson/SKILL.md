@@ -41,6 +41,15 @@ Explain the concept clearly. Use analogies where helpful. Break complex ideas in
 ### Code Example
 Provide a working Python code example that demonstrates the concept. Use comments to explain each section. Keep dependencies minimal (prefer standard library + common packages like `langchain`, `chromadb`, `sentence-transformers`).
 
+**First hands-on lesson check:** If this is the first lesson that requires running Python code (typically 1.4 Hello World RAG), check if dependencies are installed by looking for a `.venv` directory or trying `python -c "import chromadb"`. If not installed, guide the learner through setup before continuing:
+
+> "This lesson involves writing and running code. Let's set up your environment first:"
+> ```bash
+> python -m venv .venv
+> source .venv/bin/activate
+> pip install -r requirements.txt
+> ```
+
 ```python
 # Example: Code demonstration during a lesson
 from sentence_transformers import SentenceTransformer

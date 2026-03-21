@@ -32,42 +32,32 @@ Optional upgrades (add later if you want):
 
 ## Setup
 
-### Step 1: Clone and Enter the Project
+### Step 1: Clone and Start
 
 ```bash
-git clone <repository-url> rag-learning-academy
+git clone https://github.com/TakaGoto/rag-learning-academy.git
 cd rag-learning-academy
+claude
 ```
 
-### Step 2: Create a Virtual Environment
+Then type `/start`. That's it. The first few lessons are conceptual — no Python packages needed yet.
 
-Using uv (recommended):
-```bash
-uv venv
-source .venv/bin/activate
-```
+### Step 2: Install Dependencies (When You Need Them)
 
-Using standard Python:
+When you reach your first hands-on lesson (Module 01, Lesson 1.4: Hello World RAG), install dependencies:
+
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-```
-
-### Step 3: Install Dependencies
-
-```bash
-uv pip install -r requirements.txt
-# or
 pip install -r requirements.txt
 ```
 
-### Step 4: Verify Installation
-
+Or with uv (faster):
 ```bash
-python -c "import chromadb; import sentence_transformers; print('Setup complete!')"
+uv venv && source .venv/bin/activate && uv pip install -r requirements.txt
 ```
 
-### Step 5 (Optional): Add API Keys
+### Step 3 (Optional): Add API Keys
 
 Only needed if you want to use OpenAI embeddings or Cohere reranking:
 

@@ -19,12 +19,10 @@ Every concept is paired with a hands-on exercise. Every exercise is paired with 
 ```bash
 git clone https://github.com/TakaGoto/rag-learning-academy.git
 cd rag-learning-academy
-pip install -r requirements.txt
-claude                         # Open Claude Code
-# Then type: /start
+claude                         # Open Claude Code, then type: /start
 ```
 
-No API keys required. Uses Claude Code (your LLM) + local embeddings + ChromaDB out of the box.
+That's it. No API keys, no `pip install`, no setup. Dependencies get installed when you need them (the first hands-on lesson will guide you).
 
 ## What's Inside
 
