@@ -55,7 +55,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Key concepts:** Grounding instructions, parametric vs retrieved knowledge, faithfulness enforcement, hallucination prevention, evidence-based answering, chain-of-thought grounding.
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 6.4 Citation and Attribution — `optional`
 

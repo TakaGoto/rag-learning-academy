@@ -39,7 +39,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Key concepts:** Bi-encoder retrieval, top-k selection, semantic matching, query embedding, retrieval pipeline, query-document embedding asymmetry.
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 5.2 BM25 and Sparse Methods — `optional`
 

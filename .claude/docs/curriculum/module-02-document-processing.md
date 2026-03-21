@@ -40,7 +40,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Key concepts:** Format-specific parsers, layout detection, OCR pipelines (Tesseract), the Unstructured library, document loaders, unified parsing interfaces.
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 2.2 Text Preprocessing — `optional`
 

@@ -46,7 +46,7 @@ By the end of this module, learners will be able to:
 
 **Key concepts:** Indexing pipeline, query pipeline, retriever, generator, context window, pipeline orchestration, offline vs online phases.
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 1.4 Your First RAG Pipeline (Hello World) — `core`
 

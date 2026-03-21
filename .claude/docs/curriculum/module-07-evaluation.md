@@ -47,7 +47,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Key concepts:** Precision@k, Recall@k, MRR, NDCG, hit rate, context precision (RAGAS), context recall (RAGAS), binary vs graded relevance, relevance judgment creation.
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 7.3 Generation Metrics — `optional`
 

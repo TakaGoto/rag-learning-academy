@@ -39,7 +39,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Key concepts:** ANN search, brute-force vs approximate, recall/speed trade-off, curse of dimensionality, embedded vs client-server vs managed deployment models.
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 4.2 Setting Up ChromaDB — `core`
 
@@ -47,7 +47,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Key concepts:** Collections, documents, IDs, metadata, persistence directory, embedding functions, ChromaDB client modes (ephemeral, persistent, client-server).
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 4.3 Indexing Strategies — `optional`
 

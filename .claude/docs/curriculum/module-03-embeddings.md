@@ -39,7 +39,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Key concepts:** Vector space, semantic similarity, high-dimensional geometry, contrastive learning, sentence embeddings vs word embeddings, the embedding hypothesis.
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 3.2 Choosing an Embedding Model — `core`
 
@@ -47,7 +47,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 **Key concepts:** MTEB leaderboard, dimensions vs quality trade-off, API vs self-hosted models, Matryoshka embeddings, multilingual support, context length limits.
 
-**Duration:** 45 minutes
+**Duration:** 30 minutes
 
 ### 3.3 Batch Embedding — `optional`
 
