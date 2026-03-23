@@ -7,12 +7,14 @@ description: "Get expert feedback on your RAG code"
 
 Review the learner's RAG code with the eye of an experienced RAG engineer, providing actionable feedback that improves correctness, performance, and robustness.
 
+> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+
 ## Step 1: Identify the Code to Review
 
 Welcome! Let's take a close look at your RAG code together.
 
 First, determine what code is available for review:
-- If the user specifies a file or directory (e.g., `/code-review projects/my-rag/retriever.py`), review that.
+- If the user specifies a file or directory (e.g., `/code-review projects/my-rag/retriever`), review that.
 - If no argument is given, check for a learner profile at `progress/learner-profile.md` and look for code in `src/` and `projects/`.
 - If **no RAG code exists** anywhere in `projects/` or `src/` (and no file was specified), guide them warmly:
   > "It looks like you haven't written any RAG code yet — that's the perfect place to start! Run `/build` to create your first RAG component, and then come back here for expert feedback on what you've built. I'll be ready to help you level it up!"
@@ -84,12 +86,7 @@ For each item:
 3. **Why**: Explain why this matters
 4. **How**: Suggest a concrete fix with a code snippet
 
-```python
-# Example review annotation:
-# [CRITICAL] No error handling for API failures
-response = client.embeddings.create(input=text, model=MODEL)
-# Suggested fix: wrap in try/except with retry logic
-```
+Generate review annotations with code examples in the learner's chosen language. For example, flag issues like missing error handling for API failures and show the suggested fix using idiomatic patterns for their language.
 
 ## Step 5: Highlight Strengths
 

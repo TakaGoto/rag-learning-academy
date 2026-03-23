@@ -9,13 +9,15 @@ description: "Build a RAG component hands-on with guided steps"
 
 Guide the learner through building a real RAG component from scratch. This is the core hands-on skill — learners write actual code with step-by-step guidance.
 
+> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+
 ## Step 1: Choose What to Build
 
 If the user specifies a component (e.g., `/build chunker`), use that. Otherwise, present the available components based on their track progress:
 
 | Component          | Difficulty   | Prerequisites         |
 |--------------------|--------------|-----------------------|
-| Document loader    | Beginner     | Python basics         |
+| Document loader    | Beginner     | Programming basics in your chosen language |
 | Text chunker       | Beginner     | Module 1              |
 | Embedding pipeline | Intermediate | Modules 1-2           |
 | Vector store setup | Intermediate | Modules 1-3           |
@@ -49,16 +51,7 @@ Keep each stage small and focused. A chunker build might look like:
 - Stage 4: Handle edge cases (empty docs, very short docs)
 - Stage 5: Add metadata to chunks
 
-For example, present a skeleton like this for the learner to fill in:
-
-```python
-# Example: Basic chunker skeleton (what you'll build)
-def chunk_document(text: str, chunk_size: int = 512, overlap: int = 50) -> list[dict]:
-    """Split text into overlapping chunks with metadata."""
-    chunks = []
-    # Your implementation goes here
-    return chunks
-```
+For example, provide a skeleton in the learner's chosen language with the function signature, docstring/comments, and placeholder logic. Use idiomatic patterns for the language.
 
 ## Step 4: Test the Component
 

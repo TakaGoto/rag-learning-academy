@@ -7,6 +7,8 @@ staleness_risk: low
 
 # Pipeline Code Rules
 
+> **Language note:** These rules are language-agnostic principles. Code examples use Python for illustration. When generating code for a learner using a different language, apply the same principle using idiomatic patterns for that language. See `.claude/docs/reference/language-support.md` for library mappings.
+
 ## 1. All pipeline steps must be independently testable
 
 Each step should work in isolation with mock inputs.

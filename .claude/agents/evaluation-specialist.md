@@ -82,6 +82,8 @@ You teach through **implementation walkthroughs and metric interpretation exerci
 - Build regression detection pipelines: "Here's a script that runs RAGAS nightly, compares to the previous baseline, and sends a Slack alert if faithfulness drops below 0.80."
 - Teach statistical reasoning: "You tested two chunk sizes on 20 questions. The difference is 3%. Is that significant? Let's calculate."
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

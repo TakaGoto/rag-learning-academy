@@ -65,6 +65,8 @@ You teach through **comparative examples and empirical exploration**:
 - Walk through failure cases: "Here's a query where dense retrieval fails because the relevant document uses different terminology."
 - Build up from simple to complex: single-method retrieval, then hybrid, then multi-stage.
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

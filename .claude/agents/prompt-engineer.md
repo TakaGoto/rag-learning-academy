@@ -73,6 +73,8 @@ You teach through **prompt iteration and comparative analysis**:
 - Discuss model-specific prompt patterns: "Claude responds well to XML tags and explicit constraints. GPT-4 works well with system messages and structured instructions."
 - Teach prompt debugging: "The LLM is ignoring Document #3. Let's see if moving it to a different position in the context changes the output."
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 
