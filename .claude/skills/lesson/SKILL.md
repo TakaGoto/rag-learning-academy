@@ -25,32 +25,53 @@ Look for the lesson content in `.claude/docs/curriculum/`. The curriculum is org
 
 Load the module file (e.g., `.claude/docs/curriculum/module-01-foundations.md`) and navigate to the specific lesson section within it. If the module file exists, use it as the primary source. If it does not exist yet, generate the lesson content based on the module topic and RAG curriculum structure.
 
-## Step 3: Present the Concept
+## Pacing: Section-by-Section Delivery
 
-Before starting, note the lesson's classification and estimated time from the curriculum file heading (e.g., `### 3.2 Choosing an Embedding Model — \`core\``). Display it at the top:
+**Do NOT deliver the entire lesson in one message.** Break it into sections and pause between each one. This prevents wall-of-text overload and lets the learner absorb each piece before moving on.
+
+After each section below, **stop and wait** for the learner to say "next", "continue", "got it", or similar before proceeding to the next section. If they ask a question or seem confused, address it before moving on.
+
+At the start of the lesson, tell the learner:
+> "I'll walk you through this lesson one section at a time. Say **next** when you're ready to continue, or ask questions anytime."
+
+## Step 3: Section 1 — Opening (Why This Matters)
+
+Note the lesson's classification and estimated time from the curriculum file heading (e.g., `### 3.2 Choosing an Embedding Model — \`core\``). Display it at the top:
 
 - For core lessons: "This is a **core** lesson (~45 min) — essential for building a working RAG system."
 - For optional lessons: "This is an **optional** lesson (~45 min) — a deeper dive that builds on the core path. You can skip it and come back later."
 
-Structure the lesson delivery as follows:
+Start with a real-world scenario or problem that this concept solves. Make it concrete and relatable. Keep it short — 3-5 sentences max.
 
-### Opening (Why This Matters)
-Start with a real-world scenario or problem that this concept solves. Make it concrete and relatable.
+**Then stop and wait for the learner.**
 
-### Core Explanation
+## Step 4: Section 2 — Core Explanation
+
 Explain the concept clearly. Use analogies where helpful. Break complex ideas into digestible pieces. Include diagrams in ASCII where they add clarity.
 
-### Code Example
+If the explanation is long (more than ~15 lines), split it into two messages with a pause between them.
+
+End with a quick gut-check: "Make sense so far?" or "Any questions before we look at code?"
+
+**Then stop and wait for the learner.**
+
+## Step 5: Section 3 — Code Example
+
 Provide a working code example in the learner's chosen language that demonstrates the concept. Use comments to explain each section. Keep dependencies minimal — use common RAG libraries for the learner's language (see `language-support.md` for mappings).
 
-**First hands-on lesson check:** If this is the first lesson that requires running code, check if the learner's environment is set up. Guide them through the setup for their chosen language (see `language-support.md` for setup commands per language).
+**First hands-on lesson check:** If this is the first lesson that requires running code, check if the learner's environment is set up. Guide them through the setup for their chosen language (see `language-support.md` for setup commands per language) before showing the code.
 
-Show a working code example in the learner's language. For example, if the lesson is about embeddings, demonstrate loading a model and encoding text using the appropriate library for their language.
+Walk through the code briefly after showing it — highlight the key lines and explain what they do.
 
-### Key Takeaways
+**Then stop and wait for the learner.**
+
+## Step 6: Section 4 — Key Takeaways
+
 Summarize the 3-5 most important points from the lesson in a bulleted list.
 
-## Step 4: Hands-On Exercise
+**Then stop and wait for the learner.**
+
+## Step 7: Section 5 — Hands-On Exercise
 
 Present a practical exercise that reinforces the lesson:
 - Clearly state the objective
@@ -58,13 +79,13 @@ Present a practical exercise that reinforces the lesson:
 - Define what "done" looks like
 - Offer hints if the learner asks
 
-Review the learner's solution when they share it. Provide constructive feedback — what they did well, what could be improved, and why.
+**Then wait for the learner to share their solution.** Review it when they do — what they did well, what could be improved, and why. If they need more time, that's fine. If they want to skip the exercise, let them.
 
-## Step 5: Check Understanding
+## Step 8: Section 6 — Check Understanding
 
 Ask 2-3 quick comprehension questions to verify the learner grasped the key ideas. These should be conversational, not quiz-style. Correct any misconceptions gently.
 
-## Step 6: Track Progress
+## Step 9: Track Progress
 
 Update `progress/module-tracker.md` to mark this lesson as complete. Add the completion date. If all lessons in a module are complete, congratulate the learner.
 
@@ -80,3 +101,4 @@ Suggest 2-3 relevant next steps using slash commands:
 - Prefer concrete examples over abstract theory
 - If the learner seems confused, offer a simpler explanation before moving on
 - Celebrate progress — each lesson completed is a step forward
+- **Respect the learner's pace** — never rush through sections or skip the pauses
