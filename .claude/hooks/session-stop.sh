@@ -110,7 +110,7 @@ cat > "$SESSION_FILE" << SESSION_MD
 ${TOPICS}
 ## Files Changed
 
-$(if [ -n "$MODIFIED_FILES" ]; then echo "$MODIFIED_FILES" | sed 's/^/- /'; else echo "- No files changed"; fi)
+$(if [ -n "$MODIFIED_FILES" ]; then echo "$MODIFIED_FILES" | while IFS= read -r line; do echo "- $line"; done; else echo "- No files changed"; fi)
 SESSION_MD
 
 echo ""

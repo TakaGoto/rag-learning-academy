@@ -42,7 +42,7 @@ if [ -d "$PROGRESS_DIR" ] && { [ -f "$PROFILE_FILE" ] || [ -f "$TRACKER_FILE" ];
     # Show recent session if it exists
     SESSIONS_DIR="$PROGRESS_DIR/sessions"
     if [ -d "$SESSIONS_DIR" ]; then
-        LATEST_SESSION=$(ls -t "$SESSIONS_DIR"/*.md 2>/dev/null | head -1)
+        LATEST_SESSION=$(find "$SESSIONS_DIR" -maxdepth 1 -name '*.md' -print0 2>/dev/null | xargs -0 ls -t 2>/dev/null | head -1)
         if [ -n "$LATEST_SESSION" ]; then
             echo ""
             echo "  Last session: $(basename "$LATEST_SESSION" .md)"
