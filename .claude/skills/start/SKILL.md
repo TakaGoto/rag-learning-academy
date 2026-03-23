@@ -19,9 +19,47 @@ Mention the two paths: **API path** (OpenAI + Anthropic keys, computation in the
 
 > **Heads up:** Running LLMs locally with Ollama needs 8-16GB of free RAM. If your machine has 8GB total, close heavy apps (browsers, Docker, IDEs) before running models. If you hit slowdowns or crashes, switch to the API path — local embedding models are lightweight but local LLMs are demanding. You can always mix: use local embeddings with a cloud LLM.
 
-Then transition: "To recommend the right starting point, I'll ask five quick questions about your background. There are no wrong answers — this just helps me calibrate."
+## Step 1: Choose Your Path
 
-## Step 1: Background Assessment
+Present the three tracks and let the learner self-select. Also offer the assessment as an option for those who aren't sure. Wait for the learner to choose before continuing.
+
+> **Pick your track:**
+>
+> 1. **Beginner** — Start from scratch. What RAG is, document processing, embeddings, your first retrieval pipeline. Lots of guided examples. *(Modules 1–4)*
+>
+> 2. **Intermediate** — You know the basics. Dive into embeddings, vector databases, retrieval strategies, and prompt engineering. More independence, more architecture decisions. *(Modules 3–7)*
+>
+> 3. **Advanced** — You've built RAG before. Focus on generation quality, evaluation, agentic RAG, GraphRAG, and production deployment. You'll build systems, not just components. *(Modules 6–9)*
+>
+> **Not sure?** I can ask 5 quick questions to help you figure out where you fit. Just say "assess me."
+
+If they pick a track (1, 2, or 3), go to **Step 2: Create Learner Profile**.
+
+If they say "assess me" or similar, go to **Step 3: Background Assessment**.
+
+## Step 2: Create Learner Profile
+
+Create the file `progress/learner-profile.md` with the following structure:
+
+```markdown
+# Learner Profile
+
+- **Track**: [Beginner/Intermediate/Advanced]
+- **Started**: [today's date]
+- **Assessment**: self-selected
+
+## Current Module
+Module [first module in track: 01 for Beginner, 03 for Intermediate, 06 for Advanced]
+
+## Completed
+(none yet)
+```
+
+Also create `progress/module-tracker.md` initialized with empty checkboxes for every lesson in the assigned track.
+
+Then proceed to **Step 6: Next Steps**.
+
+## Step 3: Background Assessment
 
 Ask the following questions one at a time. Wait for each answer before proceeding.
 
@@ -31,7 +69,7 @@ Ask the following questions one at a time. Wait for each answer before proceedin
 4. **Embeddings awareness**: "Do you know what vector embeddings are and how they represent text?" (no idea=0 / heard of them=1 / have used them=2)
 5. **Search/IR background**: "Any experience with search engines, information retrieval, or databases?" (none=0 / basic SQL or search=1 / built search systems=2)
 
-## Step 2: Score and Place
+## Step 4: Score and Place
 
 Sum the points (0-10 range). Place into a track:
 
@@ -41,19 +79,11 @@ Sum the points (0-10 range). Place into a track:
 | 4-6 | Intermediate | Module 03 | 03 → 07 |
 | 7-10 | Advanced | Module 06 | 06 → 09 |
 
-Note: Track modules overlap intentionally — this provides continuity. Intermediate learners revisit Embeddings (Module 03) which Beginners just completed, but at a faster pace. Advanced learners start at Generation (Module 06) which Intermediates just covered.
+Note: Track modules overlap intentionally — this provides continuity.
 
-## Step 3: Recommend a Learning Path
+## Step 5: Create Learner Profile (Assessed)
 
-Present the recommended track with a brief overview:
-
-- **Beginner**: "You'll start with what RAG is, learn to process documents, understand embeddings, and build your first retrieval pipeline. Expect lots of guided examples."
-- **Intermediate**: "You'll dive into embeddings, vector databases, retrieval strategies, and prompt engineering. More independence, more architecture decisions."
-- **Advanced**: "You'll focus on generation quality, evaluation frameworks, advanced patterns (agentic RAG, GraphRAG), and production deployment. You'll build systems, not just components."
-
-Ask the learner if they want to accept the recommendation or choose a different track.
-
-## Step 4: Create Learner Profile
+Present the recommended track. Ask the learner if they want to accept the recommendation or choose a different track.
 
 Create the file `progress/learner-profile.md` with the following structure:
 
@@ -78,15 +108,17 @@ Module [first module in track]
 
 Also create `progress/module-tracker.md` initialized with empty checkboxes for every lesson in the assigned track.
 
-## Step 5: Next Steps
+Then proceed to **Step 6: Next Steps**.
+
+## Step 6: Next Steps
 
 Tell the learner their profile has been saved. Mention the milestone system: "Your track has milestones — concrete checkpoints that mark real progress. Run `/roadmap` anytime to see how far you've come."
 
 Encourage them: "You're going to build real, working RAG systems. Let's start."
 
-Suggest 2-3 relevant next steps using slash commands:
+Suggest next steps:
 
-- `/lesson` — start your first lesson in the recommended track
+- `/lesson` — start your first lesson
 - `/roadmap` — view the full curriculum map and track your progress
 - `/glossary` — look up any unfamiliar RAG terms as you learn
 
