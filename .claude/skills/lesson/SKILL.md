@@ -17,6 +17,13 @@ This skill delivers structured curriculum lessons. Each lesson follows a consist
 - If no argument is given, read `progress/learner-profile.md` and `progress/module-tracker.md` to find the next incomplete lesson in the learner's track.
 - If no profile exists, suggest running `/start` first.
 
+**Resuming an incomplete lesson:** If the next incomplete lesson is the same one the learner's `module-tracker.md` shows as their current lesson (i.e., they started it before but it's not marked complete), ask:
+
+> "Looks like you started **[lesson name]** last time but didn't finish. Want to **pick up where you left off** (I'll give you a quick recap and jump ahead), or **start fresh**?"
+
+- If they want to resume: give a 2-3 sentence recap of the key points covered so far, then jump to the next undelivered section.
+- If they want to start fresh: begin the lesson from the top as normal.
+
 ## Step 2: Load Lesson Content
 
 Look for the lesson content in `.claude/docs/curriculum/`. The curriculum is organized as flat module files:
