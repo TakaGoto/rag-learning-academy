@@ -7,6 +7,8 @@ description: "Diagnose and fix common RAG failure modes"
 
 An interactive debugging workflow that helps learners identify and resolve common RAG failure modes. This skill builds debugging intuition alongside technical problem-solving.
 
+> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+
 ## Step 1: Identify the Symptom
 
 Ask the learner to describe the problem they are seeing. Common symptoms include:
@@ -30,12 +32,7 @@ Based on the symptom, walk through the appropriate diagnostic path:
 
 Start by inspecting what the retriever actually returns:
 
-```python
-# Example diagnostic probe
-results = retriever.retrieve("What is machine learning?", top_k=10)
-for r in results:
-    print(f"Score: {r.score:.3f} | Source: {r.metadata['source']} | Text: {r.text[:80]}...")
-```
+Provide diagnostic code in the learner's chosen language that retrieves results and prints scores, sources, and text previews.
 
 1. **Check the query**: Is the query well-formed? Try rephrasing it.
 2. **Inspect chunks**: Look at the actual chunks in the vector store. Are they the right size? Do they contain the expected information?

@@ -6,9 +6,13 @@ staleness_risk: medium
 
 # Coding Standards for RAG Projects
 
+> **Multi-language support:** This file covers universal principles plus language-specific conventions. Check your learner profile for your chosen language. The universal section applies to all languages.
+
+## Python
+
 Python coding standards and best practices for all code written within the RAG Learning Academy.
 
-## Python Version and Style
+### Python Version and Style
 
 - **Minimum Python version:** 3.10+
 - **Formatter:** ruff format (or black as fallback)
@@ -16,7 +20,7 @@ Python coding standards and best practices for all code written within the RAG L
 - **Line length:** 100 characters maximum
 - **Import ordering:** standard library, third-party, local (enforced by ruff isort)
 
-## Type Hints
+### Type Hints
 
 All functions must include type hints for parameters and return values.
 
@@ -48,7 +52,7 @@ Chunk: TypeAlias = dict[str, str | dict[str, str]]
 RetrievalResult: TypeAlias = list[tuple[str, float]]  # (text, score)
 ```
 
-## Docstrings
+### Docstrings
 
 Use Google-style docstrings for all public functions and classes.
 
@@ -78,9 +82,9 @@ def retrieve(
     """
 ```
 
-## Error Handling
+### Error Handling
 
-### Custom Exception Hierarchy
+#### Custom Exception Hierarchy
 
 Define a project-level exception hierarchy:
 
@@ -101,7 +105,7 @@ class GenerationError(RAGError):
     """Raised when LLM generation fails."""
 ```
 
-### Error Handling Rules
+#### Error Handling Rules
 
 1. **Catch specific exceptions**, never bare `except:` or `except Exception:`
 2. **Always include context** in error messages (document name, chunk index, query text)
@@ -121,7 +125,7 @@ except openai.APIError as e:
     raise EmbeddingError(f"Embedding failed for batch of {len(texts)} texts") from e
 ```
 
-## Async Patterns
+### Async Patterns
 
 Use async/await for I/O-bound operations (API calls, database queries, file I/O).
 
@@ -151,16 +155,16 @@ async def embed_batch(
     return results
 ```
 
-### Async Rules
+#### Async Rules
 
 1. **Use `asyncio.gather`** for concurrent independent operations
 2. **Use semaphores** to limit concurrent API calls and respect rate limits
 3. **Prefer async context managers** for resource cleanup
 4. **Never mix sync and async** — use `asyncio.to_thread` for sync libraries in async code
 
-## Testing Requirements
+### Testing Requirements
 
-### Test Structure
+#### Test Structure
 
 ```
 tests/
@@ -170,7 +174,7 @@ tests/
   conftest.py             # Shared fixtures
 ```
 
-### Testing Rules
+#### Testing Rules
 
 1. **Minimum coverage:** 80% for all pipeline components
 2. **Use pytest** as the test framework
@@ -202,7 +206,7 @@ async def test_embed_batch_respects_batch_size(sample_chunks: list[str]) -> None
     assert len(result) == 3
 ```
 
-## Configuration
+### Configuration
 
 Use Pydantic Settings for configuration management:
 
@@ -221,7 +225,7 @@ class RAGConfig(BaseSettings):
     model_config = {"env_prefix": "RAG_"}
 ```
 
-## Logging
+### Logging
 
 Use structured logging with `structlog` or standard library `logging` with JSON formatting:
 
@@ -239,7 +243,7 @@ logger.info(
 )
 ```
 
-## File and Module Organization
+### File and Module Organization
 
 ```
 src/
@@ -273,3 +277,39 @@ src/
     tokenizer.py          # Token counting helpers
     logging.py            # Structured logging setup
 ```
+
+## TypeScript
+
+- **Runtime:** Node.js 18+ or Bun
+- **Formatter/Linter:** ESLint + Prettier (`npx eslint . && npx prettier --check .`)
+- **Type system:** Strict TypeScript (`strict: true` in tsconfig). Use explicit types for function parameters and return values.
+- **Testing:** Vitest or Jest. Aim for 80%+ coverage on RAG components.
+- **Async:** Native `async/await` with `Promise`. Use `Promise.all()` for concurrent operations.
+- **Configuration:** Environment variables via `dotenv`. Validate with `zod` schemas.
+- **Error handling:** Use typed errors. Catch specific error types, not bare `catch(e)`.
+- **Logging:** Use `pino` or `winston` with structured JSON output.
+- **Package management:** npm or pnpm. Lock file must be committed.
+
+## Go
+
+- **Version:** Go 1.21+
+- **Formatter/Linter:** `gofmt` (formatting) + `golangci-lint` (linting). Code must pass both.
+- **Type system:** Go's static typing. Use custom types for domain objects (e.g., `type Embedding []float64`).
+- **Testing:** Standard `testing` package. Use table-driven tests. Aim for 80%+ coverage.
+- **Async:** Goroutines + channels. Use `errgroup` for concurrent operations with error handling.
+- **Configuration:** Environment variables via `os.Getenv` or `envconfig`. Validate at startup.
+- **Error handling:** Return `error` as the last return value. Wrap errors with `fmt.Errorf("context: %w", err)`.
+- **Logging:** `slog` (stdlib, Go 1.21+) with structured JSON output.
+- **Module management:** Go modules. `go.sum` must be committed.
+
+## Rust
+
+- **Edition:** Rust 2021+
+- **Formatter/Linter:** `cargo fmt` (formatting) + `cargo clippy` (linting). Must pass both.
+- **Type system:** Leverage Rust's type system fully. Use enums for variants, newtypes for domain types.
+- **Testing:** `cargo test`. Use `#[cfg(test)]` modules. Aim for 80%+ coverage on RAG components.
+- **Async:** Tokio runtime. Use `tokio::spawn` for concurrent operations.
+- **Configuration:** Environment variables via `dotenvy`. Validate with custom config structs using `serde`.
+- **Error handling:** Use `thiserror` for library errors, `anyhow` for application errors. No `.unwrap()` in production code.
+- **Logging:** `tracing` crate with structured output.
+- **Package management:** Cargo. `Cargo.lock` must be committed for binaries.

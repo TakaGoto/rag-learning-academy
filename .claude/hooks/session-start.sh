@@ -30,6 +30,8 @@ if [ -d "$PROGRESS_DIR" ] && { [ -f "$PROFILE_FILE" ] || [ -f "$TRACKER_FILE" ];
         CURRENT_MODULE=$(grep -i 'current module' "$PROFILE_FILE" 2>/dev/null | head -1 | sed 's/.*: *//' || echo "Unknown")
         [ -z "$CURRENT_MODULE" ] && CURRENT_MODULE="Unknown"
         echo "  Current Module : $CURRENT_MODULE"
+        LANGUAGE=$(grep -i '^\- \*\*Language\*\*' "$PROFILE_FILE" 2>/dev/null | head -1 | sed 's/.*: *//' || echo "")
+        [ -n "$LANGUAGE" ] && echo "  Language     : $LANGUAGE"
     fi
 
     # Read completion info from module-tracker.md

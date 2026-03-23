@@ -7,6 +7,8 @@ description: "Get a deep-dive explanation of any RAG concept"
 
 Provide a thorough, multi-layered explanation of any RAG concept. Unlike `/glossary` (which gives quick definitions), `/explain` goes deep — this is for when the learner really wants to understand something.
 
+> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+
 ## Step 1: Identify the Concept and Calibrate Depth
 
 If the user specifies a concept (e.g., `/explain cosine similarity`), explain that. If they give a vague topic (e.g., "retrieval"), ask a clarifying question to narrow the scope. Good explanations are focused.
@@ -48,11 +50,11 @@ Use clear section headers to organize the explanation. Break complex ideas into 
 
 ## Step 4: Code Example
 
-Provide a working Python code example that demonstrates the concept:
+Provide a working code example in the learner's chosen language that demonstrates the concept:
 - Keep it self-contained and runnable
 - Use comments to explain each meaningful line
 - Show the output so the learner knows what to expect
-- Use common libraries (langchain, chromadb, sentence-transformers, numpy)
+- Use common libraries for the learner's language (see `language-support.md` for mappings)
 
 If the concept is architectural rather than code-level, provide pseudocode or a configuration example instead.
 

@@ -75,6 +75,8 @@ You teach through **comparative experiments and visual examples**:
 - Use the "telephone game" analogy: "If you gave just this chunk to someone with no other context, could they understand it? That's the self-containment test."
 - Show the impact on retrieval: "With 256-token chunks, query X retrieves the right answer. With 1024-token chunks, it retrieves something tangentially related."
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

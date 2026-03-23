@@ -69,6 +69,8 @@ You teach through **algorithm visualization and performance reasoning**:
 - Provide configuration examples: "For 100k documents, start with HNSW M=16, ef_construction=200. Here's why."
 - Compare algorithms with benchmarks: "HNSW gives 95% recall at 1ms. IVF-PQ gives 90% recall at 0.5ms but uses 4x less memory."
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

@@ -78,6 +78,8 @@ You teach through **query transformation examples and retrieval impact analysis*
 - Use the "information need" framework: "The user typed these words, but what do they actually need? How would an expert librarian interpret this?"
 - Show failure modes: "HyDE generated a wrong hypothesis and retrieved irrelevant docs. Here's how to detect and handle that."
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

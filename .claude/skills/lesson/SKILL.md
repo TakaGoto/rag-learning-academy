@@ -9,6 +9,8 @@ description: "Start or continue a curriculum lesson"
 
 This skill delivers structured curriculum lessons. Each lesson follows a consistent flow that builds understanding through explanation, examples, and hands-on practice.
 
+> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+
 ## Step 1: Determine Which Lesson to Load
 
 - If the user provides a module number and lesson name (e.g., `/lesson 3 chunking-strategies`), load that specific lesson.
@@ -39,25 +41,11 @@ Start with a real-world scenario or problem that this concept solves. Make it co
 Explain the concept clearly. Use analogies where helpful. Break complex ideas into digestible pieces. Include diagrams in ASCII where they add clarity.
 
 ### Code Example
-Provide a working Python code example that demonstrates the concept. Use comments to explain each section. Keep dependencies minimal (prefer standard library + common packages like `langchain`, `chromadb`, `sentence-transformers`).
+Provide a working code example in the learner's chosen language that demonstrates the concept. Use comments to explain each section. Keep dependencies minimal — use common RAG libraries for the learner's language (see `language-support.md` for mappings).
 
-**First hands-on lesson check:** If this is the first lesson that requires running Python code (typically 1.4 Hello World RAG), check if dependencies are installed by looking for a `.venv` directory or trying `python -c "import chromadb"`. If not installed, guide the learner through setup before continuing:
+**First hands-on lesson check:** If this is the first lesson that requires running code, check if the learner's environment is set up. Guide them through the setup for their chosen language (see `language-support.md` for setup commands per language).
 
-> "This lesson involves writing and running code. Let's set up your environment first:"
-> ```bash
-> python -m venv .venv
-> source .venv/bin/activate
-> pip install -r requirements.txt
-> ```
-
-```python
-# Example: Code demonstration during a lesson
-from sentence_transformers import SentenceTransformer
-
-model = SentenceTransformer("all-MiniLM-L6-v2")
-embedding = model.encode("What is RAG?")
-print(f"Dimensions: {len(embedding)}")  # 384
-```
+Show a working code example in the learner's language. For example, if the lesson is about embeddings, demonstrate loading a model and encoding text using the appropriate library for their language.
 
 ### Key Takeaways
 Summarize the 3-5 most important points from the lesson in a bulleted list.

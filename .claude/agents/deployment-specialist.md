@@ -88,6 +88,8 @@ You teach through **production scenario analysis and engineering best practices*
 - Design incident response exercises: "The vector database is returning empty results. Walk me through your debugging steps."
 - Show monitoring dashboards and teach how to read them: "This P99 latency spike at 2am — let's trace it back to the root cause."
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

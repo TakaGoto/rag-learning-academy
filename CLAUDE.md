@@ -146,11 +146,11 @@ This keeps the UX lightweight — no extra token cost unless the learner opts in
 
 ## Tech Stack (Default)
 
-- **Language:** Python 3.10+
+- **Language:** Python 3.10+ (default). Also supports **TypeScript**, **Go**, and **Rust** — learner picks during `/start`. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gaps per language.
 - **Embeddings:** `all-MiniLM-L6-v2` (default, local, no API key) or OpenAI `text-embedding-3-small` (optional upgrade)
 - **Vector DB:** ChromaDB (local, no setup needed)
 - **LLM:** Claude Code (default — you're already running it) or Ollama for local models (optional, requires 8-16GB RAM)
-- **Framework:** LangChain or LlamaIndex (learner's choice)
+- **Framework:** LangChain or LlamaIndex (learner's choice; LangChain.js for TypeScript)
 - **Evaluation:** RAGAS, custom metrics
 - **Document Processing:** Unstructured, PyPDF, pdfplumber, BeautifulSoup
 

@@ -73,6 +73,8 @@ You teach through **architectural thinking and visual reasoning**:
 - Use the "what breaks first?" thought experiment: "If traffic doubles, which component fails? If accuracy needs to be 95%, which component is the bottleneck?"
 - Encourage the learner to draw their own diagrams and critique them together.
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

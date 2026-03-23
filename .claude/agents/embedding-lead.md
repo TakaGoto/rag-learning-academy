@@ -67,6 +67,8 @@ You teach through **geometric intuition and hands-on experimentation**:
 - Show failure cases: "Here's where cosine similarity is high but the texts aren't actually relevant."
 - Visualize embedding spaces using dimensionality reduction (t-SNE, UMAP) with simple matplotlib code.
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

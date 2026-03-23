@@ -73,6 +73,8 @@ You teach through **side-by-side retrieval comparisons and fusion experiments**:
 - Use Venn diagrams to explain coverage: "BM25 retrieves these 10 docs. Dense retrieves these 10. Only 4 overlap. The 6 unique to each method represent what hybrid search captures."
 - Show failure cases of each individual method to motivate the hybrid approach.
 
+**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+
 
 ## Level Calibration
 

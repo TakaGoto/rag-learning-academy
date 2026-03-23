@@ -9,6 +9,8 @@ description: "Look up RAG terminology and concepts"
 
 An interactive glossary that provides clear, multi-layered definitions of RAG terminology. Designed to be a quick reference that also teaches.
 
+> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+
 ## Step 1: Determine What to Look Up
 
 - If the user provides a term (e.g., `/glossary embeddings`), define that term.
@@ -29,15 +31,9 @@ An everyday analogy that makes the concept intuitive. Example: "Think of embeddi
 A deeper technical explanation for learners who want to understand the mechanism. Include relevant details like dimensions, algorithms, or mathematical concepts — but keep it accessible.
 
 ### Code Example
-A minimal Python code snippet that demonstrates the concept in action:
+A minimal code snippet in the learner's chosen language that demonstrates the concept in action:
 
-```python
-# Example: Creating an embedding
-from sentence_transformers import SentenceTransformer
-model = SentenceTransformer('all-MiniLM-L6-v2')
-embedding = model.encode("What is RAG?")
-print(f"Dimension: {len(embedding)}")  # 384
-```
+Generate a minimal, runnable example in the learner's language. For instance, if explaining embeddings, show how to create one using the appropriate library.
 
 ### Common Misconceptions
 One or two things people often get wrong about this concept. Example: "Embeddings are not word-for-word encodings — the same word in different contexts will have different embeddings in contextual models."

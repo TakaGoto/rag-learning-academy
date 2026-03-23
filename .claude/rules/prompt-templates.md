@@ -7,6 +7,8 @@ staleness_risk: high
 
 # Prompt Template Rules
 
+> **Language note:** These rules are language-agnostic principles. Code examples use Python for illustration. When generating code for a learner using a different language, apply the same principle using idiomatic patterns for that language. See `.claude/docs/reference/language-support.md` for library mappings.
+
 ## 1. Use template variables, never string concatenation for prompts
 
 Templates are readable, auditable, and less error-prone.
