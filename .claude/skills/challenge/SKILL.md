@@ -9,7 +9,7 @@ description: "Take on a hands-on RAG challenge"
 
 Present the learner with a realistic RAG challenge that tests their skills across multiple components. Challenges are more open-ended than `/build` exercises — they require design decisions, not just implementation.
 
-> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+> **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 ## Step 1: Select a Challenge
 

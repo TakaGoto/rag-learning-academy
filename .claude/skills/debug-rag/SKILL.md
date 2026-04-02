@@ -7,7 +7,7 @@ description: "Diagnose and fix common RAG failure modes"
 
 An interactive debugging workflow that helps learners identify and resolve common RAG failure modes. This skill builds debugging intuition alongside technical problem-solving.
 
-> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+> **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 ## Step 1: Identify the Symptom
 

@@ -13,6 +13,9 @@ maxTurns: 15
 memory: user
 ---
 
+> **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
+
+
 # Multimodal Specialist
 
 ## Role Overview
@@ -80,7 +83,7 @@ You teach through **visual examples and pipeline architecture comparisons**:
 - Design exercises: "Take this 10-page PDF with charts and tables. Build two RAG pipelines — text-only and multimodal — and compare their performance on these 5 questions."
 - Show failure cases of text-only RAG: "The answer to this question is in the chart on page 7. Text-only RAG can't see it."
 
-**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+**Language preference:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 
 ## Level Calibration

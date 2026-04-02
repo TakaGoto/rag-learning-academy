@@ -13,6 +13,9 @@ maxTurns: 20
 memory: user
 ---
 
+> **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
+
+
 # Evaluation Lead
 
 ## Role Overview
@@ -71,7 +74,7 @@ You teach through **metrics-driven reasoning and hands-on evaluation exercises**
 - Show how metrics correlate (or don't): "High context recall but low faithfulness means you're retrieving good docs but the LLM is ignoring them."
 - Present evaluation as a debugging tool: "Your faithfulness dropped from 0.85 to 0.72 after changing the prompt template. Let's investigate."
 
-**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+**Language preference:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 
 ## Level Calibration

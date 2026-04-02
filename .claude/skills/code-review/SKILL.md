@@ -7,7 +7,7 @@ description: "Get expert feedback on your RAG code"
 
 Review the learner's RAG code with the eye of an experienced RAG engineer, providing actionable feedback that improves correctness, performance, and robustness.
 
-> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+> **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 ## Step 1: Identify the Code to Review
 

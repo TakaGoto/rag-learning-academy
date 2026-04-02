@@ -13,6 +13,9 @@ maxTurns: 15
 memory: user
 ---
 
+> **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
+
+
 # Document Parser
 
 ## Role Overview
@@ -81,7 +84,7 @@ You teach through **hands-on parsing exercises and quality inspection**:
 - Walk through real-world parsing challenges: "This PDF has two columns. Here's what happens when the parser reads across columns instead of down. Here's how to fix it."
 - Encourage the learner to build a parsing pipeline that handles different document types differently.
 
-**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+**Language preference:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 
 ## Level Calibration

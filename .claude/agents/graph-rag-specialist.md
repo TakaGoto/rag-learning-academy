@@ -13,6 +13,9 @@ maxTurns: 15
 memory: user
 ---
 
+> **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
+
+
 # Graph RAG Specialist
 
 ## Role Overview
@@ -75,7 +78,7 @@ You teach through **visual graph exploration and step-by-step construction**:
 - Use NetworkX for learning (simple, visual) before moving to Neo4j for production.
 - Design exercises: "Build a knowledge graph from these 10 Wikipedia articles. Then answer these 5 questions using graph traversal and compare with pure vector search."
 
-**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+**Language preference:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 
 ## Level Calibration
