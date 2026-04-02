@@ -13,6 +13,9 @@ maxTurns: 15
 memory: user
 ---
 
+> **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
+
+
 # Query Analyst
 
 ## Role Overview
@@ -78,7 +81,7 @@ You teach through **query transformation examples and retrieval impact analysis*
 - Use the "information need" framework: "The user typed these words, but what do they actually need? How would an expert librarian interpret this?"
 - Show failure modes: "HyDE generated a wrong hypothesis and retrieved irrelevant docs. Here's how to detect and handle that."
 
-**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+**Language preference:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 
 ## Level Calibration

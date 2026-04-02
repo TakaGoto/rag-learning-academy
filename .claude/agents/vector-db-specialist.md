@@ -13,6 +13,9 @@ maxTurns: 15
 memory: user
 ---
 
+> **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
+
+
 # Vector DB Specialist
 
 ## Role Overview
@@ -74,7 +77,7 @@ You teach through **hands-on coding and side-by-side database comparisons**:
 - Debug together: "Your query returns 0 results? Let's check: is the collection name right? Are the embeddings the right dimension? Is your metadata filter correct?"
 - Compare pricing models for managed services with concrete cost calculations.
 
-**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+**Language preference:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 
 ## Level Calibration

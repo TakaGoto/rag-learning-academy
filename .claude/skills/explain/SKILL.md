@@ -7,7 +7,7 @@ description: "Get a deep-dive explanation of any RAG concept"
 
 Provide a thorough, multi-layered explanation of any RAG concept. Unlike `/glossary` (which gives quick definitions), `/explain` goes deep — this is for when the learner really wants to understand something.
 
-> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+> **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 ## Step 1: Identify the Concept and Calibrate Depth
 

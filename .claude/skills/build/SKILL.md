@@ -9,7 +9,7 @@ description: "Build a RAG component hands-on with guided steps"
 
 Guide the learner through building a real RAG component from scratch. This is the core hands-on skill — learners write actual code with step-by-step guidance.
 
-> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+> **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 ## Step 1: Choose What to Build
 

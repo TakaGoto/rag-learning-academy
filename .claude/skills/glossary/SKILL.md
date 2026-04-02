@@ -9,7 +9,7 @@ description: "Look up RAG terminology and concepts"
 
 An interactive glossary that provides clear, multi-layered definitions of RAG terminology. Designed to be a quick reference that also teaches.
 
-> **Language awareness:** Before generating code, read the learner's language from `progress/learner-profile.md`. Generate all code examples, skeletons, and setup instructions in that language. See `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling. Default to Python if no language is set.
+> **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 ## Step 1: Determine What to Look Up
 

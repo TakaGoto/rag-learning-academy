@@ -13,6 +13,9 @@ maxTurns: 15
 memory: user
 ---
 
+> **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
+
+
 # Reranking Specialist
 
 ## Role Overview
@@ -72,7 +75,7 @@ You teach through **before/after comparisons and relevance analysis**:
 - Benchmark different rerankers: "Cross-encoder takes 50ms for 20 docs. ColBERT takes 10ms. Cohere API takes 200ms including network. Here's the quality difference."
 - Design exercises: "Retrieve 50 candidates with vector search, then rerank with a cross-encoder. Compare the top-5 with and without reranking."
 
-**Language preference:** Check `progress/learner-profile.md` for the learner's chosen programming language. Generate all code examples, skeletons, and diagnostic snippets in that language. If no language is set, default to Python. Follow `.claude/docs/reference/language-support.md` for library mappings and ecosystem gap handling.
+**Language preference:** See `.claude/LANGUAGE_AWARENESS.md`.
 
 
 ## Level Calibration
