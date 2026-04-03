@@ -8,9 +8,13 @@ A structured, multi-agent learning environment for mastering Retrieval-Augmented
 
 Inspired by [Claude Code Game Studios](https://github.com/Donchitos/Claude-Code-Game-Studios), reimagined as an interactive learning guide for RAG systems.
 
+<p align="center">
+  <img src="assets/demo.gif" alt="RAG Learning Academy demo" width="720">
+</p>
+
 ## What Is This?
 
-RAG Learning Academy transforms Claude Code into a **personal RAG tutor** with 20 specialized AI agents, 17 interactive slash commands, and a 9-module curriculum that takes you from "what is RAG?" to production deployment.
+RAG Learning Academy transforms Claude Code into a **personal RAG tutor** with 20 specialized AI agents, 22 interactive slash commands, and a 9-module curriculum that takes you from "what is RAG?" to production deployment.
 
 Every concept is paired with a hands-on exercise. Every exercise is paired with evaluation metrics. You learn by building.
 
@@ -37,27 +41,32 @@ Agents don't auto-route — they answer directly when asked, and Claude will sug
 | Domain Leads | 5 | Embedding, Retrieval, Indexing, Evaluation, Integration | opus |
 | Specialists | 12 | Chunking, Vector DB, Reranking, Prompt Engineering, Hybrid Search, Document Parsing, Metadata, Query Analysis, Deployment, Evaluation Metrics, Graph RAG, Multimodal | sonnet |
 
-### 17 Slash Commands
+### 22 Slash Commands
 
 | Command | What It Does |
 |---------|-------------|
-| `/start` | Assess your level, pick a learning track |
-| `/lesson` | Start or continue a curriculum lesson |
+| `/start` | Assess your level, pick a track, get a working pipeline |
+| `/lesson` | Start or continue a lesson (checkpoint quizzes between modules) |
 | `/quiz` | Test your understanding |
 | `/build` | Build a RAG component step by step |
 | `/evaluate` | Run metrics on your pipeline |
 | `/debug-rag` | Diagnose common RAG failures |
-| `/compare` | Compare two approaches side by side |
+| `/compare` | Compare two approaches with live side-by-side output diffs |
 | `/benchmark` | Benchmark pipeline performance |
 | `/architecture` | Design a RAG system for a use case |
 | `/paper-review` | Walk through a research paper |
 | `/code-review` | Get feedback on your RAG code |
 | `/glossary` | Look up RAG terminology |
 | `/challenge` | Take on a hands-on challenge |
-| `/explain` | Deep-dive into any concept |
-| `/roadmap` | View your progress and next steps |
+| `/explain` | Deep-dive into any concept (supports ELI5 mode) |
+| `/roadmap` | View progress, badges, streaks, and export GitHub badges |
 | `/triage` | Not sure where to go? Get routed to the right skill |
 | `/audit-content` | Check materials for outdated references |
+| `/recap` | Quick summary of what you covered last session |
+| `/sandbox` | Spin up a minimal RAG pipeline instantly |
+| `/break-it` | Learn by debugging intentionally broken pipelines |
+| `/fix` | Skip the teaching, diagnose and fix your pipeline |
+| `/journal` | Write notes about what clicked or confused you |
 
 ### 9-Module Curriculum
 
@@ -138,7 +147,7 @@ rag-learning-academy/
 ├── .claude/
 │   ├── settings.json            # Hooks, permissions
 │   ├── agents/                  # 20 specialist agents
-│   ├── skills/                  # 17 slash commands
+│   ├── skills/                  # 22 slash commands
 │   ├── hooks/                   # Freshness checks, validation scripts
 │   ├── rules/                   # Path-scoped coding standards
 │   └── docs/

@@ -94,7 +94,22 @@ Ask 2-3 quick comprehension questions to verify the learner grasped the key idea
 
 ## Step 9: Track Progress
 
-Update `progress/module-tracker.md` to mark this lesson as complete. Add the completion date. If all lessons in a module are complete, congratulate the learner.
+Update `progress/module-tracker.md` to mark this lesson as complete. Add the completion date.
+
+### Streak Update
+
+Read `progress/streaks.md`. If it exists, update the last activity date to today. If today is the day after the last activity, increment the streak. If there's a gap, reset to 1. If the file doesn't exist, create it with streak: 1.
+
+### Module Checkpoint Quiz
+
+If this lesson completes a module (all lessons in the module are now marked done):
+
+1. Congratulate the learner: "Module [N] complete! Before you move on, let's do a quick checkpoint."
+2. Ask 3 short questions covering the module's key concepts. Mix types: one conceptual, one scenario, one true/false.
+3. Grade gently. If they get 2-3 right: "Solid. You're ready for the next module."  If 0-1: "A couple gaps — no problem. Want to revisit anything before moving on, or push forward and come back later?"
+4. Don't block progression. This is a temperature check, not a gate.
+
+If the lesson does NOT complete a module, skip the checkpoint and suggest next steps normally.
 
 Suggest 2-3 relevant next steps using slash commands:
 

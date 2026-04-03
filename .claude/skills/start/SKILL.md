@@ -130,16 +130,32 @@ Also create `progress/module-tracker.md` initialized with empty checkboxes for e
 
 Then proceed to **Step 7: Next Steps**.
 
-## Step 7: Next Steps
+## Step 7: Quick-Start Scaffold
+
+Before sending the learner off, give them something tangible. Create a minimal working RAG pipeline so they have code running in their first session:
+
+1. Create `sandbox/data.txt` with 5-8 short paragraphs about RAG basics (use the content from Module 01 as source material)
+2. Create `sandbox/pipeline.[ext]` (in their chosen language) that:
+   - Loads the sample data
+   - Chunks it (fixed-size, 200 tokens)
+   - Embeds chunks with a local model (all-MiniLM-L6-v2 for Python/TS)
+   - Stores in ChromaDB (in-memory)
+   - Retrieves top-3 chunks for a sample query
+   - Prints results with similarity scores
+3. Create `sandbox/README.md` with run instructions
+
+Run the pipeline and show the output: "Here's your first RAG retrieval. It's basic, but it works. You'll understand every piece of this by the end of Module 2."
+
+If dependency installation is needed, guide them through it first.
+
+## Step 8: Next Steps
 
 Tell the learner their profile has been saved. Mention the milestone system: "Your track has milestones — concrete checkpoints that mark real progress. Run `/roadmap` anytime to see how far you've come."
 
-Encourage them: "You're going to build real, working RAG systems. Let's start."
-
 Suggest next steps:
 
-- `/lesson` — start your first lesson
+- `/lesson` — start your first lesson (your sandbox pipeline will make the concepts concrete)
 - `/roadmap` — view the full curriculum map and track your progress
-- `/glossary` — look up any unfamiliar RAG terms as you learn
+- `/journal` — jot down thoughts or questions as you learn
 
 Keep the tone warm, encouraging, and practical throughout.
