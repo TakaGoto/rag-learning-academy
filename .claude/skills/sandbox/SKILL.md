@@ -5,6 +5,8 @@ description: "Spin up a minimal RAG pipeline instantly to experiment with"
 
 # Sandbox: Get a Working RAG Pipeline in 5 Minutes
 
+> **Scope:** This skill **scaffolds a minimal pipeline** for quick experimentation. For guided, step-by-step building with explanations, use `/build`.
+
 Scaffold a complete, minimal RAG pipeline with sample data so the learner has something running immediately. This is for experimentation, not production.
 
 > **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.

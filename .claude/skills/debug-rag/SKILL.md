@@ -5,6 +5,8 @@ description: "Diagnose and fix common RAG failure modes"
 
 # Debug RAG: Diagnose and Fix Pipeline Issues
 
+> **Scope:** This skill **teaches debugging** through guided diagnosis and explanation. For a fast fix without the teaching, use `/fix`.
+
 An interactive debugging workflow that helps learners identify and resolve common RAG failure modes. This skill builds debugging intuition alongside technical problem-solving.
 
 > **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.

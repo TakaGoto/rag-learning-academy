@@ -47,3 +47,8 @@ Keep it short. Respond based on the category:
 - **note**: Just confirm. "Noted."
 
 Don't turn this into a teaching moment unless they ask. The journal is for *them*, not for the system.
+
+Suggest next steps if appropriate:
+- `/lesson` to continue learning
+- `/roadmap` to check your progress
+- `/explain [topic]` if a confusion entry points to a specific concept

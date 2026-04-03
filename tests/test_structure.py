@@ -54,10 +54,25 @@ class TestFileExistence:
 
     @pytest.mark.parametrize(
         "ref_doc",
-        ["agent-roster.md", "glossary.md", "coordination-rules.md", "coding-standards.md", "quick-start.md"],
+        [
+            "agent-roster.md",
+            "glossary.md",
+            "coordination-rules.md",
+            "coding-standards.md",
+            "quick-start.md",
+            "token-usage.md",
+            "voice-examples.md",
+        ],
     )
     def test_reference_doc_exists(self, ref_doc):
         assert (REFERENCE_DIR / ref_doc).exists(), f"Reference doc missing: {ref_doc}"
+
+    @pytest.mark.parametrize(
+        "shared_file",
+        ["LANGUAGE_AWARENESS.md", "AGENT_TEMPLATE.md"],
+    )
+    def test_shared_file_exists(self, shared_file):
+        assert (CLAUDE_DIR / shared_file).exists(), f"Shared file missing: {shared_file}"
 
     @pytest.mark.parametrize(
         "template",
@@ -129,6 +144,16 @@ class TestAgentStructure:
     def test_agent_has_h1_heading(self, agent):
         text = (AGENTS_DIR / f"{agent}.md").read_text()
         assert re.search(r"^# .+", text, re.MULTILINE), f"{agent}: missing H1 heading"
+
+    @pytest.mark.parametrize("agent", EXPECTED_AGENTS)
+    def test_agent_references_shared_template(self, agent):
+        text = (AGENTS_DIR / f"{agent}.md").read_text()
+        assert "AGENT_TEMPLATE.md" in text, f"{agent}: missing reference to AGENT_TEMPLATE.md"
+
+    @pytest.mark.parametrize("agent", EXPECTED_AGENTS)
+    def test_agent_references_language_awareness(self, agent):
+        text = (AGENTS_DIR / f"{agent}.md").read_text()
+        assert "LANGUAGE_AWARENESS" in text, f"{agent}: missing reference to LANGUAGE_AWARENESS.md"
 
 
 # ---------------------------------------------------------------------------
