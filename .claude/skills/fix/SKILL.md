@@ -5,6 +5,8 @@ description: "Diagnose and fix your RAG pipeline — skip the teaching, get to t
 
 # Fix: Fast-Track RAG Diagnosis
 
+> **Scope:** This skill **diagnoses and fixes** an existing pipeline with no teaching. For guided debugging that explains common failure modes, use `/debug-rag`.
+
 For learners who already have a RAG pipeline and just need help fixing it. No curriculum, no lessons — straight to diagnosis and solutions.
 
 > **Language awareness:** See `.claude/LANGUAGE_AWARENESS.md`.
@@ -63,3 +65,8 @@ Help them test the fix:
 After the fix works, offer (don't push): "Want to understand why this happened? `/explain [relevant concept]` goes deeper on this."
 
 Log the fix to `progress/debug-log.md` if the file exists.
+
+Suggest next steps:
+- `/lesson` on the concept behind the issue
+- `/build` to implement the correct pattern from scratch
+- `/roadmap` to see your overall progress

@@ -43,6 +43,7 @@ EXPECTED_SKILLS = [
     "architecture",
     "audit-content",
     "benchmark",
+    "break-it",
     "build",
     "challenge",
     "code-review",
@@ -50,11 +51,15 @@ EXPECTED_SKILLS = [
     "debug-rag",
     "evaluate",
     "explain",
+    "fix",
     "glossary",
+    "journal",
     "lesson",
     "paper-review",
     "quiz",
+    "recap",
     "roadmap",
+    "sandbox",
     "start",
     "triage",
 ]
@@ -77,6 +82,8 @@ SCOPE_PAIRS = [
     ("quiz", "lesson"),
     ("challenge", "build"),
     ("evaluate", "benchmark"),
+    ("sandbox", "build"),
+    ("fix", "debug-rag"),
 ]
 
 VALID_REVIEW_CYCLES = {"monthly", "quarterly", "semi-annually"}
