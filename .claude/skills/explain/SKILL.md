@@ -13,6 +13,17 @@ Provide a thorough, multi-layered explanation of any RAG concept. Unlike `/gloss
 
 If the user specifies a concept (e.g., `/explain cosine similarity`), explain that. If they give a vague topic (e.g., "retrieval"), ask a clarifying question to narrow the scope. Good explanations are focused.
 
+### ELI5 Mode
+
+If the learner says `/explain eli5 [concept]` or includes "eli5", "simple", "for dummies", or "no jargon":
+- Give the entire explanation using only everyday language and analogies
+- Zero technical terms. If you must use one, define it in parentheses immediately
+- Skip the code example and math. Use diagrams and real-world comparisons instead
+- Keep the whole explanation under 20 lines
+- End with: "Want the technical version? Just say 'go deeper.'"
+
+### Standard Mode
+
 - If the learner seems to want a quick answer (short question, or they say "briefly" / "quickly"), provide a **2-3 sentence TL;DR** first, then ask "Want me to go deeper?" before proceeding through the full 9-step explanation.
 - If the learner wants depth, proceed normally through all steps.
 

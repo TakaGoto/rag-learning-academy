@@ -108,23 +108,28 @@ This keeps the UX lightweight — no extra token cost unless the learner opts in
 
 | Command | Purpose |
 |---------|---------|
-| `/start` | Begin your RAG learning journey — assess level, pick a path |
-| `/lesson` | Start or continue a curriculum lesson |
+| `/start` | Begin your RAG learning journey — assess level, pick a path, get a working pipeline |
+| `/lesson` | Start or continue a curriculum lesson (with checkpoint quizzes between modules) |
 | `/quiz` | Test your understanding of a concept |
 | `/build` | Hands-on: build a RAG component step by step |
 | `/evaluate` | Evaluate your RAG pipeline with metrics |
 | `/debug-rag` | Diagnose common RAG failure modes |
-| `/compare` | Compare two approaches side by side |
+| `/compare` | Compare two approaches side by side with live output diffs |
 | `/benchmark` | Benchmark your pipeline's performance |
 | `/architecture` | Design a RAG architecture for a use case |
 | `/paper-review` | Walk through a RAG research paper |
 | `/code-review` | Get feedback on your RAG code |
 | `/glossary` | Look up RAG terminology |
 | `/challenge` | Take on a hands-on RAG challenge |
-| `/explain` | Deep-dive explanation of any RAG concept |
-| `/roadmap` | View your learning progress and next steps |
+| `/explain` | Deep-dive explanation of any RAG concept (supports ELI5 mode) |
+| `/roadmap` | View progress, badges, streaks, time estimates, and export GitHub badges |
 | `/triage` | Not sure where to start? Get routed to the right skill |
 | `/audit-content` | Audit materials for outdated references and stale content |
+| `/recap` | Quick summary of what you covered last session |
+| `/sandbox` | Spin up a minimal RAG pipeline instantly to experiment with |
+| `/break-it` | Find the bug — learn RAG by debugging intentionally broken pipelines |
+| `/fix` | Diagnose and fix your RAG pipeline — skip the teaching, get to the answer |
+| `/journal` | Write a quick note about what you learned or what confused you |
 
 ## Tech Stack (Default)
 

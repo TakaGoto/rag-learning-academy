@@ -77,15 +77,40 @@ Help the learner decide which approach fits their situation:
 
 Frame this as trade-offs, not absolute recommendations. The right choice depends on the use case.
 
-## Step 4: Hands-On Experiment
+## Step 4: Live Side-by-Side Demo
 
-Suggest a quick experiment the learner can run to compare both approaches with their own data:
+Don't just describe the differences. Show them. Using the learner's sample data (or the sandbox data if available):
+
+1. **Run both approaches on the same 3 queries** and display results side by side:
+
+```
+Query: "How does chunking affect retrieval?"
+
+Fixed Chunking (256 tokens)          | Semantic Chunking
+-------------------------------------|--------------------------------------
+Result 1 (0.89): "...chunking is     | Result 1 (0.94): "Chunking strategy
+the process of splitting documents   | directly impacts retrieval quality.
+into smaller..."                     | Bad splits destroy context and..."
+                                     |
+Result 2 (0.82): "...overlap of 50   | Result 2 (0.91): "The ideal chunk
+tokens helps preserve context at..." | is a self-contained unit of..."
+```
+
+2. **Highlight the differences**: "Notice how semantic chunking found a more complete answer as result 1? That's because it split on topic boundaries instead of character count."
+
+3. **Show the numbers**: retrieval scores, chunk counts, any measurable difference.
+
+If the learner has their own data in `src/` or `sandbox/`, use that. Otherwise, generate a small sample dataset that makes the differences visible.
+
+## Step 5: DIY Experiment
+
+Suggest a quick experiment the learner can run to extend the comparison:
 1. Set up both approaches with minimal code
 2. Run the same set of test queries through each
 3. Compare results on relevancy, latency, and output quality
 4. Draw their own conclusions
 
-## Step 5: Key Takeaway
+## Step 6: Key Takeaway
 
 Summarize the comparison in one or two sentences that capture the essential trade-off. For example: "Fixed chunking is simpler and faster to set up, but semantic chunking preserves meaning boundaries — start with fixed, switch to semantic when you see context-boundary issues."
 

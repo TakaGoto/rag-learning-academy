@@ -21,28 +21,55 @@ If `progress/learner-profile.md` does not exist, the learner has not started yet
 
 ## Step 2: Display Progress Overview
 
-Present a clear summary:
+Present a clear summary with module badges and time estimates:
 
 ```
 RAG Learning Academy — Your Progress
 =====================================
 Track: [Beginner/Intermediate/Advanced]
-Started: [date]
-Days active: [N]
+Started: [date] | Days active: [N] | Streak: [N]d
 
 Module Progress:
   [===========-------] 58% (21/36 lessons)
 
-  Module 1: Foundations              [####] Complete
-  Module 2: Document Processing      [####] Complete
-  Module 3: Embeddings               [##--] 2/4 lessons
-  Module 4: Vector Databases         [----] Not started
-  Module 5: Retrieval Strategies     [----] Not started
-  Module 6: Generation               [----] Not started
-  Module 7: Evaluation               [----] Not started
-  Module 8: Advanced Patterns        [----] Not started
-  Module 9: Production               [----] Not started
+  Module 1: Foundations              [####] Complete        ~2h done
+  Module 2: Document Processing      [####] Complete        ~3h done
+  Module 3: Embeddings               [##--] 2/4 lessons    ~1.5h left
+  Module 4: Vector Databases         [----] Not started     ~3h est.
+  ...
+
+  Time remaining on your track: ~8.5 hours
 ```
+
+### Module Completion Badges
+
+When a module is complete, show a badge next to it:
+
+```
+  Module 1: Foundations              [####] Complete   [FOUNDATIONS]
+  Module 2: Document Processing      [####] Complete   [DATA WRANGLER]
+  Module 3: Embeddings               [####] Complete   [VECTOR NAVIGATOR]
+```
+
+Badge names by module:
+| Module | Badge |
+|--------|-------|
+| 1 | FOUNDATIONS |
+| 2 | DATA WRANGLER |
+| 3 | VECTOR NAVIGATOR |
+| 4 | DB ARCHITECT |
+| 5 | RETRIEVAL ENGINEER |
+| 6 | PROMPT CRAFTER |
+| 7 | QUALITY GUARDIAN |
+| 8 | PATTERN MASTER |
+| 9 | PRODUCTION READY |
+
+### Time Estimates
+
+Estimate time per module based on lesson count and type (core ~45min, optional ~30min). Show:
+- Time spent (completed lessons)
+- Time remaining (incomplete lessons in track)
+- Total track estimate
 
 Use visual progress bars built from ASCII characters. Make the progress feel tangible and motivating.
 
@@ -86,6 +113,9 @@ When a learner earns a new level, celebrate it prominently: "Congratulations —
 
 Call out what the learner has accomplished:
 - Total lessons completed
+- Module badges earned (list them)
+- Current streak (read from `progress/streaks.md`)
+- Longest streak
 - Milestones earned
 - Quizzes passed (and average score)
 - Challenges completed (with difficulty levels)
@@ -146,7 +176,23 @@ If the learner is short on time, suggest focusing on core lessons first: "You ca
 
 This gives the learner a birds-eye view of the entire journey.
 
-## Step 8: Motivational Close
+## Step 8: GitHub Badge Export
+
+If the learner asks for a badge (e.g., says "badge" or "readme badge"), generate a shields.io markdown badge they can add to their README:
+
+```markdown
+![RAG Academy Progress](https://img.shields.io/badge/RAG_Academy-Module_5%2F9-8B5CF6?style=flat-square&logo=data:image/svg+xml;base64,...)
+```
+
+Generate the badge URL dynamically based on their actual progress:
+- Color: `8B5CF6` (academy purple) for in-progress, `22C55E` (green) for complete
+- Label: `RAG Academy`
+- Message: `Module X/9` or `Complete` if all modules done
+- Style: `flat-square`
+
+Show them the markdown to copy-paste into their project's README.
+
+## Step 9: Motivational Close
 
 End with a brief, genuine note based on their progress. Follow the project's voice & tone — real encouragement, not cheerleading:
 
