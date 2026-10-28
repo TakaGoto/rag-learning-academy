@@ -19,7 +19,7 @@ format:
 	ruff check --fix tests/ src/
 
 shellcheck:
-	shellcheck .claude/hooks/*.sh
+	shellcheck .claude/hooks/*.sh .github/scripts/*.sh
 
 knowledge-check:
 	python3 .github/scripts/weekly_knowledge_check.py

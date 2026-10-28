@@ -1,6 +1,6 @@
 # RAG Learning Academy — Multi-Agent Learning Architecture
 
-A structured learning environment for mastering Retrieval-Augmented Generation (RAG), powered by 20 specialized Claude Code agents, 15 interactive skills, and a 9-module curriculum.
+A structured learning environment for mastering Retrieval-Augmented Generation (RAG), powered by 20 specialized Claude Code agents, 22 interactive skills, and a 9-module curriculum.
 
 ## Philosophy
 
@@ -154,11 +154,13 @@ Not sure where to go? Run `/triage` to get routed to the right skill based on yo
 
 ## Content Freshness
 
-Academy materials are monitored for staleness via:
-- **Session hook:** `check-freshness.sh` warns on startup if content files haven't been updated in 90+ days
+Every content file (curriculum, reference docs, templates, rules, sample data) carries `last_reviewed`, `review_cycle` (monthly / quarterly / semi-annually), and `staleness_risk` frontmatter. Agent files use git history instead, since Claude Code owns their frontmatter. Materials are monitored via:
+- **Session hook:** `check-freshness.sh` warns on startup about files past their review cycle (it runs `.github/scripts/content_freshness.sh`, the same script CI uses)
 - **On-demand audit:** Run `/audit-content` to scan for deprecated models, outdated libraries, and stale references
-- **CI pipeline:** Monthly GitHub Actions workflow creates issues for stale content
+- **Monthly CI:** `content-freshness.yml` finds files past their cycle, has Claude Code verify every model, version, and vendor reference against live docs, and opens a pull request with the fixes. Without an `ANTHROPIC_API_KEY` secret it keeps one tracking issue up to date instead.
 - **Research director:** Extended with content currency auditing responsibilities
+
+When you update a content file, set its `last_reviewed` to today's date.
 
 ## Resource References
 

@@ -176,12 +176,14 @@ Not sure where to go? Run `/triage` to get routed based on your situation.
 
 ## Content Freshness
 
-Academy materials are actively monitored so nothing goes stale:
+Every content file carries `last_reviewed`, `review_cycle`, and `staleness_risk` frontmatter, and the academy checks itself against them:
 
+- **Session hook** — warns on startup about files past their review cycle
+- **Monthly CI** — [`content-freshness.yml`](.github/workflows/content-freshness.yml) finds files past their cycle, has Claude Code verify every model, version, and vendor reference against live docs, and opens a pull request with the fixes. Without an `ANTHROPIC_API_KEY` repository secret (in a fork, say) it keeps a single tracking issue up to date instead.
 - **Weekly CI** — checks PyPI versions, deprecated patterns, MTEB model health, review cycles ([details](.github/workflows/weekly-knowledge-check.yml))
-- **Monthly CI** — content age report, creates GitHub issues for stale files
 - **On-demand** — run `/audit-content` for a deep review with web search verification
-- **Frontmatter** — every content file has `last_reviewed`, `review_cycle`, and `staleness_risk` metadata
+
+To turn on automatic updates in your own copy, add an `ANTHROPIC_API_KEY` secret (or swap the workflow's `anthropic_api_key` line for `claude_code_oauth_token` with a token from `claude setup-token`). Pull requests opened with the default `GITHUB_TOKEN` don't trigger CI, so the workflow runs the test gate itself before opening one; add a `FRESHNESS_PR_TOKEN` personal-access-token secret if you also want CI to run on those PRs.
 
 ## Philosophy
 

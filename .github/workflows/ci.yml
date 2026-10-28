@@ -36,6 +36,11 @@ jobs:
         with:
           scandir: .claude/hooks
 
+      - name: Run ShellCheck on CI scripts
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: .github/scripts
+
   test:
     runs-on: ubuntu-latest
     steps:
