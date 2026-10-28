@@ -36,11 +36,13 @@ for arg in "$@"; do
     esac
 done
 
-# launchd starts jobs with a bare PATH; add the usual tool locations.
-export PATH="$HOME/.local/bin:$HOME/.claude/local:/opt/homebrew/bin:/usr/local/bin:$PATH"
+# launchd starts jobs with a bare PATH; add the usual tool locations. The
+# native Claude Code install (~/.local/bin) goes first so it beats an older
+# npm copy under nvm.
 for d in "$HOME"/.nvm/versions/node/*/bin; do
     [ -d "$d" ] && PATH="$d:$PATH"
 done
+export PATH="$HOME/.local/bin:$HOME/.claude/local:/opt/homebrew/bin:/usr/local/bin:$PATH"
 # A nested Claude Code session refuses to start; this script may be launched from one.
 unset CLAUDECODE
 
