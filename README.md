@@ -176,12 +176,13 @@ Not sure where to go? Run `/triage` to get routed based on your situation.
 
 ## Content Freshness
 
-Academy materials are actively monitored so nothing goes stale:
+Every content file carries `last_reviewed`, `review_cycle`, and `staleness_risk` frontmatter, and the academy checks itself against them:
 
+- **Session hook** — warns on startup about files past their review cycle
+- **Monthly CI** — [`content-freshness.yml`](.github/workflows/content-freshness.yml) finds files past their cycle and keeps a single tracking issue up to date. Report only: no API key, no spend.
+- **Local routine** — [`scripts/freshness_routine.sh`](scripts/freshness_routine.sh) does the fixing from a maintainer's machine with Claude Code on your subscription: it reviews the flagged files against live docs, runs the test gate, opens a PR, waits for CI, and merges it. `--check` verifies the setup, `--dry-run` reviews and commits locally without pushing, and on macOS `--install` registers a launchd job for the 2nd of each month at 10:00 (`--uninstall` removes it).
 - **Weekly CI** — checks PyPI versions, deprecated patterns, MTEB model health, review cycles ([details](.github/workflows/weekly-knowledge-check.yml))
-- **Monthly CI** — content age report, creates GitHub issues for stale files
 - **On-demand** — run `/audit-content` for a deep review with web search verification
-- **Frontmatter** — every content file has `last_reviewed`, `review_cycle`, and `staleness_risk` metadata
 
 ## Philosophy
 

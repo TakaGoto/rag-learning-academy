@@ -1,81 +1,35 @@
 name: Content Freshness Check
 
+# Monthly report: find content past its review cycle (last_reviewed +
+# review_cycle frontmatter) and keep ONE tracking issue up to date.
+# Fixing is done by scripts/freshness_routine.sh, which runs Claude Code on a
+# maintainer's machine (subscription, no API key) and opens + merges a PR.
+
 on:
   schedule:
     - cron: '0 9 1 * *'  # 1st of each month at 9 AM UTC
-  workflow_dispatch:  # Allow manual trigger
+  workflow_dispatch:
+
+concurrency:
+  group: content-freshness
+  cancel-in-progress: false
 
 jobs:
-  freshness-check:
+  freshness:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+    env:
+      REPORT_TITLE: "Monthly Content Freshness Report — ${{ github.event.repository.name }}"
+      GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
-          fetch-depth: 0  # Full history for git log dates
+          fetch-depth: 0  # git history is the fallback date for files without frontmatter
 
-      - name: Check content file ages
-        id: check-ages
-        run: |
-          echo "## Content Freshness Report — $(date +%Y-%m-%d)" > freshness-report.md
-          echo "" >> freshness-report.md
-          NOW=$(date +%s)
-          STALE_COUNT=0
-          WARN_COUNT=0
-
-          echo "### File Age Summary" >> freshness-report.md
-          echo "" >> freshness-report.md
-          echo "| Status | File | Days Since Update | Last Updated |" >> freshness-report.md
-          echo "|--------|------|-------------------|--------------|" >> freshness-report.md
-
-          for f in .claude/docs/curriculum/*.md .claude/agents/*.md .claude/docs/reference/*.md .claude/rules/*.md data/raw/*.md; do
-            [ -f "$f" ] || continue
-            LAST=$(git log -1 --format="%ct" -- "$f" 2>/dev/null || echo "0")
-            if [ "$LAST" -gt 0 ]; then
-              DAYS=$(( (NOW - LAST) / 86400 ))
-              DATE=$(git log -1 --format="%cs" -- "$f")
-              BASENAME=$(basename "$f")
-              if [ "$DAYS" -gt 90 ]; then
-                echo "| :red_circle: STALE | \`$BASENAME\` | $DAYS | $DATE |" >> freshness-report.md
-                STALE_COUNT=$((STALE_COUNT + 1))
-              elif [ "$DAYS" -gt 60 ]; then
-                echo "| :yellow_circle: WARNING | \`$BASENAME\` | $DAYS | $DATE |" >> freshness-report.md
-                WARN_COUNT=$((WARN_COUNT + 1))
-              fi
-            fi
-          done
-
-          echo "" >> freshness-report.md
-          echo "**Summary:** $STALE_COUNT stale files (90+ days), $WARN_COUNT warning files (60-90 days)" >> freshness-report.md
-
-          echo "stale_count=$STALE_COUNT" >> "$GITHUB_OUTPUT"
-          echo "warn_count=$WARN_COUNT" >> "$GITHUB_OUTPUT"
-
-      - name: Scan for deprecated patterns
-        run: |
-          echo "" >> freshness-report.md
-          echo "### Deprecated Pattern Scan" >> freshness-report.md
-          echo "" >> freshness-report.md
-
-          DEPRECATED="gpt-3.5-turbo|text-embedding-ada-002|claude-2[^-]|claude-instant"
-          HITS=$(grep -rnE "$DEPRECATED" .claude/ src/ data/ 2>/dev/null || true)
-          if [ -n "$HITS" ]; then
-            echo "**Deprecated model references found:**" >> freshness-report.md
-            echo '```' >> freshness-report.md
-            echo "$HITS" >> freshness-report.md
-            echo '```' >> freshness-report.md
-          else
-            echo "No deprecated model references found." >> freshness-report.md
-          fi
-
-      - name: Create issue if problems found
-        if: steps.check-ages.outputs.stale_count != '0' || steps.check-ages.outputs.warn_count != '0'
-        uses: peter-evans/create-issue-from-file@v5
-        with:
-          title: "Monthly Content Freshness Report — ${{ github.event.repository.name }}"
-          content-filepath: freshness-report.md
-          labels: content-review,automated
+      - name: Find content past its review cycle
+        id: check
+        run: bash .github/scripts/content_freshness.sh --report freshness-report.md --stale-list stale-files.txt
 
       - name: Upload report artifact
         if: always()
@@ -83,3 +37,33 @@ jobs:
         with:
           name: freshness-report
           path: freshness-report.md
+
+      - name: Look up the existing tracking issue
+        id: issue
+        run: |
+          NUM=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --label content-review \
+                  --search "\"$REPORT_TITLE\" in:title" --json number --jq '.[0].number // empty')
+          echo "number=$NUM" >> "$GITHUB_OUTPUT"
+
+      - name: Add the how-to-fix note
+        if: steps.check.outputs.stale_count != '0' || steps.check.outputs.deprecated_count != '0'
+        run: |
+          {
+            echo
+            echo "> Fix: run \`scripts/freshness_routine.sh\` on a maintainer's machine (or let its monthly launchd job run). It reviews these files with Claude Code, opens a PR, and merges it once CI is green. See README → Content Freshness."
+          } >> freshness-report.md
+
+      - name: Create or update the tracking issue
+        if: steps.check.outputs.stale_count != '0' || steps.check.outputs.deprecated_count != '0'
+        uses: peter-evans/create-issue-from-file@v6
+        with:
+          title: ${{ env.REPORT_TITLE }}
+          content-filepath: freshness-report.md
+          labels: content-review,automated
+          issue-number: ${{ steps.issue.outputs.number }}
+
+      - name: Close the tracking issue when everything is current
+        if: steps.check.outputs.stale_count == '0' && steps.check.outputs.deprecated_count == '0' && steps.issue.outputs.number != ''
+        run: |
+          gh issue close "${{ steps.issue.outputs.number }}" --repo "$GITHUB_REPOSITORY" \
+            --comment "Every content file is within its review cycle as of ${{ steps.check.outputs.today }}. Closing."

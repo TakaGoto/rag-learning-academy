@@ -7,7 +7,8 @@ WARNINGS=()
 
 # Check for deprecated model IDs
 DEPRECATED_MODELS="gpt-3.5-turbo|text-embedding-ada-002|claude-2[^-]|claude-instant"
-HITS=$(grep -rlE "$DEPRECATED_MODELS" "$PROJECT_ROOT/.claude/" "$PROJECT_ROOT/src/" "$PROJECT_ROOT/data/" 2>/dev/null || true)
+# --exclude-dir=hooks keeps this script (which defines the pattern list) from flagging itself
+HITS=$(grep -rlE "$DEPRECATED_MODELS" --exclude-dir=hooks "$PROJECT_ROOT/.claude/" "$PROJECT_ROOT/src/" "$PROJECT_ROOT/data/" 2>/dev/null || true)
 if [ -n "$HITS" ]; then
     WARNINGS+=("  Deprecated model IDs found in: $(echo "$HITS" | xargs -I{} basename {} | tr '\n' ', ')")
 fi
