@@ -1,6 +1,6 @@
 ---
 path: src/generation/**
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: monthly
 staleness_risk: high
 ---
@@ -53,14 +53,15 @@ SYSTEM_PROMPT = "You are a helpful assistant."
 
 ## 3. Set maximum context length per model
 
-Prevent context overflow that truncates important content.
+Prevent context overflow that truncates important content. Every current Claude model takes 1M tokens, but a big window isn't a reason to fill it: you pay for every token, and long contexts still bury details in the middle.
 
 ```python
 # Correct
 MODEL_CONTEXT_LIMITS = {
-    "gpt-4o": 128_000,
-    "gpt-4o-mini": 128_000,
-    "claude-sonnet-4-6-20250514": 200_000,  # Check Anthropic docs for current model IDs
+    "claude-opus-5-5": 1_000_000,
+    "claude-sonnet-5-5": 1_000_000,
+    "claude-haiku-5-5": 1_000_000,  # Check Anthropic docs for current model IDs
+    # add your other providers' models from their docs
 }
 
 def build_prompt(query: str, context: str, model: str) -> str:
@@ -70,7 +71,7 @@ def build_prompt(query: str, context: str, model: str) -> str:
 
 # Incorrect - no limit, context can overflow
 def build_prompt(query, context):
-    return f"Context: {context}\n\nQuestion: {query}"  # context could be 500K tokens
+    return f"Context: {context}\n\nQuestion: {query}"  # context could blow past even a 1M window
 ```
 
 ## 4. Always include source attribution in generated responses

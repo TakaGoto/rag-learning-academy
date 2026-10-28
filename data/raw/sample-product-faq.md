@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: semi-annually
 staleness_risk: low
 ---
@@ -24,7 +24,7 @@ A: Each call to the `/search` or `/ask` endpoint counts as one query. Indexing o
 ## Features
 
 **Q: Which embedding models are supported?**
-A: We support OpenAI text-embedding-3-small, text-embedding-3-large, Cohere embed-v3, and any Sentence Transformers model via ONNX import.
+A: We support OpenAI text-embedding-3-small, text-embedding-3-large, Cohere Embed 5, and any Sentence Transformers model via ONNX import.
 
 **Q: Can I use hybrid search?**
 A: Yes. Pro and Enterprise plans include BM25 + dense hybrid retrieval with configurable fusion weights.

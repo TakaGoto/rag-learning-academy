@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -216,7 +216,7 @@ _Describe the planned architecture in 3-5 sentences._
 |---|---|---|---|
 | Embedding model | _[e.g., text-embedding-3-small]_ | _High/Medium/Low_ | _[e.g., BGE-base]_ |
 | Vector database | _[e.g., pgvector]_ | _High/Medium/Low_ | _[e.g., ChromaDB]_ |
-| LLM | _[e.g., Claude 3.5 Sonnet]_ | _High/Medium/Low_ | _[e.g., GPT-4o]_ |
+| LLM | _[e.g., Claude Sonnet 5.5]_ | _High/Medium/Low_ | _[e.g., GPT-6]_ |
 | Framework | _[e.g., None (custom)]_ | _High/Medium/Low_ | _[e.g., LangChain]_ |
 
 ### Proof-of-Concept Plan

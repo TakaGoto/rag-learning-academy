@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Language Support Guide
 
 ## Reading the Learner's Language Preference
@@ -24,10 +30,10 @@ Before generating any code, read `progress/learner-profile.md` and check the **L
 
 | Concept | Python | TypeScript | Go | Rust |
 |---------|--------|------------|-----|------|
-| RAG framework | LangChain, LlamaIndex | LangChain.js | (manual — build from API calls) | (manual — build from API calls) |
+| RAG framework | LangChain 1.x (`langchain-classic` for legacy chains), LlamaIndex | LangChain.js | (manual — build from API calls) | (manual — build from API calls) |
 | Vector DB (local) | chromadb | chromadb | chromem-go, qdrant-client | qdrant-client |
-| Vector DB (hosted) | pinecone-client, qdrant-client | @pinecone-database/pinecone, @qdrant/js-client-rest | qdrant-client | qdrant-client |
-| Embeddings (local) | sentence-transformers | @xenova/transformers | (API only) | (API only) |
+| Vector DB (hosted) | pinecone, qdrant-client | @pinecone-database/pinecone, @qdrant/js-client-rest | qdrant-client | qdrant-client |
+| Embeddings (local) | sentence-transformers | @huggingface/transformers | (API only) | (API only) |
 | Embeddings (API) | openai | openai | sashabaranov/go-openai | async-openai |
 | LLM client | anthropic, openai | @anthropic-ai/sdk, openai | anthropic SDK, go-openai | anthropic / async-openai |
 | HTTP client | requests, httpx | fetch (built-in), axios | net/http | reqwest |

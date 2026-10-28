@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -59,7 +59,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 5.4 Reranking with Cross-Encoders — `optional`
 
-**Description:** Using cross-encoder models to reorder initial retrieval results for dramatically higher precision. Explains why cross-encoders are more accurate than bi-encoders (they process query and document jointly, capturing token-level interactions) but too slow for first-stage retrieval (O(n) vs O(1)). Covers Cohere Rerank API, sentence-transformers cross-encoder models, ColBERT late interaction, and designing the retrieve-then-rerank pipeline with appropriate top-k at each stage.
+**Description:** Using cross-encoder models to reorder initial retrieval results for dramatically higher precision. Explains why cross-encoders are more accurate than bi-encoders (they process query and document jointly, capturing token-level interactions) but too slow for first-stage retrieval (O(n) vs O(1)). Covers the Cohere Rerank API (currently Rerank 5: rerank-v5.0-pro for quality, rerank-v5.0-fast for latency), open-weight rerankers like Qwen3-Reranker and bge-reranker-v2-m3, sentence-transformers cross-encoder models, ColBERT late interaction, and designing the retrieve-then-rerank pipeline with appropriate top-k at each stage.
 
 **Key concepts:** Cross-encoder vs bi-encoder architecture, two-stage retrieval, retrieve-then-rerank pipeline, Cohere Rerank API, sentence-transformers cross-encoders, ColBERT, latency budget allocation.
 
@@ -67,7 +67,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 5.5 Retrieval Optimization — `optional`
 
-**Description:** Systematic approaches to improving retrieval quality beyond basic retrieve-and-rerank. Query expansion (add synonyms and related terms), query rewriting with LLMs (rephrase for better retrieval), HyDE (generate hypothetical answer, embed it for retrieval), parent-child chunk relationships (retrieve small chunks, return parent context), result deduplication, and MMR for diversity. Includes a diagnostic framework for identifying why retrieval is failing.
+**Description:** Systematic approaches to improving retrieval quality beyond basic retrieve-and-rerank. Query expansion (add synonyms and related terms), query rewriting with LLMs (rephrase for better retrieval), HyDE (generate hypothetical answer, embed it for retrieval), parent-child chunk relationships (retrieve small chunks, return parent context), result deduplication, and MMR for diversity. Also covers Anthropic's contextual retrieval (2024): have an LLM write a sentence or two of context for each chunk and prepend it before embedding and BM25 indexing, so a chunk like "revenue grew 3%" knows which company and quarter it's about. Includes a diagnostic framework for identifying why retrieval is failing.
 
 **Key concepts:** Query expansion, HyDE (Hypothetical Document Embeddings), MMR (lambda parameter), parent-document retriever, small-to-big retrieval, deduplication by content hash, retrieval failure taxonomy.
 
@@ -83,7 +83,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 4. **MMR Implementation:** Implement MMR (Maximal Marginal Relevance) from scratch using the formula: MMR = argmax[lambda * sim(d, q) - (1 - lambda) * max(sim(d, d_selected))]. Demonstrate how varying lambda from 0.0 to 1.0 in steps of 0.2 controls the relevance/diversity trade-off on a query that has many near-duplicate relevant chunks.
 
-5. **Query Rewriting:** Use Claude or GPT-4 to rewrite 20 ambiguous or poorly-formed queries before retrieval (e.g., "how does it work" -> "how does the HNSW index algorithm perform approximate nearest neighbor search"). Compare retrieval precision@5 with and without query rewriting.
+5. **Query Rewriting:** Use Claude (or any current LLM) to rewrite 20 ambiguous or poorly-formed queries before retrieval (e.g., "how does it work" -> "how does the HNSW index algorithm perform approximate nearest neighbor search"). Compare retrieval precision@5 with and without query rewriting.
 
 ## Key Takeaways
 

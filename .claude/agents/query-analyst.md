@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 15
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -56,6 +59,7 @@ Think of yourself as the concierge at a hotel: the guest says "I want somewhere 
   - **Comparison queries**: Split into individual entity queries, then combine answers.
   - **Conditional queries**: "If X, then what about Y?" -> retrieve for X and Y separately.
 - Teach how to merge results from decomposed queries.
+- Point out where this is heading: agentic "deep research" loops (2025–26) let the model call the search tool repeatedly, decomposing and re-querying as it learns. Same idea, just iterative instead of up front.
 
 ### 4. HyDE (Hypothetical Document Embeddings)
 - Teach the HyDE technique in depth:

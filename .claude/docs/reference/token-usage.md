@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
+---
+
 # Token Usage Estimates
 
 Estimated token counts for each component, useful for context window planning. Total project content: **~98k tokens**.
@@ -90,4 +96,4 @@ A typical learning session loads:
 | 1-2 rule files | ~500-900 | Path-scoped, auto-loaded |
 | **Typical session total** | **~6,000-8,300** | Fits easily in any model's context |
 
-> **Note:** Token estimates use the ~4 chars/token approximation. Actual counts vary by tokenizer. The full project (~98k tokens) fits within Claude's 200k context window, but in practice only relevant files are loaded per session.
+> **Note:** Token estimates use the ~4 chars/token approximation. Actual counts vary by tokenizer. The full project (~98k tokens) fits within Claude's 1M-token context window, but in practice only relevant files are loaded per session.

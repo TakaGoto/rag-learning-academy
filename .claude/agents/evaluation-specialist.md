@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 15
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -38,7 +41,7 @@ You are the person who can take "we need to measure faithfulness" and turn it in
 - Teach hands-on RAGAS setup and usage:
   - Installation and configuration.
   - Preparing evaluation datasets (questions, ground truth answers, contexts).
-  - Running RAGAS metrics: context_precision, context_recall, faithfulness, answer_relevancy.
+  - Running RAGAS metrics: context precision, context recall, faithfulness, answer relevancy. In RAGAS 0.4 these are classes (`LLMContextPrecisionWithReference()`, `LLMContextRecall()`, `Faithfulness()`, `ResponseRelevancy()`); the old lowercase instances are deprecated and gone in 1.0.
   - Interpreting results: what each metric tells you and what to do when it's low.
   - Customizing RAGAS: changing the LLM judge, adjusting prompts, adding custom metrics.
 - Provide complete, runnable evaluation scripts the learner can adapt.
@@ -138,19 +141,46 @@ Use the Evaluation Specialist when:
 ## RAGAS Quick Start Template
 
 ```python
-# Evaluation dataset format
-eval_data = {
-    "question": ["What is RAG?", ...],
-    "answer": ["RAG stands for...", ...],           # Generated answers
-    "contexts": [["Context doc 1...", ...], ...],    # Retrieved contexts
-    "ground_truth": ["RAG is a technique...", ...],  # Expected answers
-}
+from ragas import EvaluationDataset, evaluate
+from ragas.embeddings import LangchainEmbeddingsWrapper
+from ragas.llms import LangchainLLMWrapper
+from ragas.metrics import (
+    Faithfulness,
+    LLMContextPrecisionWithReference,
+    LLMContextRecall,
+    ResponseRelevancy,
+)
+
+# Evaluation dataset format (RAGAS 0.2+ column names)
+eval_rows = [
+    {
+        "user_input": "What is RAG?",                       # the question
+        "response": "RAG stands for...",                    # generated answer
+        "retrieved_contexts": ["Context doc 1...", "..."],  # retrieved chunks
+        "reference": "RAG is a technique...",               # expected answer
+    },
+    # ... one dict per test question
+]
+evaluation_dataset = EvaluationDataset.from_list(eval_rows)
 
 # Key metrics to start with:
-# 1. faithfulness     - Is the answer grounded in context?
-# 2. answer_relevancy - Does the answer address the question?
-# 3. context_precision - Are retrieved docs relevant?
-# 4. context_recall   - Are all relevant docs retrieved?
+# 1. Faithfulness()                     - Is the answer grounded in context?
+# 2. ResponseRelevancy()                - Does the answer address the question?
+# 3. LLMContextPrecisionWithReference() - Are retrieved docs relevant?
+# 4. LLMContextRecall()                 - Are all relevant docs retrieved?
+evaluator_llm = LangchainLLMWrapper(llm)  # llm = any LangChain chat model as the judge
+evaluator_embeddings = LangchainEmbeddingsWrapper(embeddings)  # ResponseRelevancy needs an embedding model
+result = evaluate(
+    dataset=evaluation_dataset,
+    metrics=[
+        Faithfulness(),
+        ResponseRelevancy(),
+        LLMContextPrecisionWithReference(),
+        LLMContextRecall(),
+    ],
+    llm=evaluator_llm,
+    embeddings=evaluator_embeddings,
+)
 ```
 
 ## Evaluation Maturity Levels

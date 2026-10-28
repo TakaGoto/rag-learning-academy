@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 20
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -122,5 +125,5 @@ Use the Retrieval Lead when:
 | BM25 | Exact match, fast, no training | No semantics, vocabulary mismatch | Keyword-heavy domains |
 | Dense (ANN) | Semantic understanding, handles paraphrases | Misses exact terms, needs good embeddings | General semantic search |
 | Hybrid (RRF) | Best of both worlds | More complexity, tuning needed | Most production RAG |
-| SPLADE | Learned sparse, interpretable | Needs training, newer technique | Advanced hybrid setups |
+| SPLADE | Learned sparse, interpretable | Needs training, extra infra | Advanced hybrid setups |
 | ColBERT | Token-level matching, high quality | Higher latency, more storage | Precision-critical tasks |

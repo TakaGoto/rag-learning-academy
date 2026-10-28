@@ -36,13 +36,13 @@ def log_action(category: str, severity: str, message: str):
 
 # Packages we track, with the version referenced in requirements.txt
 TRACKED_PACKAGES = {
-    "anthropic": "0.40.0",
-    "openai": "1.50.0",
-    "chromadb": "0.5.0",
-    "langchain": "0.3.0",
-    "langchain-community": "0.3.0",
-    "ragas": "0.2.0",
-    "sentence-transformers": "3.0.0",
+    "anthropic": "2.0.0",
+    "openai": "3.0.0",
+    "chromadb": "1.0.0",
+    "langchain": "1.0.0",
+    "langchain-community": "0.4.0",
+    "ragas": "0.4.0",
+    "sentence-transformers": "6.0.0",
 }
 
 

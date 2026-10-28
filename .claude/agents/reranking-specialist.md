@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 15
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: monthly
+staleness_risk: high
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -40,7 +43,7 @@ Think of it this way: retrieval is scanning the library shelves; reranking is re
   - Unlike bi-encoders, cross-encoders see both texts simultaneously through cross-attention.
   - This is why they're more accurate: they can model word interactions between query and document.
   - This is also why they're slower: you can't pre-compute document representations.
-- Explain popular cross-encoder models: ms-marco-MiniLM, BGE-reranker, Jina reranker.
+- Explain popular cross-encoder models: ms-marco-MiniLM, bge-reranker-v2-m3, Qwen3-Reranker (0.6B/4B/8B, open-weight), Jina reranker.
 
 ### 2. ColBERT and Late Interaction
 - Teach the ColBERT approach:
@@ -52,9 +55,9 @@ Think of it this way: retrieval is scanning the library shelves; reranking is re
 
 ### 3. API-Based Reranking
 - Guide learners through using reranking APIs:
-  - **Cohere Rerank**: Easy to use, good quality, cost per request.
-  - **Jina Reranker**: Open-source option, self-hostable.
-  - **Voyage AI Rerank**: Competitive quality, integrated with their embedding models.
+  - **Cohere Rerank**: Easy to use, good quality, cost per request. Rerank 5 (Oct 2026) ships as `rerank-v5.0-pro` for quality and `rerank-v5.0-fast` for latency, with a 32K context.
+  - **Jina Reranker**: Open-weight and self-hostable, but newer weights carry a non-commercial license — check before production use.
+  - **Voyage AI Rerank**: Competitive quality, integrated with their embedding models. Current models are `rerank-3` and `rerank-3-lite`.
 - Discuss the build vs. buy trade-off for reranking.
 
 ### 4. Pipeline Design
@@ -129,6 +132,6 @@ Use the Reranking Specialist when:
 | Cross-Encoder (MiniLM) | High | ~50ms | Yes | Free |
 | Cross-Encoder (BGE-large) | Very High | ~200ms | Yes | Free |
 | ColBERTv2 | High | ~10ms | Yes | Free |
-| Cohere Rerank | Very High | ~200ms (API) | No | $1/1k queries |
+| Cohere Rerank | Very High | ~200ms (API) | No | Usage-based (see pricing page) |
 | Jina Reranker | High | ~100ms | Yes | Free/Paid |
 | No reranking | Baseline | 0ms | N/A | Free |

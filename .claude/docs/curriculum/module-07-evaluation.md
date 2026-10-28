@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -51,7 +51,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 7.3 Generation Metrics — `optional`
 
-**Description:** Measuring the quality of LLM-generated answers in the RAG context. Faithfulness: is every claim in the answer supported by the retrieved context (detecting hallucination)? Answer Relevancy: does the answer address the user's question directly? Answer Correctness: is the answer factually right when compared to a reference? Covers both LLM-as-judge approaches (GPT-4/Claude evaluating answers) and traditional NLP metrics (BLEU, ROUGE, BERTScore) and why traditional metrics are insufficient for RAG.
+**Description:** Measuring the quality of LLM-generated answers in the RAG context. Faithfulness: is every claim in the answer supported by the retrieved context (detecting hallucination)? Answer Relevancy: does the answer address the user's question directly? Answer Correctness: is the answer factually right when compared to a reference? Covers both LLM-as-judge approaches (a current LLM such as Claude or GPT-6 evaluating answers) and traditional NLP metrics (BLEU, ROUGE, BERTScore) and why traditional metrics are insufficient for RAG.
 
 **Key concepts:** Faithfulness scoring, relevancy scoring, correctness scoring, LLM-as-judge methodology, BLEU, ROUGE, BERTScore, semantic similarity scoring, limitations of n-gram metrics.
 
@@ -59,7 +59,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 7.4 RAGAS Deep Dive — `optional`
 
-**Description:** Comprehensive coverage of the RAGAS evaluation framework. The four core metrics: faithfulness (claim decomposition + NLI verification), answer relevancy (question generation from answer + similarity), context precision (relevant chunks ranked higher), context recall (ground truth coverage in context). How to install and run RAGAS, interpret score distributions, set alert thresholds, and integrate into CI/CD pipelines for regression detection.
+**Description:** Comprehensive coverage of the RAGAS evaluation framework. The four core metrics: faithfulness (claim decomposition + NLI verification), answer relevancy (question generation from answer + similarity), context precision (relevant chunks ranked higher), context recall (ground truth coverage in context). Heads-up for code: in RAGAS 0.4 the metrics are classes (`Faithfulness`, `ResponseRelevancy`, `LLMContextPrecisionWithReference`, `LLMContextRecall`); the old lowercase instances like `faithfulness` are deprecated and go away in 1.0. How to install and run RAGAS, interpret score distributions, set alert thresholds, and integrate into CI/CD pipelines for regression detection.
 
 **Key concepts:** RAGAS library installation and usage, metric computation internals, test set generation with ragas.testset, score interpretation guidelines, threshold setting, regression detection, CI/CD integration.
 
@@ -79,7 +79,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 2. **RAGAS Evaluation Run:** Run a full RAGAS evaluation on the RAG pipeline you built in previous modules. Use at least 30 test questions. Generate a structured report with all four core metrics (faithfulness, answer relevancy, context precision, context recall). Identify the weakest component and propose a specific fix.
 
-3. **Evaluation Dataset Builder:** Use Claude or GPT-4 to generate 50 question-answer pairs from your document corpus, stratified by question type (10 factoid, 10 multi-hop, 10 comparison, 10 aggregation, 10 yes/no). Manually review and correct at least 20 of them. Compute an LLM quality score by checking what percentage of auto-generated Q&A pairs are correct.
+3. **Evaluation Dataset Builder:** Use Claude (or any current LLM) to generate 50 question-answer pairs from your document corpus, stratified by question type (10 factoid, 10 multi-hop, 10 comparison, 10 aggregation, 10 yes/no). Manually review and correct at least 20 of them. Compute an LLM quality score by checking what percentage of auto-generated Q&A pairs are correct.
 
 4. **Regression Test Suite:** Set up an automated evaluation script that: (1) loads a fixed evaluation dataset, (2) runs all four RAGAS metrics, (3) compares against stored baseline scores, (4) prints a PASS/FAIL summary with delta for each metric, (5) saves results to a JSON file with timestamps. Run it after making a pipeline change to detect regressions.
 

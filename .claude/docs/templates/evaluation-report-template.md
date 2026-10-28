@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -65,8 +65,8 @@ _Document the exact configuration of the pipeline being evaluated._
 | Vector database | _[e.g., ChromaDB, HNSW]_ |
 | Retrieval strategy | _[e.g., Hybrid (dense + BM25, RRF alpha=0.5)]_ |
 | Top-k retrieved | _[e.g., 10]_ |
-| Reranker | _[e.g., Cohere rerank-v3, top 5 after reranking]_ |
-| LLM | _[e.g., Claude 3.5 Sonnet]_ |
+| Reranker | _[e.g., Cohere rerank-v5.0-pro, top 5 after reranking]_ |
+| LLM | _[e.g., Claude Sonnet 5.5]_ |
 | Prompt template | _[e.g., Stuff with citations, system prompt v3]_ |
 
 ---

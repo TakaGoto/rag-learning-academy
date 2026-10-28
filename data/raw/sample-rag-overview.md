@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: semi-annually
 staleness_risk: low
 ---
@@ -35,6 +35,7 @@ RAG addresses several limitations of standalone LLMs:
 - **Domain Specificity**: RAG enables LLMs to answer questions about private or specialized data.
 - **Transparency**: Retrieved sources can be cited, making answers verifiable.
 - **Cost**: Updating a knowledge base is cheaper than retraining or fine-tuning a model.
+- **Even with 1M-token windows**: Every current frontier model takes about 1M tokens, so you *could* paste a small corpus straight into the prompt. RAG still wins on cost, latency, freshness, and permissions, because you only pay for (and expose) the chunks that matter.
 
 ## RAG vs Fine-Tuning
 
@@ -48,7 +49,7 @@ RAG addresses several limitations of standalone LLMs:
 ## Key Components
 
 ### Embedding Models
-Embedding models convert text into dense vectors that capture semantic meaning. Popular choices include OpenAI's text-embedding-3-small, Cohere's embed-v3, and open-source models like BGE and E5.
+Embedding models convert text into dense vectors that capture semantic meaning. Popular choices include OpenAI's text-embedding-3-small, Cohere Embed 5, Voyage's voyage-4 family, and open-weight models like Qwen3-Embedding, BGE-M3, and E5.
 
 ### Vector Databases
 Specialized databases optimized for similarity search over high-dimensional vectors. Examples include ChromaDB, Pinecone, Weaviate, Qdrant, and pgvector.

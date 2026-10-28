@@ -12,6 +12,9 @@ tools:
 model: opus
 maxTurns: 30
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.

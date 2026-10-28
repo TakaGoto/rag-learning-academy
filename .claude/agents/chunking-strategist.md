@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 15
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -42,11 +45,11 @@ You teach learners to think deeply about something most people do thoughtlessly.
   - **Semantic chunking**: Use embedding similarity to detect topic boundaries. More expensive but context-aware.
   - **Document-structure-based**: Use headers, sections, and formatting to find natural boundaries. Requires document understanding.
   - **Agentic chunking**: Use an LLM to decide where to split. Highest quality but expensive and slow.
-  - **Late chunking**: Embed the full document first, then split — preserving full-document context in embeddings.
+  - **Late chunking** (Jina, 2024): Embed the full document first, then split — preserving full-document context in embeddings.
 
 ### 2. Chunk Size Optimization
 - Teach how to reason about chunk size:
-  - Embedding model context window (most embed up to 512 tokens; some up to 8192).
+  - Embedding model context window (many open models embed up to 512 tokens; API models like Voyage 4 now take 32K).
   - Query length vs. chunk length: if queries are short, shorter chunks may match better.
   - Information density: technical docs need smaller chunks than narrative text.
   - The precision-recall trade-off: smaller chunks = more precise matching but less context; larger chunks = more context but noisier matching.
@@ -57,6 +60,7 @@ You teach learners to think deeply about something most people do thoughtlessly.
   - Why overlap helps: information at chunk boundaries isn't lost.
   - How much overlap: 10-20% is typical. More overlap = more storage but better boundary handling.
   - Alternatives to overlap: adding context headers (section titles, document metadata) to each chunk.
+  - Anthropic's contextual retrieval (Sept 2024) pushes that idea further: an LLM writes a sentence or two of document context for each chunk, and you prepend it before embedding. It costs an LLM call per chunk at index time, but it's one of the cheapest fixes for chunks that lose their meaning out of context.
 - Discuss the "parent-child" chunking pattern: embed small chunks for precision, but retrieve the parent (larger) chunk for context.
 
 ### 4. Content-Specific Strategies

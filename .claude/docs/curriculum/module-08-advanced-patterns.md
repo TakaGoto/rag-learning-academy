@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: monthly
 staleness_risk: high
 ---
@@ -35,7 +35,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 8.1 Agentic RAG — `optional`
 
-**Description:** Moving beyond single-shot retrieve-and-generate to agentic workflows where the LLM controls the retrieval process. The LLM decides when to retrieve, what to retrieve, and whether the retrieved context is sufficient — or whether to try again with a different strategy. Covers query routing (directing queries to specialized retrievers based on intent classification), iterative retrieval (retrieve-reflect-retrieve again until satisfied), and tool-augmented RAG (calculator, code execution, API calls alongside document retrieval).
+**Description:** Moving beyond single-shot retrieve-and-generate to agentic workflows where the LLM controls the retrieval process. The LLM decides when to retrieve, what to retrieve, and whether the retrieved context is sufficient — or whether to try again with a different strategy. Covers query routing (directing queries to specialized retrievers based on intent classification), iterative retrieval (retrieve-reflect-retrieve again until satisfied), and tool-augmented RAG (calculator, code execution, API calls alongside document retrieval). Since 2025 this has grown into agentic "deep research" loops, where reasoning models call search tools iteratively until they have enough evidence, and MCP (Model Context Protocol) has become the standard way to connect retrieval tools to LLM agents.
 
 **Key concepts:** Agent loop, query routing and intent classification, tool use alongside retrieval (calculator, code execution, API calls), structured data routing (directing "how many customers?" to SQL while "refund policy?" goes to vector search), iterative retrieval with reflection, LangGraph agent patterns, CrewAI patterns, retrieval as a tool.
 
@@ -43,7 +43,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 8.2 Graph RAG — `optional`
 
-**Description:** Combining knowledge graphs with vector retrieval to capture structured relationships that embedding similarity alone cannot represent. Extract entities and relationships from documents using LLMs, build a knowledge graph, then traverse the graph to retrieve context for multi-hop questions. Covers entity and relation extraction prompts, graph construction with NetworkX, graph traversal strategies (BFS, shortest path, subgraph extraction), and community detection for hierarchical summarization (Microsoft GraphRAG approach).
+**Description:** Combining knowledge graphs with vector retrieval to capture structured relationships that embedding similarity alone cannot represent. Extract entities and relationships from documents using LLMs, build a knowledge graph, then traverse the graph to retrieve context for multi-hop questions. Covers entity and relation extraction prompts, graph construction with NetworkX, graph traversal strategies (BFS, shortest path, subgraph extraction), and community detection for hierarchical summarization (Microsoft GraphRAG approach). If full GraphRAG indexing is too slow or expensive for your corpus, LightRAG and HippoRAG 2 (2025) are lighter-weight alternatives worth benchmarking.
 
 **Key concepts:** Knowledge graph construction, entity extraction, relation extraction, graph traversal (BFS, DFS), community detection (Leiden algorithm), hierarchical summarization, Neo4j, NetworkX, Microsoft GraphRAG pipeline.
 
@@ -59,7 +59,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 8.4 Multi-Modal RAG — `optional`
 
-**Description:** Extending RAG beyond text to handle images, tables, and code. Image RAG: embed images with CLIP or SigLIP, retrieve relevant images alongside text. Table RAG: parse tables from documents, embed table descriptions or individual rows, query with natural language. Code RAG: embed code snippets with code-specific models, retrieve relevant functions or examples. ColPali: a recent approach that embeds document page images directly, bypassing OCR entirely.
+**Description:** Extending RAG beyond text to handle images, tables, and code. Image RAG: embed images with CLIP or SigLIP, retrieve relevant images alongside text, and hand them straight to the generator, since every current Claude and GPT-6 model is natively multimodal. Table RAG: parse tables from documents, embed table descriptions or individual rows, query with natural language. Code RAG: embed code snippets with code-specific models, retrieve relevant functions or examples. ColPali (2024) and successors like ColQwen2: embed document page images directly, bypassing OCR entirely. They're still the reference approach for visual-document retrieval.
 
 **Key concepts:** Multi-modal embeddings, CLIP/SigLIP for image retrieval, vision-language models for image understanding, table parsing and embedding, code-specific embedding models, ColPali document understanding, mixed-modality retrieval pipelines.
 

@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: monthly
 staleness_risk: high
 ---
@@ -43,9 +43,9 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 3.2 Choosing an Embedding Model — `core`
 
-**Description:** Comparative analysis of embedding models available today. API models: OpenAI text-embedding-3-small/large, Cohere embed-v3, Voyage voyage-3-lite. Open-source/local models: all-MiniLM-L6-v2 (great for learning — free, fast, 384 dims), BAAI/bge-base, nomic-embed-text (via Ollama), E5-mistral, GTE-large. Covers dimensions, max input length, MTEB benchmark performance, cost per million tokens, and inference latency. Provides a decision framework: for learning/free use start with all-MiniLM-L6-v2 or nomic-embed-text; for production API use start with text-embedding-3-small.
+**Description:** Comparative analysis of embedding models available today. API models: OpenAI text-embedding-3-small/large (still OpenAI's current embedding models), Cohere Embed 5, and Voyage's voyage-4 family (voyage-4-large, voyage-4, voyage-4-lite). Open-source/local models: all-MiniLM-L6-v2 (great for learning — free, fast, CPU-friendly, 384 dims, but far from state of the art), the Qwen3-Embedding family (0.6B/4B/8B, Apache 2.0; the 8B sits near the top of MTEB v2), EmbeddingGemma-300m (small and edge-friendly), and BGE-M3 (dense + sparse + multi-vector in one model, a common production pick), plus older-generation models you'll still see everywhere: BAAI/bge-base, nomic-embed-text (via Ollama), E5-mistral, GTE-large. Covers dimensions, max input length, MTEB v2 benchmark performance (check the live leaderboard; v2 scores aren't comparable with old v1 numbers), cost per million tokens, and inference latency. Provides a decision framework: for learning/free use start with all-MiniLM-L6-v2 or nomic-embed-text; when you want the best free quality, step up to Qwen3-Embedding-0.6B or EmbeddingGemma-300m; for production API use start with text-embedding-3-small.
 
-**Key concepts:** MTEB leaderboard, dimensions vs quality trade-off, API vs self-hosted models, Matryoshka embeddings, multilingual support, context length limits.
+**Key concepts:** MTEB v2 leaderboard, dimensions vs quality trade-off, API vs self-hosted models, Matryoshka embeddings, multilingual support, context length limits.
 
 **Duration:** 30 minutes
 
@@ -97,7 +97,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 - OpenAI Embeddings Guide (text-embedding-3 family documentation)
 - Sentence-Transformers documentation (training and fine-tuning)
-- MTEB leaderboard on Hugging Face (model comparison)
+- MTEB leaderboard on Hugging Face (model comparison; now MTEB v2, so ignore older v1 scores you find in blog posts)
 - Nomic AI blog posts on Matryoshka embeddings
 
 ---
