@@ -1,19 +1,14 @@
 name: Content Freshness Check
 
-# Monthly: find content past its review cycle (last_reviewed + review_cycle
-# frontmatter), have Claude Code verify and update those files, and open a pull
-# request with the changes. Without an ANTHROPIC_API_KEY repository secret
-# (forks, for example) it keeps ONE tracking issue up to date instead.
+# Monthly report: find content past its review cycle (last_reviewed +
+# review_cycle frontmatter) and keep ONE tracking issue up to date.
+# Fixing is done by scripts/freshness_routine.sh, which runs Claude Code on a
+# maintainer's machine (subscription, no API key) and opens + merges a PR.
 
 on:
   schedule:
     - cron: '0 9 1 * *'  # 1st of each month at 9 AM UTC
   workflow_dispatch:
-    inputs:
-      auto_update:
-        description: "Let Claude Code update stale content and open a PR (needs the ANTHROPIC_API_KEY secret)"
-        type: boolean
-        default: true
 
 concurrency:
   group: content-freshness
@@ -22,10 +17,7 @@ concurrency:
 jobs:
   freshness:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
     permissions:
-      contents: write
-      pull-requests: write
       issues: write
     env:
       REPORT_TITLE: "Monthly Content Freshness Report — ${{ github.event.repository.name }}"
@@ -53,142 +45,16 @@ jobs:
                   --search "\"$REPORT_TITLE\" in:title" --json number --jq '.[0].number // empty')
           echo "number=$NUM" >> "$GITHUB_OUTPUT"
 
-      - name: Decide whether Claude Code can run
-        id: gate
-        env:
-          HAS_KEY: ${{ secrets.ANTHROPIC_API_KEY != '' }}
-          STALE: ${{ steps.check.outputs.stale_count }}
-          EVENT: ${{ github.event_name }}
-          AUTO: ${{ inputs.auto_update }}
-        run: |
-          RUN=false
-          if [ "$HAS_KEY" = "true" ] && [ "$STALE" != "0" ]; then
-            if [ "$EVENT" != "workflow_dispatch" ] || [ "$AUTO" = "true" ]; then RUN=true; fi
-          fi
-          echo "has_key=$HAS_KEY" >> "$GITHUB_OUTPUT"
-          echo "run_claude=$RUN" >> "$GITHUB_OUTPUT"
-          echo "stale=$STALE has_key=$HAS_KEY event=$EVENT auto_update=$AUTO -> run_claude=$RUN"
-
-      # ---- Automatic update path -------------------------------------------
-
-      - name: Set up Python for the test gate
-        if: steps.gate.outputs.run_claude == 'true'
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install test dependencies
-        if: steps.gate.outputs.run_claude == 'true'
-        run: pip install pytest pyyaml
-
-      - name: Update stale content with Claude Code
-        if: steps.gate.outputs.run_claude == 'true'
-        uses: anthropics/claude-code-action@v1
-        with:
-          anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          prompt: |
-            You are running the RAG Learning Academy's monthly content-freshness review. Today is ${{ steps.check.outputs.today }}.
-
-            `freshness-report.md` in the repo root is this month's report, and `stale-files.txt` lists one content file per line that is past its review cycle. Review and update ONLY the files in `stale-files.txt`.
-
-            For each stale file:
-            1. Read the whole file.
-            2. Find every time-sensitive claim: model names and API model IDs, context windows, prices, library versions and import paths, vendor product names, papers described as "recent" or "new", and code that may no longer run on current library versions.
-            3. Verify each one with WebSearch or WebFetch against official sources (Anthropic model docs, OpenAI docs, PyPI, the MTEB leaderboard, library changelogs). Never guess a model ID, price, or version number. If you cannot verify a claim, leave the text alone and list it in your summary.
-            4. Fix what is outdated with surgical edits. Keep headings, section order, tables, lesson and exercise numbering, cross-references, and the number of code blocks. Match the voice described in CLAUDE.md. Do not add lessons, sections, agents, or exercises.
-            5. Set `last_reviewed:` in the file's frontmatter to today's date, including files where nothing else needed changing, because you reviewed them. In `.claude/agents/*.md` change only that key; Claude Code reads the rest of that frontmatter.
-
-            Constraints: do not use git; do not create, rename, or delete files; do not edit tests, hooks, workflows, or `.claude/settings.json`. The tests enforce: Python code blocks must compile; the strings gpt-3.5-turbo, text-embedding-ada-002, claude-2 and claude-instant may not appear in content; agent files keep their `## Delegation Rules` section; the glossary keeps `## Terms by Topic`.
-
-            When you are done, run `python3 -m pytest tests/test_content.py tests/test_cross_references.py tests/test_structure.py -q` and fix any failure you caused. Then write `freshness-summary.md` in the repo root: a short Markdown summary for the pull request with one bullet per file (what changed, or "reviewed, no change needed") followed by a "Could not verify" list. Write nothing else there.
-          claude_args: |
-            --max-turns 120
-            --allowedTools "Read,Edit,MultiEdit,Write,Glob,Grep,WebSearch,WebFetch,Bash(python3 -m pytest:*)"
-
-      - name: Run the full test gate on Claude's changes
-        if: steps.gate.outputs.run_claude == 'true'
-        id: tests
-        continue-on-error: true
-        run: |
-          set -o pipefail
-          python -m pytest tests/test_structure.py tests/test_cross_references.py tests/test_content.py tests/test_hooks.py -q 2>&1 | tee test-output.txt
-
-      - name: Assemble the pull request body
-        if: steps.gate.outputs.run_claude == 'true' && steps.tests.outcome == 'success'
-        env:
-          ISSUE: ${{ steps.issue.outputs.number }}
-        run: |
-          {
-            echo "Automated monthly freshness review. Claude Code reviewed every content file that was past its \`review_cycle\`, verified time-sensitive claims against vendor docs, and updated what was out of date."
-            echo
-            echo "## What changed"
-            echo
-            if [ -s freshness-summary.md ]; then cat freshness-summary.md; else echo "_Claude did not write a summary; see the diff._"; fi
-            echo
-            echo "<details><summary>Freshness report that triggered this run</summary>"
-            echo
-            cat freshness-report.md
-            echo
-            echo "</details>"
-            echo
-            if [ -n "$ISSUE" ]; then echo "Closes #$ISSUE"; echo; fi
-            echo "Review the diff before merging: the bot checks live docs, but it can still be wrong."
-          } > pr-body.md
-
-      - name: Open or update the pull request
-        if: steps.gate.outputs.run_claude == 'true' && steps.tests.outcome == 'success'
-        id: pr
-        uses: peter-evans/create-pull-request@v8
-        with:
-          # A PAT here makes CI run on the bot's PR; the default token can't trigger workflows.
-          token: ${{ secrets.FRESHNESS_PR_TOKEN || secrets.GITHUB_TOKEN }}
-          branch: content/monthly-freshness
-          delete-branch: true
-          title: "Content freshness review — ${{ steps.check.outputs.today }}"
-          body-path: pr-body.md
-          commit-message: "content: monthly freshness review ${{ steps.check.outputs.today }}"
-          labels: content-review,automated
-          add-paths: |
-            .claude/**
-            data/**
-            projects/**
-            requirements.txt
-            README.md
-            CLAUDE.md
-
-      - name: Point the tracking issue at the pull request
-        if: steps.pr.outputs.pull-request-number != '' && steps.issue.outputs.number != ''
-        run: |
-          gh issue comment "${{ steps.issue.outputs.number }}" --repo "$GITHUB_REPOSITORY" \
-            --body "Automatic update ${{ steps.pr.outputs.pull-request-operation }}: ${{ steps.pr.outputs.pull-request-url }}. Merging it closes this issue."
-
-      # ---- Fallback: keep a single tracking issue up to date ----------------
-
-      - name: Note a failed test gate in the report
-        if: steps.gate.outputs.run_claude == 'true' && steps.tests.outcome != 'success'
+      - name: Add the how-to-fix note
+        if: steps.check.outputs.stale_count != '0' || steps.check.outputs.deprecated_count != '0'
         run: |
           {
             echo
-            echo "### Automatic update attempted, but the test gate failed"
-            echo
-            echo "Claude's edits were NOT committed. Fix by hand or re-run the workflow."
-            echo
-            echo '```'
-            tail -60 test-output.txt
-            echo '```'
-          } >> freshness-report.md
-
-      - name: Note how to enable automatic updates
-        if: steps.check.outputs.stale_count != '0' && steps.gate.outputs.has_key != 'true'
-        run: |
-          {
-            echo
-            echo "> To have this workflow fix stale content automatically, add an \`ANTHROPIC_API_KEY\` repository secret. See README → Content Freshness."
+            echo "> Fix: run \`scripts/freshness_routine.sh\` on a maintainer's machine (or let its monthly launchd job run). It reviews these files with Claude Code, opens a PR, and merges it once CI is green. See README → Content Freshness."
           } >> freshness-report.md
 
       - name: Create or update the tracking issue
-        if: (steps.check.outputs.stale_count != '0' || steps.check.outputs.deprecated_count != '0') && steps.pr.outputs.pull-request-number == ''
+        if: steps.check.outputs.stale_count != '0' || steps.check.outputs.deprecated_count != '0'
         uses: peter-evans/create-issue-from-file@v6
         with:
           title: ${{ env.REPORT_TITLE }}

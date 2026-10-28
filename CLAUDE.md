@@ -157,7 +157,8 @@ Not sure where to go? Run `/triage` to get routed to the right skill based on yo
 Every content file (curriculum, agents, reference docs, templates, rules, sample data) carries `last_reviewed`, `review_cycle` (monthly / quarterly / semi-annually), and `staleness_risk` frontmatter; Claude Code ignores those keys in agent files. Materials are monitored via:
 - **Session hook:** `check-freshness.sh` warns on startup about files past their review cycle (it runs `.github/scripts/content_freshness.sh`, the same script CI uses)
 - **On-demand audit:** Run `/audit-content` to scan for deprecated models, outdated libraries, and stale references
-- **Monthly CI:** `content-freshness.yml` finds files past their cycle, has Claude Code verify every model, version, and vendor reference against live docs, and opens a pull request with the fixes. Without an `ANTHROPIC_API_KEY` secret it keeps one tracking issue up to date instead.
+- **Monthly CI:** `content-freshness.yml` finds files past their cycle and keeps one tracking issue up to date (report only; no API key)
+- **Local routine:** `scripts/freshness_routine.sh` runs Claude Code on a maintainer's machine to review and fix the flagged files, then opens and merges a PR once CI is green (`--install` sets up a monthly launchd job on macOS)
 - **Research director:** Extended with content currency auditing responsibilities
 
 When you update a content file, set its `last_reviewed` to today's date.

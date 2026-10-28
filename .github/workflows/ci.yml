@@ -41,6 +41,11 @@ jobs:
         with:
           scandir: .github/scripts
 
+      - name: Run ShellCheck on maintainer scripts
+        uses: ludeeus/action-shellcheck@master
+        with:
+          scandir: scripts
+
   test:
     runs-on: ubuntu-latest
     steps:

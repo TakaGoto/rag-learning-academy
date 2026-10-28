@@ -179,11 +179,10 @@ Not sure where to go? Run `/triage` to get routed based on your situation.
 Every content file carries `last_reviewed`, `review_cycle`, and `staleness_risk` frontmatter, and the academy checks itself against them:
 
 - **Session hook** — warns on startup about files past their review cycle
-- **Monthly CI** — [`content-freshness.yml`](.github/workflows/content-freshness.yml) finds files past their cycle, has Claude Code verify every model, version, and vendor reference against live docs, and opens a pull request with the fixes. Without an `ANTHROPIC_API_KEY` repository secret (in a fork, say) it keeps a single tracking issue up to date instead.
+- **Monthly CI** — [`content-freshness.yml`](.github/workflows/content-freshness.yml) finds files past their cycle and keeps a single tracking issue up to date. Report only: no API key, no spend.
+- **Local routine** — [`scripts/freshness_routine.sh`](scripts/freshness_routine.sh) does the fixing from a maintainer's machine with Claude Code on your subscription: it reviews the flagged files against live docs, runs the test gate, opens a PR, waits for CI, and merges it. `--check` verifies the setup, `--dry-run` reviews and commits locally without pushing, and on macOS `--install` registers a launchd job for the 2nd of each month at 10:00 (`--uninstall` removes it).
 - **Weekly CI** — checks PyPI versions, deprecated patterns, MTEB model health, review cycles ([details](.github/workflows/weekly-knowledge-check.yml))
 - **On-demand** — run `/audit-content` for a deep review with web search verification
-
-To turn on automatic updates in your own copy, add an `ANTHROPIC_API_KEY` secret (or swap the workflow's `anthropic_api_key` line for `claude_code_oauth_token` with a token from `claude setup-token`). Pull requests opened with the default `GITHUB_TOKEN` don't trigger CI, so the workflow runs the test gate itself before opening one; add a `FRESHNESS_PR_TOKEN` personal-access-token secret if you also want CI to run on those PRs.
 
 ## Philosophy
 
