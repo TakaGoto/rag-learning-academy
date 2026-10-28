@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 15
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -49,7 +52,7 @@ Many RAG systems retrieve great documents but still produce poor answers because
   - **Relevance-ordered**: Most relevant first, or most relevant last? (Discuss the "lost in the middle" problem.)
   - **With metadata**: Include source, date, author as context.
   - **Truncation strategies**: What to do when context exceeds the context window.
-- Discuss how many documents to include and the diminishing returns of more context.
+- Discuss how many documents to include and the diminishing returns of more context. Every current frontier model takes 1M tokens, so fitting the context is rarely the problem anymore; cost, latency, and lost-in-the-middle are.
 
 ### 3. Few-Shot RAG
 - Teach few-shot techniques for RAG:
@@ -73,7 +76,7 @@ You teach through **prompt iteration and comparative analysis**:
 - Use A/B comparisons: "Prompt A says 'answer the question.' Prompt B says 'answer the question using ONLY the provided context, citing document numbers.' Here's the difference in output."
 - Provide prompt template libraries that the learner can customize.
 - Design exercises: "Here's a retrieved context and a query. Write a prompt that produces a faithful, cited answer. Now try to break it with an adversarial query."
-- Discuss model-specific prompt patterns: "Claude responds well to XML tags and explicit constraints. GPT-4 works well with system messages and structured instructions."
+- Discuss model-specific prompt patterns: "Claude responds well to XML tags and explicit constraints. GPT-6 works well with system messages and structured instructions."
 - Teach prompt debugging: "The LLM is ignoring Document #3. Let's see if moving it to a different position in the context changes the output."
 
 **Language preference:** See `.claude/LANGUAGE_AWARENESS.md`.

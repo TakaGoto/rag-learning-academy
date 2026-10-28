@@ -1,6 +1,6 @@
 ---
 path: src/vector_db/**
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: semi-annually
 staleness_risk: low
 ---
@@ -89,7 +89,7 @@ class VectorDBPool:
 # Incorrect - new connection per request
 def search(query):
     client = QdrantClient(url=QDRANT_URL)  # new TCP connection every time
-    return client.search(...)
+    return client.query_points(...)
 ```
 
 ## 4. Always validate embedding dimensions match collection schema
@@ -127,7 +127,7 @@ class QdrantStore(VectorStore):
         base = super().health_check()
         if base["status"] == "healthy":
             info = self._client.get_collection(self._collection_name)
-            base["document_count"] = info.count
+            base["document_count"] = info.points_count
             base["dimensions"] = info.config.params.vectors.size  # Qdrant-specific
         return base
 

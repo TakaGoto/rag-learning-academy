@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: semi-annually
 staleness_risk: low
 ---
@@ -60,13 +60,32 @@ RAGAS (Retrieval Augmented Generation Assessment) is the standard framework for 
 
 ```python
 from ragas import evaluate
-from ragas.metrics import faithfulness, answer_relevancy, context_precision, context_recall
+from ragas.embeddings import LangchainEmbeddingsWrapper
+from ragas.llms import LangchainLLMWrapper
+from ragas.metrics import (
+    Faithfulness,
+    LLMContextPrecisionWithReference,
+    LLMContextRecall,
+    ResponseRelevancy,
+)
+
+evaluator_llm = LangchainLLMWrapper(llm)  # wrap the LangChain chat model you want as the judge
+evaluator_embeddings = LangchainEmbeddingsWrapper(embeddings)  # ResponseRelevancy needs an embedding model
 
 result = evaluate(
-    dataset,
-    metrics=[faithfulness, answer_relevancy, context_precision, context_recall],
+    dataset=dataset,
+    metrics=[
+        Faithfulness(),
+        ResponseRelevancy(),
+        LLMContextPrecisionWithReference(),
+        LLMContextRecall(),
+    ],
+    llm=evaluator_llm,
+    embeddings=evaluator_embeddings,
 )
 ```
+
+Heads-up: in RAGAS 0.4 the metrics are classes you instantiate. If an older tutorial imports lowercase `faithfulness` or `answer_relevancy`, that's the legacy API. It's deprecated in 0.4 and removed in 1.0.
 
 ## Building an Evaluation Dataset
 

@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 15
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -87,7 +90,7 @@ You teach through **production scenario analysis and engineering best practices*
 - Present realistic production scenarios: "Your RAG system gets 100 queries per minute. Here's where it will break first and how to fix it."
 - Use latency budgets: "You have 3 seconds total. Embedding takes 100ms, retrieval takes 50ms, reranking takes 200ms, LLM takes 2000ms. The LLM is your bottleneck."
 - Provide architecture diagrams for production setups with caching, queuing, and monitoring layers.
-- Walk through cost calculations: "At 10,000 queries per day with GPT-4 at $30/1M tokens and 2,000 tokens per query, your LLM cost is $600/month."
+- Walk through cost calculations: "At 10,000 queries per day with 2,000 input tokens each, you're sending 20M input tokens a day. On Claude Sonnet 5.5 at $2 per million input tokens that's $40/day, about $1,200/month before output tokens — and on Claude Haiku 5.5 ($0.10/M) it's about $60/month."
 - Design incident response exercises: "The vector database is returning empty results. Walk me through your debugging steps."
 - Show monitoring dashboards and teach how to read them: "This P99 latency spike at 2am — let's trace it back to the root cause."
 

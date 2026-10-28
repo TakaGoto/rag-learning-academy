@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -114,14 +114,14 @@ _How will you know the system is working well? Define measurable targets._
 |---|---|---|
 | Retrieval strategy | _e.g., Hybrid (dense + BM25, RRF)_ | _[Why hybrid]_ |
 | Top-k | _e.g., 10 retrieve, rerank to 5_ | _[Why these numbers]_ |
-| Reranker | _e.g., Cohere rerank-v3_ | _[Why this reranker]_ |
+| Reranker | _e.g., Cohere rerank-v5.0-pro_ | _[Why this reranker]_ |
 | Metadata filters | _e.g., Filter by source type, date range_ | _[What filters and why]_ |
 
 ### Generation
 
 | Decision | Choice | Rationale |
 |---|---|---|
-| LLM | _e.g., Claude 3.5 Sonnet_ | _[Why this model]_ |
+| LLM | _e.g., Claude Sonnet 5.5_ | _[Why this model]_ |
 | Prompt strategy | _e.g., Stuff with citation instructions_ | _[Why this approach]_ |
 | Max context tokens | _e.g., 4000 tokens for retrieved context_ | _[Budget allocation]_ |
 | Citation format | _e.g., Inline [1], [2] with source list_ | _[Citation approach]_ |

@@ -1,37 +1,39 @@
 # RAG Learning Academy — Core Dependencies
 
 # LLM Providers
-anthropic>=0.40.0
-openai>=1.50.0
+anthropic>=2.0.0
+openai>=3.0.0
 
 # Embeddings
-sentence-transformers>=3.0.0
+sentence-transformers>=6.0.0
 
 # Vector Databases
-chromadb>=0.5.0
-# pinecone-client>=3.0.0      # Uncomment for Pinecone lessons
-# qdrant-client>=1.9.0        # Uncomment for Qdrant lessons
+chromadb>=1.0.0
+# pinecone>=6.0.0             # Uncomment for Pinecone lessons
+# qdrant-client>=1.12.0       # Uncomment for Qdrant lessons
 
 # Document Processing
-unstructured>=0.15.0
-pypdf>=4.0.0
+unstructured>=0.16.0
+pypdf>=5.0.0
 beautifulsoup4>=4.12.0
 
 # RAG Frameworks (pick one or both)
-langchain>=0.3.0
-langchain-community>=0.3.0
-# llama-index>=0.11.0         # Uncomment for LlamaIndex lessons
+langchain>=1.0.0
+langchain-core>=1.0.0
+langchain-community>=0.4.0
+# langchain-classic>=1.0.0  # Uncomment if you use legacy chains (LLMChain, RetrievalQA)
+# llama-index>=0.14.0         # Uncomment for LlamaIndex lessons
 
 # Evaluation
-ragas>=0.2.0
-datasets>=2.0.0
+ragas>=0.4.0
+datasets>=3.0.0
 
 # Retrieval
 rank-bm25>=0.2.2
 
 # Utilities
 python-dotenv>=1.0.0
-tiktoken>=0.7.0
+tiktoken>=0.8.0
 numpy>=1.26.0
 pandas>=2.2.0
 tqdm>=4.66.0

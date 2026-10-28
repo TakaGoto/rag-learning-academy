@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -19,16 +19,16 @@ Before starting, ensure you have:
 
 **No API keys are required to start.** The academy works out of the box using:
 - **Claude Code** for LLM generation (you're already running it)
-- **all-MiniLM-L6-v2** for embeddings (runs locally, downloads automatically, lightweight)
+- **all-MiniLM-L6-v2** for embeddings (runs locally, downloads automatically, lightweight; it's far from state of the art, but it's perfect for learning)
 - **ChromaDB** for vector storage (runs locally, no setup)
 
 Optional upgrades (add later if you want):
 - **OpenAI API key** — for `text-embedding-3-small` embeddings (higher quality, costs ~$0.02/million tokens)
 - **Cohere API key** — for reranking exercises in Module 05
-- **Ollama** — for running local LLMs instead of Claude (`ollama pull llama3`). See hardware warning below.
+- **Ollama** — for running local LLMs instead of Claude (`ollama pull qwen3:8b`). See hardware warning below.
 - **uv** — for fast Python package management (`curl -LsSf https://astral.sh/uv/install.sh | sh`)
 
-> **Local LLM warning (Ollama):** Running LLMs locally is free but resource-intensive. A 7B parameter model needs ~4-8GB of RAM. If you're on a laptop with 8GB RAM, close heavy applications before running. Signs of trouble: system slowdown, spinning fans, or crashes. The default path (Claude Code + local embeddings) avoids this entirely.
+> **Local LLM warning (Ollama):** Running LLMs locally is free but resource-intensive. A 7-8B parameter model like `qwen3:8b` needs ~4-8GB of RAM. If you're on a laptop with 8GB RAM, close heavy applications before running. Signs of trouble: system slowdown, spinning fans, or crashes. The default path (Claude Code + local embeddings) avoids this entirely.
 
 ## Setup
 

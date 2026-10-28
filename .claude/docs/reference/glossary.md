@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -30,7 +30,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **ColBERT:** A late-interaction retrieval model that encodes queries and documents into token-level embeddings, then computes similarity via MaxSim. Balances efficiency and accuracy between bi-encoders and cross-encoders.
 
-**ColPali:** A multi-modal retrieval model that processes document page images directly (without OCR) using vision-language models, producing embeddings for visual document retrieval.
+**ColPali:** A multi-modal retrieval model (2024) that processes document page images directly (without OCR) using vision-language models, producing embeddings for visual document retrieval. It and successors like ColQwen2 are still the reference for visual-document retrieval.
 
 **Community Detection:** In Graph RAG, the process of identifying clusters of densely connected entities in a knowledge graph. Used to generate summaries at different levels of abstraction.
 
@@ -40,7 +40,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **Context Stuffing:** The naive approach of inserting all retrieved chunks into the prompt without filtering or ranking. Can waste context window space and introduce noise that degrades answer quality.
 
-**Context Window:** The maximum number of tokens an LLM can process in a single request, including system prompt, retrieved context, conversation history, and the generated response.
+**Context Window:** The maximum number of tokens an LLM can process in a single request, including system prompt, retrieved context, conversation history, and the generated response. Every current frontier model (Claude, GPT-6) offers about 1M tokens, which makes "just stuff everything in" tempting, but RAG still wins on cost, latency, freshness, and permissions.
 
 **Contrastive Learning:** A training paradigm where models learn by comparing positive pairs (similar items) with negative pairs (dissimilar items). Used to train embedding models.
 
@@ -104,7 +104,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **MRR (Mean Reciprocal Rank):** A retrieval metric that averages the reciprocal of the rank of the first relevant result across queries. Higher is better. MRR = 1.0 means the relevant result is always first.
 
-**MTEB (Massive Text Embedding Benchmark):** A comprehensive benchmark for evaluating embedding models across multiple tasks (retrieval, classification, clustering, etc.).
+**MTEB (Massive Text Embedding Benchmark):** A comprehensive benchmark for evaluating embedding models across multiple tasks (retrieval, classification, clustering, etc.). The leaderboard is now MTEB v2 (MTEB(eng, v2) and MTEB(Multilingual, v2)), and its scores aren't comparable with old v1 numbers, so check the live leaderboard instead of trusting a score quoted in an older blog post.
 
 **Multi-Modal RAG:** RAG systems that handle non-text data types including images, tables, code, and audio alongside text.
 
@@ -156,7 +156,7 @@ Comprehensive glossary of terms used throughout the RAG Learning Academy. Terms 
 
 **Token:** The basic unit of text processing for LLMs. A token is approximately 4 characters or 0.75 words in English. Embeddings, context windows, and costs are measured in tokens.
 
-**Tokenizer / Tokenization:** The process (and tool) that splits text into tokens. Different models use different tokenizers — OpenAI uses tiktoken (cl100k_base), while open-source models often use SentencePiece. The same text produces different token counts with different tokenizers.
+**Tokenizer / Tokenization:** The process (and tool) that splits text into tokens. Different models use different tokenizers — OpenAI uses tiktoken (o200k_base for current models, cl100k_base for older ones), Claude has its own tokenizer (count with the Messages API `count_tokens` endpoint, not tiktoken), and open-weight models often use SentencePiece. The same text produces different token counts with different tokenizers.
 
 **Top-k:** The number of results returned by a retrieval operation. A key hyperparameter balancing recall (more results) against precision and context window usage (fewer results).
 

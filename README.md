@@ -157,8 +157,8 @@ rag-learning-academy/
 ├── src/                         # Your RAG code goes here
 ├── scripts/                     # Dashboard generator, utilities
 ├── projects/                    # Guided build projects
-├── tests/                       # 616 structural + content tests
-├── data/                        # Sample documents (6 files incl. 1,247-line chunking doc)
+├── tests/                       # 700+ structural + content tests
+├── data/                        # Sample documents (6 files incl. a 1,250-line API doc)
 └── progress/                    # Your learning progress + dashboard
 ```
 
@@ -203,7 +203,7 @@ Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
 - Content guidelines and voice & tone
 
 ```bash
-make ci    # Run lint + shellcheck + 616 tests before submitting a PR
+make ci    # Run lint + shellcheck + 700+ tests before submitting a PR
 ```
 
 ## Credits

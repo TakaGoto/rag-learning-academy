@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -19,6 +19,7 @@ Python coding standards and best practices for all code written within the RAG L
 - **Linter:** ruff check
 - **Line length:** 100 characters maximum
 - **Import ordering:** standard library, third-party, local (enforced by ruff isort)
+- **LangChain imports (1.x):** primitives come from `langchain_core`, integrations from vendor packages (`langchain_openai`, `langchain_anthropic`, `langchain_chroma`) or `langchain_community`. Legacy chains like `RetrievalQA` now live in `langchain_classic.chains`, and `from langchain.chains import ...` fails on 1.x. For new code, use LCEL (`prompt | llm | parser`) instead.
 
 ### Type Hints
 
@@ -119,7 +120,7 @@ try:
     embeddings = await client.embed(texts, model=model)
 except openai.RateLimitError as e:
     logger.warning("Rate limited, retrying", extra={"batch_size": len(texts)})
-    await asyncio.sleep(e.retry_after or 1.0)
+    await asyncio.sleep(float(e.response.headers.get("retry-after", 1)))
     embeddings = await client.embed(texts, model=model)
 except openai.APIError as e:
     raise EmbeddingError(f"Embedding failed for batch of {len(texts)} texts") from e

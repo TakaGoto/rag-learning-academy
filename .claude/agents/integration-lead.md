@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 20
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -36,7 +39,7 @@ Many learners can explain individual RAG concepts but struggle to build a comple
 
 ### 1. Framework Selection
 - Guide learners through choosing RAG frameworks:
-  - **LangChain**: Modular, extensive ecosystem, chain-based composition. Best for: flexible pipelines with many integrations.
+  - **LangChain**: Modular, extensive ecosystem, LCEL composition (`prompt | llm | parser`) and `create_agent` in 1.x — the legacy chains now live in `langchain-classic`. Best for: flexible pipelines with many integrations.
   - **LlamaIndex**: Data-focused, strong indexing abstractions. Best for: document-heavy applications with complex data sources.
   - **Haystack**: Pipeline-oriented, production-ready. Best for: structured pipelines with clear stages.
   - **Custom (no framework)**: Direct API calls, full control. Best for: learning, simple use cases, specific requirements.

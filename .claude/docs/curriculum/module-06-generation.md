@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -43,9 +43,9 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 6.2 Context Window Management — `optional`
 
-**Description:** Practical strategies for fitting retrieved content into finite context windows. Covers token counting with tiktoken, budget allocation across components (system prompt: ~500 tokens, conversation history: ~1000 tokens, retrieved context: remainder minus generation budget), truncation strategies when context overflows, and selecting the optimal number of chunks. Discusses the lost-in-the-middle phenomenon and ordering strategies to mitigate it.
+**Description:** Practical strategies for fitting retrieved content into finite context windows. Covers token counting (tiktoken for OpenAI models; the Messages API `count_tokens` endpoint for Claude), budget allocation across components (system prompt: ~500 tokens, conversation history: ~1000 tokens, retrieved context: remainder minus generation budget), truncation strategies when context overflows, and selecting the optimal number of chunks. Discusses the lost-in-the-middle phenomenon and ordering strategies to mitigate it. Yes, every current frontier model takes 1M tokens now. You still budget, because every token you send costs money and latency, and a bigger window doesn't make the model pay equal attention to all of it.
 
-**Key concepts:** Token budget allocation, context window limits by model, chunk ordering (most relevant first vs edges), lost-in-the-middle effect, long-context models (100K+ tokens) and their trade-offs, adaptive chunk selection.
+**Key concepts:** Token budget allocation, context window limits by model, chunk ordering (most relevant first vs edges), lost-in-the-middle effect, long-context models (1M-token windows are now standard) and their trade-offs, adaptive chunk selection.
 
 **Duration:** 45 minutes
 
@@ -77,7 +77,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 1. **Prompt Engineering Lab:** Write 5 different RAG prompt templates (stuff with citations, map-reduce, refine, chain-of-thought with evidence, structured JSON output). Test each template on the same 10 queries with the same retrieved context. Score each answer 1-5 on faithfulness, completeness, and readability. Identify the best template for different query types.
 
-2. **Context Budget Calculator:** Build a `ContextBudget` class that takes a model's context limit, a system prompt, optional conversation history, and a list of chunks ranked by relevance. It returns the maximum number of chunks that fit within budget, respecting a generation reserve (default 1024 tokens). Test with 3 different models (4K, 16K, 128K context).
+2. **Context Budget Calculator:** Build a `ContextBudget` class that takes a model's context limit, a system prompt, optional conversation history, and a list of chunks ranked by relevance. It returns the maximum number of chunks that fit within budget, respecting a generation reserve (default 1024 tokens). Test with 3 different context limits (e.g., 8K, 128K, and 1M, the current frontier default). For the 1M case, add a configurable cap on retrieved-context tokens and explain why you'd set it far below the window size.
 
 3. **Citation System:** Implement an end-to-end citation pipeline: (1) number each source chunk in the prompt, (2) instruct the LLM to cite by number, (3) parse the response to extract citation references, (4) verify each citation two ways — exact match (does [Source N] correspond to an actual retrieved chunk?) and semantic match (embed the claim and cited chunk, verify cosine similarity > 0.7). Report citation accuracy rate.
 

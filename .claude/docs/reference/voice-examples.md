@@ -1,3 +1,9 @@
+---
+last_reviewed: 2026-10-28
+review_cycle: semi-annually
+staleness_risk: low
+---
+
 # Voice & Tone Examples
 
 Examples of the RAG Learning Academy writing voice. Reference these when writing new content or reviewing tone consistency.

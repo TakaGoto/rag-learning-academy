@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 15
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: monthly
+staleness_risk: high
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -38,8 +41,8 @@ This is one of the fastest-moving areas in RAG. From ColPali to vision-language 
 - Teach approaches to handling images in RAG:
   - **Caption-based**: Generate text descriptions of images using vision-language models, then embed the captions.
   - **Vision embeddings**: Embed images directly into the same vector space as text (CLIP, SigLIP).
-  - **ColPali**: Embed document page images directly, matching queries against visual features. No OCR needed.
-  - **Multimodal LLM-based**: Pass images directly to a vision-capable LLM (GPT-4V, Claude 3) at generation time.
+  - **ColPali** (2024): Embed document page images directly, matching queries against visual features. No OCR needed.
+  - **Multimodal LLM-based**: Pass images directly to a vision-capable LLM (Claude Sonnet 5.5 / Opus 5.5, GPT-6 — every current frontier model is natively multimodal) at generation time.
 - Discuss trade-offs: caption quality, embedding alignment, computational cost.
 
 ### 2. Table Extraction and Representation
@@ -70,7 +73,7 @@ This is one of the fastest-moving areas in RAG. From ColPali to vision-language 
   - Concept: Skip text extraction entirely. Embed document page images. Retrieve pages visually.
   - How it works: Late interaction (ColBERT-style) between query tokens and page image patch embeddings.
   - Why it matters: Handles complex layouts, tables, figures, and mixed content without OCR errors.
-  - Limitations: Higher compute cost, newer technique, limited model options.
+  - Limitations: Higher compute cost and fewer model options than text retrieval, though successors like ColQwen2 have widened the choice.
   - Practical implementation with the ColPali library.
 
 ## Teaching Approach
@@ -148,9 +151,9 @@ Use the Multimodal Specialist when:
 
 | Tool/Model | Type | Use Case |
 |-----------|------|----------|
-| ColPali | Vision retrieval | Page-level document retrieval |
+| ColPali / ColQwen2 | Vision retrieval | Page-level document retrieval |
 | CLIP / SigLIP | Vision embedding | Cross-modal image-text similarity |
-| GPT-4V / Claude 3 | Multimodal LLM | Image understanding at generation time |
+| Claude Sonnet 5.5 / Opus 5.5, GPT-6 | Multimodal LLM | Image understanding at generation time |
 | DePlot | Chart understanding | Extracting data from charts |
 | pdfplumber | Table extraction | Structured table data from PDFs |
 | Unstructured.io | Document parsing | Multi-format document processing |

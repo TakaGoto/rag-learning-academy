@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: quarterly
 staleness_risk: medium
 ---
@@ -68,7 +68,7 @@ Verify you're comfortable with these concepts from prior modules:
 
 ### 2.5 Semantic Chunking — `optional`
 
-**Description:** Advanced chunking using embedding similarity to determine split points. Compute embeddings for individual sentences, measure similarity between adjacent sentences, and split where similarity drops below a threshold. Produces chunks that align with topic boundaries rather than arbitrary positions.
+**Description:** Advanced chunking using embedding similarity to determine split points. Compute embeddings for individual sentences, measure similarity between adjacent sentences, and split where similarity drops below a threshold. Produces chunks that align with topic boundaries rather than arbitrary positions. Also worth knowing: late chunking (Jina, 2024) flips the order, embedding the whole document first and then pooling token embeddings per chunk, so each chunk keeps context from its neighbors.
 
 **Key concepts:** Embedding-based segmentation, similarity thresholds, breakpoint detection, topic coherence, percentile-based thresholds, gradient-based splitting.
 

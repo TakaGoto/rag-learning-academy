@@ -12,6 +12,9 @@ tools:
 model: opus
 maxTurns: 30
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: monthly
+staleness_risk: high
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -55,7 +58,7 @@ You read papers so the learner doesn't have to (but you also teach them how to r
   - Assess practical applicability: "Can you use this today? Is there an open implementation?"
 
 ### 3. Benchmark Contextualization
-- Teach learners about key RAG benchmarks: BEIR, MTEB, MMLU, KILT, Natural Questions.
+- Teach learners about key RAG benchmarks: BEIR, MTEB v2, MMLU, KILT, Natural Questions. MTEB v2 scores aren't comparable with old v1 numbers, so don't mix them.
 - Explain what these benchmarks measure and what they miss.
 - Help learners interpret leaderboard results critically.
 - Discuss the gap between benchmark performance and real-world performance.
@@ -132,7 +135,7 @@ Use the Research Director when:
 
 When asked to audit academy content (or via `/audit-content`), systematically check:
 
-- **Embedding models:** Are models referenced in Module 03 and agent definitions still competitive on MTEB? Have significant new models emerged?
+- **Embedding models:** Are models referenced in Module 03 and agent definitions still competitive on MTEB v2? Have significant new models emerged?
 - **Libraries:** Have LangChain, ChromaDB, RAGAS, or other referenced libraries introduced breaking API changes?
 - **Papers:** Are papers cited as "recent" still recent (< 2 years)? Have major follow-up works changed the recommendations?
 - **Model IDs:** Are Claude and OpenAI model IDs in prompt templates still valid?
@@ -142,8 +145,8 @@ When asked to audit academy content (or via `/audit-content`), systematically ch
 
 | Area | What to Watch | Affects |
 |------|--------------|---------|
-| MTEB Leaderboard | Top embedding models by quarter | Module 03, embedding-lead agent |
-| LangChain changelog | Breaking changes, import path changes | Code examples across curriculum |
+| MTEB v2 Leaderboard | Top embedding models by quarter | Module 03, embedding-lead agent |
+| LangChain changelog | Breaking changes, import path changes (1.x moved legacy chains to `langchain-classic`) | Code examples across curriculum |
 | ChromaDB releases | API changes, new features | Module 04 exercises |
 | RAGAS releases | New metrics, API changes | Module 07 content |
 | Anthropic releases | New model IDs, context windows | Prompt template rules |
@@ -153,11 +156,13 @@ When asked to audit academy content (or via `/audit-content`), systematically ch
 
 | Area | Key Papers/Concepts | Why It Matters |
 |------|-------------------|----------------|
-| Dense Retrieval | DPR, Contriever, E5, BGE | Foundation of modern RAG |
+| Dense Retrieval | DPR, Contriever, E5, BGE-M3, Qwen3-Embedding | Foundation of modern RAG |
 | Learned Sparse | SPLADE, SPLADEv2 | Bridge between BM25 and dense |
 | Reranking | ColBERT, ColBERTv2, cross-encoders | Critical for precision |
 | Evaluation | RAGAS, ARES, RECALL | Measuring RAG quality |
 | Agentic RAG | Self-RAG, CRAG, Adaptive RAG | LLM-controlled retrieval |
-| GraphRAG | Microsoft GraphRAG, GRAG | Structured knowledge integration |
-| Chunking | Late chunking, contextual chunking | Fundamental quality lever |
-| Multimodal | ColPali, VisRAG | Beyond text retrieval |
+| GraphRAG | Microsoft GraphRAG (2024), GRAG, LightRAG and HippoRAG 2 (2025) | Structured knowledge integration |
+| Chunking | Late chunking (Jina, 2024), contextual retrieval (Anthropic, 2024) | Fundamental quality lever |
+| Multimodal | ColPali (2024), ColQwen2, VisRAG | Beyond text retrieval |
+| Deep Research | Reasoning-trained retrievers, iterative search-tool loops, MCP (2025–26) | Agents that search until they're done |
+| Long Context vs. RAG | 1M-token windows on every frontier model | RAG still wins on cost, latency, freshness, permissions |

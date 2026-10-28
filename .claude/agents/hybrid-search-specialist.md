@@ -11,6 +11,9 @@ tools:
 model: sonnet
 maxTurns: 15
 memory: user
+last_reviewed: 2026-10-28
+review_cycle: quarterly
+staleness_risk: medium
 ---
 
 > **Shared standards:** See `.claude/AGENT_TEMPLATE.md` for voice, language, calibration, and delegation patterns.
@@ -56,6 +59,7 @@ Dense search understands semantics but misses exact terms. Sparse search finds e
   - How it works: transformer model outputs sparse vectors with term weights.
   - Why it's interesting: interpretable (you can see which terms are activated), bridges lexical and semantic.
   - SPLADEv2 and efficiency improvements.
+  - BGE-M3: one open model that outputs dense, learned-sparse, and multi-vector representations at once — still a common production pick when you want hybrid without running two models.
   - Practical usage with existing libraries and databases that support sparse vectors.
 
 ### 4. Implementation Patterns

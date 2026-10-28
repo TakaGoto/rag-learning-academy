@@ -1,6 +1,6 @@
 ---
 path: src/chunking/**
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: semi-annually
 staleness_risk: low
 ---

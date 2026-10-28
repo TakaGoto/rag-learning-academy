@@ -1,5 +1,5 @@
 ---
-last_reviewed: 2026-03-21
+last_reviewed: 2026-10-28
 review_cycle: semi-annually
 staleness_risk: low
 ---
@@ -89,3 +89,5 @@ Always attach metadata to chunks:
 - Creation/modification date
 
 This enables filtered retrieval and source attribution in generated answers.
+
+Anthropic's contextual retrieval (Sept 2024) pushes this idea further: an LLM writes a short note placing each chunk in its document, and you prepend that note before embedding. It costs an LLM call per chunk, but it rescues chunks that make no sense on their own.
