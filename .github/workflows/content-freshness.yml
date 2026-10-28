@@ -97,7 +97,7 @@ jobs:
             2. Find every time-sensitive claim: model names and API model IDs, context windows, prices, library versions and import paths, vendor product names, papers described as "recent" or "new", and code that may no longer run on current library versions.
             3. Verify each one with WebSearch or WebFetch against official sources (Anthropic model docs, OpenAI docs, PyPI, the MTEB leaderboard, library changelogs). Never guess a model ID, price, or version number. If you cannot verify a claim, leave the text alone and list it in your summary.
             4. Fix what is outdated with surgical edits. Keep headings, section order, tables, lesson and exercise numbering, cross-references, and the number of code blocks. Match the voice described in CLAUDE.md. Do not add lessons, sections, agents, or exercises.
-            5. Set `last_reviewed:` in the file's frontmatter to today's date, including files where nothing else needed changing, because you reviewed them. Never add frontmatter keys to `.claude/agents/*.md`; Claude Code reads that frontmatter.
+            5. Set `last_reviewed:` in the file's frontmatter to today's date, including files where nothing else needed changing, because you reviewed them. In `.claude/agents/*.md` change only that key; Claude Code reads the rest of that frontmatter.
 
             Constraints: do not use git; do not create, rename, or delete files; do not edit tests, hooks, workflows, or `.claude/settings.json`. The tests enforce: Python code blocks must compile; the strings gpt-3.5-turbo, text-embedding-ada-002, claude-2 and claude-instant may not appear in content; agent files keep their `## Delegation Rules` section; the glossary keeps `## Terms by Topic`.
 

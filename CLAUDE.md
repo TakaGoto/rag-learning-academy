@@ -154,7 +154,7 @@ Not sure where to go? Run `/triage` to get routed to the right skill based on yo
 
 ## Content Freshness
 
-Every content file (curriculum, reference docs, templates, rules, sample data) carries `last_reviewed`, `review_cycle` (monthly / quarterly / semi-annually), and `staleness_risk` frontmatter. Agent files use git history instead, since Claude Code owns their frontmatter. Materials are monitored via:
+Every content file (curriculum, agents, reference docs, templates, rules, sample data) carries `last_reviewed`, `review_cycle` (monthly / quarterly / semi-annually), and `staleness_risk` frontmatter; Claude Code ignores those keys in agent files. Materials are monitored via:
 - **Session hook:** `check-freshness.sh` warns on startup about files past their review cycle (it runs `.github/scripts/content_freshness.sh`, the same script CI uses)
 - **On-demand audit:** Run `/audit-content` to scan for deprecated models, outdated libraries, and stale references
 - **Monthly CI:** `content-freshness.yml` finds files past their cycle, has Claude Code verify every model, version, and vendor reference against live docs, and opens a pull request with the fixes. Without an `ANTHROPIC_API_KEY` secret it keeps one tracking issue up to date instead.
