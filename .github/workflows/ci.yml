@@ -62,4 +62,4 @@ jobs:
         run: pip install pytest pyyaml
 
       - name: Run academy tests
-        run: python -m pytest tests/test_structure.py tests/test_cross_references.py tests/test_content.py tests/test_hooks.py -v
+        run: python -m pytest tests/test_structure.py tests/test_cross_references.py tests/test_content.py tests/test_hooks.py tests/test_weekly_check.py -v

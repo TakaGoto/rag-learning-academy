@@ -9,7 +9,9 @@ Checks for:
 4. MTEB leaderboard changes (top embedding models)
 
 Outputs a structured Markdown report to stdout.
-Never modifies any files — detection only.
+Never modifies any files — detection only. Always exits 0: findings (even
+critical ones) are reported in the output, and the workflow turns them into a
+tracking issue. A non-zero exit means the script itself broke.
 """
 
 import json
@@ -70,22 +72,14 @@ def check_pypi_versions():
         # Parse major versions
         our_major = our_version.split(".")[0]
         latest_major = latest.split(".")[0]
-        our_minor = our_version.split(".")[1] if "." in our_version else "0"
-        latest_minor = latest.split(".")[1] if "." in latest else "0"
 
+        # Requirements are minimum versions, so a lagging minor is normal.
+        # Only a new major version (likely breaking changes) is worth a report.
         if our_major != latest_major:
-            severity = "critical"
             log_action(
                 "PyPI",
-                severity,
+                "critical",
                 f"`{package}`: major version bump {our_version} → **{latest}** (breaking changes likely)",
-            )
-        elif int(latest_minor) - int(our_minor) >= 3:
-            severity = "warning"
-            log_action(
-                "PyPI",
-                severity,
-                f"`{package}`: significant update {our_version} → **{latest}** (review changelog)",
             )
 
         results.append(
@@ -104,11 +98,16 @@ def check_pypi_versions():
 # ---------------------------------------------------------------------------
 
 DEPRECATED_PATTERNS = {
-    r"\bgpt-3\.5-turbo\b": "gpt-3.5-turbo (use gpt-4o-mini or newer)",
-    r"\btext-embedding-ada-002\b": "text-embedding-ada-002 (use text-embedding-3-small or newer)",
-    r"\bclaude-2\b(?![-.\w])": "claude-2 (use claude-sonnet-4-6 or newer)",
-    r"\bclaude-instant\b": "claude-instant (use claude-haiku-4-5 or newer)",
+    r"\bgpt-3\.5-turbo\b": "gpt-3.5-turbo (retired; use a current model)",
+    r"\btext-embedding-ada-002\b": "text-embedding-ada-002 (legacy; use text-embedding-3-small or newer)",
+    r"\bclaude-2\b(?![-.\w])": "claude-2 (retired; use claude-sonnet-5-5 or newer)",
+    r"\bclaude-instant\b": "claude-instant (retired; use claude-haiku-5-5 or newer)",
     r"\bfrom langchain import\b": "old-style langchain import (use langchain-core or langchain-community)",
+}
+
+# Files that quote the deprecated patterns on purpose (as examples of what to look for).
+SCAN_EXEMPT = {
+    ROOT / ".claude" / "skills" / "audit-content" / "SKILL.md",
 }
 
 SCAN_DIRS = [
@@ -128,6 +127,8 @@ def scan_deprecated_patterns():
         if not scan_dir.exists():
             continue
         for md_file in scan_dir.rglob("*.md"):
+            if md_file in SCAN_EXEMPT:
+                continue
             text = md_file.read_text()
             for pattern, description in DEPRECATED_PATTERNS.items():
                 matches = re.findall(pattern, text)
@@ -444,10 +445,9 @@ def main():
     report = generate_report(pypi_results, deprecated_hits, overdue_files, mteb_results, stale_files)
     print(report)
 
-    # Exit with error if critical items found (makes CI status red)
-    critical_count = sum(1 for a in ACTION_ITEMS if a["severity"] == "critical")
-    sys.exit(1 if critical_count > 0 else 0)
+    # Findings live in the report, not the exit code: a red run is for a broken script.
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

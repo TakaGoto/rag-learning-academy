@@ -1,22 +1,34 @@
 name: Weekly Knowledge Check
 
+# Weekly report: PyPI major-version drift, deprecated patterns, MTEB model
+# health, and review cycles. Keeps ONE tracking issue up to date (it is updated
+# in place each week and closed when there is nothing left to do). The script
+# always exits 0, so a red run means the check itself broke.
+
 on:
   schedule:
     - cron: '0 9 * * 1'  # Every Monday at 9 AM UTC
   workflow_dispatch:
+
+concurrency:
+  group: weekly-knowledge-check
+  cancel-in-progress: false
 
 jobs:
   knowledge-check:
     runs-on: ubuntu-latest
     permissions:
       issues: write
+    env:
+      REPORT_TITLE: "Weekly Knowledge Check — ${{ github.event.repository.name }}"
+      GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7
         with:
           python-version: "3.12"
 
@@ -25,20 +37,11 @@ jobs:
 
       - name: Run knowledge checks
         id: checks
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           python .github/scripts/weekly_knowledge_check.py > report.md
-          ISSUE_COUNT=$(grep -c '^\- \[ \]' report.md || echo "0")
+          # grep -c prints 0 and exits 1 when nothing matches; "|| true" keeps the single "0"
+          ISSUE_COUNT=$(grep -c '^- \[ \]' report.md || true)
           echo "issue_count=$ISSUE_COUNT" >> "$GITHUB_OUTPUT"
-
-      - name: Create issue if action items found
-        if: steps.checks.outputs.issue_count != '0'
-        uses: peter-evans/create-issue-from-file@v5
-        with:
-          title: "Weekly Knowledge Check — $(date +%Y-%m-%d)"
-          content-filepath: report.md
-          labels: content-review,automated,weekly-check
 
       - name: Upload report
         if: always()
@@ -46,3 +49,25 @@ jobs:
         with:
           name: weekly-knowledge-report
           path: report.md
+
+      - name: Look up the existing tracking issue
+        id: issue
+        run: |
+          NUM=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --label weekly-check \
+                  --search "\"$REPORT_TITLE\" in:title" --json number --jq '.[0].number // empty')
+          echo "number=$NUM" >> "$GITHUB_OUTPUT"
+
+      - name: Create or update the tracking issue
+        if: steps.checks.outputs.issue_count != '0'
+        uses: peter-evans/create-issue-from-file@v6
+        with:
+          title: ${{ env.REPORT_TITLE }}
+          content-filepath: report.md
+          labels: content-review,automated,weekly-check
+          issue-number: ${{ steps.issue.outputs.number }}
+
+      - name: Close the tracking issue when nothing is left
+        if: steps.checks.outputs.issue_count == '0' && steps.issue.outputs.number != ''
+        run: |
+          gh issue close "${{ steps.issue.outputs.number }}" --repo "$GITHUB_REPOSITORY" \
+            --comment "The weekly check found nothing to act on. Closing."

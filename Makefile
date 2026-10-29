@@ -5,7 +5,7 @@ install:
 	pip install ruff pytest pyyaml
 
 test:
-	python -m pytest tests/test_structure.py tests/test_cross_references.py tests/test_content.py tests/test_hooks.py -v
+	python -m pytest tests/test_structure.py tests/test_cross_references.py tests/test_content.py tests/test_hooks.py tests/test_weekly_check.py -v
 
 test-all:
 	python -m pytest tests/ -v
